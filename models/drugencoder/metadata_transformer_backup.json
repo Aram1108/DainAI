@@ -1,0 +1,36 @@
+{
+  "encoder_type": "transformer",
+  "parameters": 3375361,
+  "output_dim": 768,
+  "metrics": {
+    "similarity_correlation": {
+      "pearson_r": 0.6196292338105523,
+      "pearson_p": 4.5191907341121535e-14,
+      "spearman_r": 0.637346725422895,
+      "spearman_p": 5.010321547718202e-15,
+      "n_pairs": 120,
+      "interpretation": "Higher correlation = better chemical structure capture"
+    },
+    "clustering": {
+      "silhouette_score": -0.08328758180141449,
+      "within_class_similarity": 0.8146375417709351,
+      "between_class_similarity": 0.7673445343971252,
+      "class_separation": 0.047293007373809814,
+      "n_classes": 9,
+      "interpretation": "Higher silhouette & separation = better clustering"
+    },
+    "consistency": {
+      "mean_consistency": 0.9903739094734192,
+      "std_consistency": 0.007970663718879223,
+      "n_tested": 3,
+      "interpretation": "Higher consistency = more robust to SMILES variations"
+    }
+  },
+  "overall_score": 73.54874956376864,
+  "interpretation": {
+    "similarity_correlation": "How well embeddings match chemical fingerprints",
+    "clustering": "How well drugs group by therapeutic class",
+    "consistency": "Stability across different SMILES representations",
+    "overall_score": "Weighted combination of all metrics (higher = better)"
+  }
+}

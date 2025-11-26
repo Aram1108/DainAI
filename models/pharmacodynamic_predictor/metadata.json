@@ -1,0 +1,182 @@
+{
+  "model_info": {
+    "name": "Cross-Attention Pharmacodynamic Predictor",
+    "version": "1.0",
+    "architecture": "CrossAttentionPredictor",
+    "created_at": "2025-11-26 13:45:53",
+    "trained": false,
+    "initialization": "xavier_uniform"
+  },
+  "architecture_config": {
+    "patient_dim": 41,
+    "drug_dim": 768,
+    "hidden_dim": 256,
+    "num_heads": 8,
+    "num_layers": 4,
+    "output_dim": 22
+  },
+  "parameters": {
+    "total": 3469206,
+    "trainable": 3469206
+  },
+  "input_features": {
+    "patient_state": [
+      "AGE",
+      "SEX",
+      "BMXHT",
+      "BMXWT",
+      "BMXARMC",
+      "BMXARML",
+      "BMXBMI",
+      "BMXLEG",
+      "BMXSUB",
+      "BMXTHICR",
+      "BMXTRI",
+      "BMXWAIST",
+      "LBDSCASI",
+      "LBDSCH",
+      "LBDSCR",
+      "LBDTC",
+      "LBXBCD",
+      "LBXBPB",
+      "LBXCRP",
+      "LBXSAL",
+      "LBXSAS",
+      "LBXSBU",
+      "LBXSCA",
+      "LBXSCH",
+      "LBXSCL",
+      "LBXSGB",
+      "LBXSGL",
+      "LBXSGT",
+      "LBXSK",
+      "LBXSNA",
+      "LBXSOS",
+      "LBXSTP",
+      "LBXSUA",
+      "LBXTC",
+      "MCQ160B",
+      "MCQ160C",
+      "MCQ160E",
+      "MCQ160F",
+      "MCQ160K",
+      "MCQ160L",
+      "MCQ220"
+    ],
+    "drug_embedding_dim": 768
+  },
+  "output_features": [
+    "LBDSCASI",
+    "LBDSCH",
+    "LBDSCR",
+    "LBDTC",
+    "LBXBCD",
+    "LBXBPB",
+    "LBXCRP",
+    "LBXSAL",
+    "LBXSAS",
+    "LBXSBU",
+    "LBXSCA",
+    "LBXSCH",
+    "LBXSCL",
+    "LBXSGB",
+    "LBXSGL",
+    "LBXSGT",
+    "LBXSK",
+    "LBXSNA",
+    "LBXSOS",
+    "LBXSTP",
+    "LBXSUA",
+    "LBXTC"
+  ],
+  "feature_bounds": {
+    "LBDSCASI": [
+      2.0107051594814296,
+      2.746233227137245
+    ],
+    "LBDSCH": [
+      0.7196474312470711,
+      9.013988054672897
+    ],
+    "LBDSCR": [
+      0,
+      210.99430724659936
+    ],
+    "LBDTC": [
+      0.7235200466196314,
+      9.090006102014712
+    ],
+    "LBXBCD": [
+      0,
+      2.328644900666502
+    ],
+    "LBXBPB": [
+      0,
+      9.078825891404112
+    ],
+    "LBXCRP": [
+      0,
+      10
+    ],
+    "LBXSAL": [
+      2.9424018282661972,
+      5.711402956828021
+    ],
+    "LBXSAS": [
+      0,
+      95.73836625644212
+    ],
+    "LBXSBU": [
+      0,
+      33.27015413150362
+    ],
+    "LBXSCA": [
+      7.0,
+      12.0
+    ],
+    "LBXSCH": [
+      100,
+      400
+    ],
+    "LBXSCL": [
+      95,
+      110
+    ],
+    "LBXSGB": [
+      1.465148444748968,
+      4.65076940407593
+    ],
+    "LBXSGL": [
+      50,
+      300
+    ],
+    "LBXSGT": [
+      0,
+      175.6839965375204
+    ],
+    "LBXSK": [
+      2.5,
+      6.5
+    ],
+    "LBXSNA": [
+      130,
+      150
+    ],
+    "LBXSOS": [
+      258.0557473077467,
+      296.86028064059127
+    ],
+    "LBXSTP": [
+      5.549071925058191,
+      9.21803372812834
+    ],
+    "LBXSUA": [
+      0,
+      10.478806946223589
+    ],
+    "LBXTC": [
+      100,
+      400
+    ]
+  }
+}
