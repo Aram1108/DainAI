@@ -30,13 +30,17 @@ import pandas as pd
 from pathlib import Path
 import time
 
-from patient_generator_gan import PatientGenerator
-from drugEncoder import DrugEncoder
-from pharmacodynamicPredictor import PharmacodynamicPredictor
-from dynamicsSimulator import simulate
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent / 'src'))
+
+from models.patient_generator_gan import PatientGenerator
+from encoders.drugEncoder import DrugEncoder
+from models.pharmacodynamicPredictor import PharmacodynamicPredictor
+from data_generation.dynamicsSimulator import simulate
 
 # Configuration
-OUTPUT_DIR = Path('outputs')
+OUTPUT_DIR = Path('results')
 DEVICE = 'cuda' if __import__('torch').cuda.is_available() else 'cpu'
 DEFAULT_STEPS = 100  # Number of simulation time steps
 DEFAULT_DT_MIN = 10  # Time step in minutes (100 steps × 10 min = ~16.7 hours)

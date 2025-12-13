@@ -1,0 +1,3192 @@
+{
+  "catalog_info": {
+    "dataset": "NHANES (National Health and Nutrition Examination Survey)",
+    "description": "Comprehensive feature catalog for NHANES dataset variables",
+    "version": "1.0"
+  },
+  "features": [
+    {
+      "category": "Demographics",
+      "variables": [
+        {
+          "code": "RIDEXAGM",
+          "name": "Age of participant (years)",
+          "description": "Age of the survey participant in years",
+          "unit": "years",
+          "type": "numeric"
+        },
+        {
+          "code": "RIAGENDR",
+          "name": "Gender",
+          "description": "Gender of participant (1=Male, 2=Female)",
+          "type": "categorical",
+          "values": {"1": "Male", "2": "Female"}
+        },
+        {
+          "code": "RIDRETH2",
+          "name": "Race/Hispanic origin",
+          "description": "Race and Hispanic origin information with recode",
+          "type": "categorical"
+        },
+        {
+          "code": "DMDCITZN",
+          "name": "Citizenship status",
+          "description": "Citizenship status of the participant",
+          "type": "categorical"
+        },
+        {
+          "code": "DMDYRSUS",
+          "name": "Years in US",
+          "description": "Length of time the participant has lived in the United States",
+          "unit": "years",
+          "type": "numeric"
+        },
+        {
+          "code": "DMDEDUC3",
+          "name": "Education level (children/adolescents)",
+          "description": "Education level for participants aged 6-19",
+          "type": "categorical"
+        },
+        {
+          "code": "DMDEDUC",
+          "name": "Education level (adults)",
+          "description": "Highest grade or level of education completed for adults 20+",
+          "type": "categorical"
+        },
+        {
+          "code": "DMDSCHOL",
+          "name": "School enrollment status",
+          "description": "Current school enrollment status",
+          "type": "categorical"
+        },
+        {
+          "code": "DMDMARTL",
+          "name": "Marital status",
+          "description": "Current marital status of the participant",
+          "type": "categorical"
+        },
+        {
+          "code": "DMDHHSIZ",
+          "name": "Household size",
+          "description": "Total number of people in the household",
+          "type": "numeric"
+        },
+        {
+          "code": "DMDFMSIZ",
+          "name": "Family size",
+          "description": "Total number of people in the family",
+          "type": "numeric"
+        },
+        {
+          "code": "DMDBORN2",
+          "name": "Country of birth",
+          "description": "Country where the participant was born",
+          "type": "categorical"
+        },
+        {
+          "code": "DMDHREDU",
+          "name": "Head of household education level",
+          "description": "Education level of household reference person",
+          "type": "categorical"
+        },
+        {
+          "code": "DMDHRMAR",
+          "name": "Head of household marital status",
+          "description": "Marital status of household reference person",
+          "type": "categorical"
+        }
+      ]
+    },
+    {
+      "category": "Body Measurements",
+      "variables": [
+        {
+          "code": "BMXHT",
+          "name": "Height",
+          "description": "Standing height measurement",
+          "unit": "cm",
+          "type": "numeric"
+        },
+        {
+          "code": "BMXWT",
+          "name": "Weight",
+          "description": "Body weight measurement",
+          "unit": "kg",
+          "type": "numeric"
+        },
+        {
+          "code": "BMXBMI",
+          "name": "Body Mass Index (BMI)",
+          "description": "Calculated BMI (weight in kg / height in meters squared)",
+          "unit": "kg/m²",
+          "type": "numeric"
+        },
+        {
+          "code": "BMXLEG",
+          "name": "Upper leg length",
+          "description": "Length of upper leg measurement",
+          "unit": "cm",
+          "type": "numeric"
+        },
+        {
+          "code": "BMXARML",
+          "name": "Upper arm length",
+          "description": "Length of upper arm measurement",
+          "unit": "cm",
+          "type": "numeric"
+        },
+        {
+          "code": "BMXARMC",
+          "name": "Arm circumference",
+          "description": "Circumference of upper arm",
+          "unit": "cm",
+          "type": "numeric"
+        },
+        {
+          "code": "BMXWAIST",
+          "name": "Waist circumference",
+          "description": "Waist circumference measurement",
+          "unit": "cm",
+          "type": "numeric"
+        },
+        {
+          "code": "BMXSAD1",
+          "name": "Sagittal abdominal diameter 1",
+          "description": "First sagittal abdominal diameter measurement",
+          "unit": "cm",
+          "type": "numeric"
+        },
+        {
+          "code": "BMXSAD2",
+          "name": "Sagittal abdominal diameter 2",
+          "description": "Second sagittal abdominal diameter measurement",
+          "unit": "cm",
+          "type": "numeric"
+        },
+        {
+          "code": "BMDAVSAD",
+          "name": "Average sagittal abdominal diameter",
+          "description": "Average of sagittal abdominal diameter measurements",
+          "unit": "cm",
+          "type": "numeric"
+        }
+      ]
+    },
+    {
+      "category": "Blood Chemistry - Lipids",
+      "variables": [
+        {
+          "code": "LBXTC",
+          "name": "Total cholesterol",
+          "description": "Total cholesterol level in blood",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDTCSI",
+          "name": "Total cholesterol (SI units)",
+          "description": "Total cholesterol in SI units",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDHDL",
+          "name": "HDL cholesterol",
+          "description": "High-density lipoprotein cholesterol (good cholesterol)",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDHDLSI",
+          "name": "HDL cholesterol (SI units)",
+          "description": "HDL cholesterol in SI units",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXHDD",
+          "name": "Direct HDL cholesterol",
+          "description": "Direct measurement of HDL cholesterol",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDHDDSI",
+          "name": "Direct HDL cholesterol (SI units)",
+          "description": "Direct HDL cholesterol in SI units",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDLDL",
+          "name": "LDL cholesterol",
+          "description": "Low-density lipoprotein cholesterol (bad cholesterol)",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDLDLSI",
+          "name": "LDL cholesterol (SI units)",
+          "description": "LDL cholesterol in SI units",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXTR",
+          "name": "Triglycerides",
+          "description": "Triglyceride level in blood",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDTRSI",
+          "name": "Triglycerides (SI units)",
+          "description": "Triglycerides in SI units",
+          "unit": "mmol/L",
+          "type": "numeric"
+        }
+      ]
+    },
+    {
+      "category": "Blood Chemistry - Metabolic Panel",
+      "variables": [
+        {
+          "code": "LBXGLU",
+          "name": "Fasting glucose",
+          "description": "Blood glucose level after fasting",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSAL",
+          "name": "Albumin",
+          "description": "Albumin protein level in blood",
+          "unit": "g/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDSALSI",
+          "name": "Albumin (SI units)",
+          "description": "Albumin in SI units",
+          "unit": "g/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSBU",
+          "name": "Blood urea nitrogen (BUN)",
+          "description": "Blood urea nitrogen level",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDSBUSI",
+          "name": "BUN (SI units)",
+          "description": "Blood urea nitrogen in SI units",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSCA",
+          "name": "Calcium",
+          "description": "Total calcium level in blood",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDSCASI",
+          "name": "Calcium (SI units)",
+          "description": "Calcium in SI units",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSCH",
+          "name": "Cholesterol (alternate)",
+          "description": "Alternative cholesterol measurement",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDSCHSI",
+          "name": "Cholesterol (SI, alternate)",
+          "description": "Alternative cholesterol in SI units",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSC3SI",
+          "name": "Bicarbonate (SI units)",
+          "description": "Bicarbonate level in SI units",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSCR",
+          "name": "Creatinine",
+          "description": "Serum creatinine level (kidney function marker)",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDSCRSI",
+          "name": "Creatinine (SI units)",
+          "description": "Creatinine in SI units",
+          "unit": "µmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSGL",
+          "name": "Glucose (serum)",
+          "description": "Serum glucose level",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDSGLSI",
+          "name": "Glucose (SI units)",
+          "description": "Glucose in SI units",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSIR",
+          "name": "Iron",
+          "description": "Serum iron level",
+          "unit": "µg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDSIRSI",
+          "name": "Iron (SI units)",
+          "description": "Iron in SI units",
+          "unit": "µmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSPH",
+          "name": "Phosphate",
+          "description": "Serum phosphate level",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDSPHSI",
+          "name": "Phosphate (SI units)",
+          "description": "Phosphate in SI units",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSTB",
+          "name": "Total bilirubin",
+          "description": "Total bilirubin level in blood",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDSTBSI",
+          "name": "Total bilirubin (SI units)",
+          "description": "Total bilirubin in SI units",
+          "unit": "µmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSTP",
+          "name": "Total protein",
+          "description": "Total protein level in blood",
+          "unit": "g/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDSTPSI",
+          "name": "Total protein (SI units)",
+          "description": "Total protein in SI units",
+          "unit": "g/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSTR",
+          "name": "Triglycerides (serum)",
+          "description": "Serum triglyceride level",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDSTRSI",
+          "name": "Triglycerides (SI, serum)",
+          "description": "Serum triglycerides in SI units",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSUA",
+          "name": "Uric acid",
+          "description": "Uric acid level in blood",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDSUASI",
+          "name": "Uric acid (SI units)",
+          "description": "Uric acid in SI units",
+          "unit": "µmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSNASI",
+          "name": "Sodium (SI units)",
+          "description": "Sodium level in SI units",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSKSI",
+          "name": "Potassium (SI units)",
+          "description": "Potassium level in SI units",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSCLSI",
+          "name": "Chloride (SI units)",
+          "description": "Chloride level in SI units",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSOSSI",
+          "name": "Osmolality (SI units)",
+          "description": "Osmolality in SI units",
+          "unit": "mmol/kg",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSGB",
+          "name": "Globulin",
+          "description": "Globulin protein level in blood",
+          "unit": "g/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDSGBSI",
+          "name": "Globulin (SI units)",
+          "description": "Globulin in SI units",
+          "unit": "g/L",
+          "type": "numeric"
+        }
+      ]
+    },
+    {
+      "category": "Blood Chemistry - Liver Function",
+      "variables": [
+        {
+          "code": "LBXSATSI",
+          "name": "ALT (SI units)",
+          "description": "Alanine aminotransferase (liver enzyme) in SI units",
+          "unit": "U/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSASSI",
+          "name": "AST (SI units)",
+          "description": "Aspartate aminotransferase (liver enzyme) in SI units",
+          "unit": "U/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSAPSI",
+          "name": "Alkaline phosphatase (SI units)",
+          "description": "Alkaline phosphatase enzyme level in SI units",
+          "unit": "U/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSGTSI",
+          "name": "GGT (SI units)",
+          "description": "Gamma-glutamyl transferase (liver enzyme) in SI units",
+          "unit": "U/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSLDSI",
+          "name": "LDH (SI units)",
+          "description": "Lactate dehydrogenase in SI units",
+          "unit": "U/L",
+          "type": "numeric"
+        }
+      ]
+    },
+    {
+      "category": "Complete Blood Count (CBC)",
+      "variables": [
+        {
+          "code": "LBXWBCSI",
+          "name": "White blood cell count",
+          "description": "Total white blood cell count",
+          "unit": "1000 cells/µL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXLYPCT",
+          "name": "Lymphocyte percent",
+          "description": "Percentage of lymphocytes",
+          "unit": "%",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXMOPCT",
+          "name": "Monocyte percent",
+          "description": "Percentage of monocytes",
+          "unit": "%",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXNEPCT",
+          "name": "Neutrophil percent",
+          "description": "Percentage of neutrophils",
+          "unit": "%",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXEOPCT",
+          "name": "Eosinophil percent",
+          "description": "Percentage of eosinophils",
+          "unit": "%",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXBAPCT",
+          "name": "Basophil percent",
+          "description": "Percentage of basophils",
+          "unit": "%",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDLYMNO",
+          "name": "Lymphocyte number",
+          "description": "Absolute lymphocyte count",
+          "unit": "1000 cells/µL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDMONO",
+          "name": "Monocyte number",
+          "description": "Absolute monocyte count",
+          "unit": "1000 cells/µL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDNENO",
+          "name": "Neutrophil number",
+          "description": "Absolute neutrophil count",
+          "unit": "1000 cells/µL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDEONO",
+          "name": "Eosinophil number",
+          "description": "Absolute eosinophil count",
+          "unit": "1000 cells/µL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDBANO",
+          "name": "Basophil number",
+          "description": "Absolute basophil count",
+          "unit": "1000 cells/µL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXRBCSI",
+          "name": "Red blood cell count",
+          "description": "Total red blood cell count",
+          "unit": "million cells/µL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXHGB",
+          "name": "Hemoglobin",
+          "description": "Hemoglobin level in blood",
+          "unit": "g/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXHCT",
+          "name": "Hematocrit",
+          "description": "Percentage of blood volume occupied by red blood cells",
+          "unit": "%",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXMCVSI",
+          "name": "Mean cell volume",
+          "description": "Average volume of red blood cells",
+          "unit": "fL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXMCHSI",
+          "name": "Mean cell hemoglobin",
+          "description": "Average hemoglobin per red blood cell",
+          "unit": "pg",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXMC",
+          "name": "MCHC",
+          "description": "Mean corpuscular hemoglobin concentration",
+          "unit": "g/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXRDW",
+          "name": "Red cell distribution width",
+          "description": "Variation in red blood cell size",
+          "unit": "%",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXPLTSI",
+          "name": "Platelet count",
+          "description": "Total platelet count",
+          "unit": "1000 cells/µL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXMPSI",
+          "name": "Mean platelet volume",
+          "description": "Average volume of platelets",
+          "unit": "fL",
+          "type": "numeric"
+        }
+      ]
+    },
+    {
+      "category": "Blood Chemistry - Iron Studies",
+      "variables": [
+        {
+          "code": "LBXIRN",
+          "name": "Iron (serum)",
+          "description": "Serum iron level",
+          "unit": "µg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDIRNSI",
+          "name": "Iron (SI units)",
+          "description": "Iron in SI units",
+          "unit": "µmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXTIB",
+          "name": "Total iron binding capacity",
+          "description": "Total iron binding capacity",
+          "unit": "µg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDTIBSI",
+          "name": "TIBC (SI units)",
+          "description": "Total iron binding capacity in SI units",
+          "unit": "µmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXPCT",
+          "name": "Transferrin saturation",
+          "description": "Percentage of transferrin saturated with iron",
+          "unit": "%",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXFER",
+          "name": "Ferritin",
+          "description": "Ferritin level (iron storage protein)",
+          "unit": "ng/mL",
+          "type": "numeric"
+        }
+      ]
+    },
+    {
+      "category": "Thyroid Function",
+      "variables": [
+        {
+          "code": "LBXATG",
+          "name": "Thyroglobulin antibody",
+          "description": "Thyroglobulin antibody level",
+          "unit": "IU/mL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXT3F",
+          "name": "Free T3",
+          "description": "Free triiodothyronine level",
+          "unit": "pg/mL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXT4F",
+          "name": "Free T4",
+          "description": "Free thyroxine level",
+          "unit": "ng/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDT4FSI",
+          "name": "Free T4 (SI units)",
+          "description": "Free thyroxine in SI units",
+          "unit": "pmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXTGN",
+          "name": "Thyroglobulin",
+          "description": "Thyroglobulin level",
+          "unit": "ng/mL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDTGNSI",
+          "name": "Thyroglobulin (SI units)",
+          "description": "Thyroglobulin in SI units",
+          "unit": "µg/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXTSH1",
+          "name": "Thyroid stimulating hormone",
+          "description": "TSH level (thyroid function marker)",
+          "unit": "µIU/mL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDTSH1S",
+          "name": "TSH (SI units)",
+          "description": "TSH in SI units",
+          "unit": "mIU/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXTPO",
+          "name": "Thyroid peroxidase antibody",
+          "description": "Thyroid peroxidase antibody level",
+          "unit": "IU/mL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXTT3",
+          "name": "Total T3",
+          "description": "Total triiodothyronine level",
+          "unit": "ng/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDTT3SI",
+          "name": "Total T3 (SI units)",
+          "description": "Total T3 in SI units",
+          "unit": "nmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXTT4",
+          "name": "Total T4",
+          "description": "Total thyroxine level",
+          "unit": "µg/dL",
+          "type": "numeric"
+        }
+      ]
+    },
+    {
+      "category": "Heavy Metals & Toxins",
+      "variables": [
+        {
+          "code": "LBXBPB",
+          "name": "Blood lead",
+          "description": "Lead level in blood",
+          "unit": "µg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDBPBSI",
+          "name": "Blood lead (SI units)",
+          "description": "Lead in SI units",
+          "unit": "µmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXBCD",
+          "name": "Blood cadmium",
+          "description": "Cadmium level in blood",
+          "unit": "µg/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDBCDSI",
+          "name": "Blood cadmium (SI units)",
+          "description": "Cadmium in SI units",
+          "unit": "nmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXTHG",
+          "name": "Total mercury",
+          "description": "Total mercury level in blood",
+          "unit": "µg/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDTHGSI",
+          "name": "Total mercury (SI units)",
+          "description": "Total mercury in SI units",
+          "unit": "nmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXIHG",
+          "name": "Inorganic mercury",
+          "description": "Inorganic mercury level in blood",
+          "unit": "µg/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDIHGSI",
+          "name": "Inorganic mercury (SI units)",
+          "description": "Inorganic mercury in SI units",
+          "unit": "nmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXCOT",
+          "name": "Cotinine",
+          "description": "Cotinine level (nicotine metabolite, smoking marker)",
+          "unit": "ng/mL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDCOTLC",
+          "name": "Cotinine (LC method)",
+          "description": "Cotinine by liquid chromatography",
+          "unit": "ng/mL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDCOTSI",
+          "name": "Cotinine (SI units)",
+          "description": "Cotinine in SI units",
+          "unit": "nmol/L",
+          "type": "numeric"
+        }
+      ]
+    },
+    {
+      "category": "Other Blood Markers",
+      "variables": [
+        {
+          "code": "LBXHCY",
+          "name": "Homocysteine",
+          "description": "Homocysteine level (cardiovascular risk marker)",
+          "unit": "µmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDHCY",
+          "name": "Homocysteine (alternate)",
+          "description": "Alternative homocysteine measurement",
+          "unit": "µmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXMMA",
+          "name": "Methylmalonic acid",
+          "description": "Methylmalonic acid level (B12 deficiency marker)",
+          "unit": "µmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXGTC",
+          "name": "Gamma-tocopherol",
+          "description": "Gamma-tocopherol level (form of vitamin E)",
+          "unit": "µg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDGTCSI",
+          "name": "Gamma-tocopherol (SI units)",
+          "description": "Gamma-tocopherol in SI units",
+          "unit": "µmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXRPL",
+          "name": "Retinyl palmitate",
+          "description": "Retinyl palmitate level",
+          "unit": "µg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDRPLSI",
+          "name": "Retinyl palmitate (SI units)",
+          "description": "Retinyl palmitate in SI units",
+          "unit": "µmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXEPP",
+          "name": "Erythrocyte protoporphyrin",
+          "description": "Erythrocyte protoporphyrin level",
+          "unit": "µg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDEPPSI",
+          "name": "Erythrocyte protoporphyrin (SI units)",
+          "description": "Erythrocyte protoporphyrin in SI units",
+          "unit": "µmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXUIB",
+          "name": "Unconjugated bilirubin",
+          "description": "Unconjugated (indirect) bilirubin level",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXUIBLC",
+          "name": "Unconjugated bilirubin (LC)",
+          "description": "Unconjugated bilirubin by liquid chromatography",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXUIBSI",
+          "name": "Unconjugated bilirubin (SI units)",
+          "description": "Unconjugated bilirubin in SI units",
+          "unit": "µmol/L",
+          "type": "numeric"
+        }
+      ]
+    },
+    {
+      "category": "Urine Tests",
+      "variables": [
+        {
+          "code": "URXUMA",
+          "name": "Urine albumin",
+          "description": "Albumin level in urine",
+          "unit": "mg/L",
+          "type": "numeric"
+        },
+        {
+          "code": "URXUMASI",
+          "name": "Urine albumin (SI units)",
+          "description": "Urine albumin in SI units",
+          "unit": "mg/L",
+          "type": "numeric"
+        },
+        {
+          "code": "URXUMALC",
+          "name": "Urine albumin (LC)",
+          "description": "Urine albumin by liquid chromatography",
+          "unit": "mg/L",
+          "type": "numeric"
+        },
+        {
+          "code": "URXUCR",
+          "name": "Urine creatinine",
+          "description": "Creatinine level in urine",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "URXUCRSI",
+          "name": "Urine creatinine (SI units)",
+          "description": "Urine creatinine in SI units",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "URXUCRLC",
+          "name": "Urine creatinine (LC)",
+          "description": "Urine creatinine by liquid chromatography",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "URDUMA2S",
+          "name": "Urine albumin-to-creatinine ratio",
+          "description": "Albumin-to-creatinine ratio in urine",
+          "unit": "mg/g",
+          "type": "numeric"
+        },
+        {
+          "code": "URDUCR2S",
+          "name": "Urine creatinine (special)",
+          "description": "Special urine creatinine measurement",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "URDNT",
+          "name": "Urine pregnancy test",
+          "description": "Urine pregnancy test result",
+          "type": "categorical"
+        },
+        {
+          "code": "URXNT",
+          "name": "Urine nitrite",
+          "description": "Nitrite level in urine",
+          "type": "categorical"
+        },
+        {
+          "code": "URXACT",
+          "name": "Urine acetone",
+          "description": "Acetone level in urine",
+          "unit": "mg/dL",
+          "type": "numeric"
+        }
+      ]
+    },
+    {
+      "category": "Diabetes & Metabolic",
+      "variables": [
+        {
+          "code": "DIQ090",
+          "name": "Diabetic retinopathy",
+          "description": "Has diabetic retinopathy",
+          "type": "categorical"
+        },
+        {
+          "code": "DIQ100",
+          "name": "Vision problems from diabetes",
+          "description": "Has vision problems due to diabetes",
+          "type": "categorical"
+        },
+        {
+          "code": "DIQ120",
+          "name": "Feeling drowsy during day",
+          "description": "Feels drowsy during the day",
+          "type": "categorical"
+        },
+        {
+          "code": "DIQ140",
+          "name": "Foot sores",
+          "description": "Has foot sores that won't heal",
+          "type": "categorical"
+        },
+        {
+          "code": "DIQ172",
+          "name": "Taking diabetes medication",
+          "description": "Currently taking diabetes medication",
+          "type": "categorical"
+        },
+        {
+          "code": "DIQ190A",
+          "name": "Taking insulin now",
+          "description": "Currently taking insulin",
+          "type": "categorical"
+        },
+        {
+          "code": "DIQ190B",
+          "name": "Taking diabetic pills now",
+          "description": "Currently taking diabetic pills",
+          "type": "categorical"
+        },
+        {
+          "code": "DIQ190C",
+          "name": "Taking both insulin and pills",
+          "description": "Taking both insulin and diabetic pills",
+          "type": "categorical"
+        },
+        {
+          "code": "DIQ200A",
+          "name": "Times checked blood for glucose",
+          "description": "Number of times checked blood glucose per day",
+          "type": "numeric"
+        },
+        {
+          "code": "DIQ200B",
+          "name": "Unit for glucose checks",
+          "description": "Time unit for glucose checks (per day/week/month)",
+          "type": "categorical"
+        },
+        {
+          "code": "DIQ200C",
+          "name": "Times saw diabetes specialist",
+          "description": "Number of times saw diabetes specialist",
+          "type": "numeric"
+        }
+      ]
+    },
+    {
+      "category": "Medical Conditions",
+      "variables": [
+        {
+          "code": "MCQ010",
+          "name": "Ever told had asthma",
+          "description": "Ever been told by doctor had asthma",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ053",
+          "name": "Taking asthma treatment",
+          "description": "Still taking asthma treatment",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ070",
+          "name": "Psoriasis",
+          "description": "Ever been told had psoriasis",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ080",
+          "name": "Ever told had overweight",
+          "description": "Ever been told overweight",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ082",
+          "name": "Celiac disease",
+          "description": "Ever been told had celiac disease",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ084",
+          "name": "Gout",
+          "description": "Ever been told had gout",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ086",
+          "name": "COPD",
+          "description": "Ever been told had COPD (chronic obstructive pulmonary disease)",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ092",
+          "name": "Ever received blood transfusion",
+          "description": "Ever received a blood transfusion",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ160A",
+          "name": "Arthritis",
+          "description": "Doctor ever said had arthritis",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ160B",
+          "name": "Congestive heart failure",
+          "description": "Doctor ever said had congestive heart failure",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ160C",
+          "name": "Coronary heart disease",
+          "description": "Doctor ever said had coronary heart disease",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ160D",
+          "name": "Angina",
+          "description": "Doctor ever said had angina (chest pain)",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ160E",
+          "name": "Heart attack",
+          "description": "Doctor ever said had heart attack",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ160F",
+          "name": "Stroke",
+          "description": "Doctor ever said had stroke",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ160L",
+          "name": "Liver condition",
+          "description": "Doctor ever said had liver condition",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ160O",
+          "name": "GERD",
+          "description": "Doctor ever said had GERD (gastroesophageal reflux disease)",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ160P",
+          "name": "Thyroid problem",
+          "description": "Doctor ever said had thyroid problem",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ180M",
+          "name": "Osteoporosis",
+          "description": "Doctor ever said had osteoporosis",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ203",
+          "name": "Jaundice in past 12 months",
+          "description": "Had jaundice in the past 12 months",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ220",
+          "name": "Ever told had cancer",
+          "description": "Ever been told had cancer or malignancy",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ265",
+          "name": "Ever been tested for HIV",
+          "description": "Ever been tested for HIV",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ365A",
+          "name": "Told risk for high cholesterol",
+          "description": "Told at risk for high cholesterol",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ365B",
+          "name": "Told risk for hypertension",
+          "description": "Told at risk for hypertension",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ365C",
+          "name": "Told risk for diabetes",
+          "description": "Told at risk for diabetes",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ365D",
+          "name": "Told risk for obesity",
+          "description": "Told at risk for obesity",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ366A",
+          "name": "Told lose weight for cholesterol",
+          "description": "Told to lose weight for cholesterol",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ366B",
+          "name": "Told lose weight for hypertension",
+          "description": "Told to lose weight for hypertension",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ366C",
+          "name": "Told lose weight for diabetes",
+          "description": "Told to lose weight for diabetes",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ366D",
+          "name": "Told lose weight for obesity",
+          "description": "Told to lose weight for obesity",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ370A",
+          "name": "Told exercise for cholesterol",
+          "description": "Told to exercise for cholesterol",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ370B",
+          "name": "Told exercise for hypertension",
+          "description": "Told to exercise for hypertension",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ370C",
+          "name": "Told exercise for diabetes",
+          "description": "Told to exercise for diabetes",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ370D",
+          "name": "Told exercise for obesity",
+          "description": "Told to exercise for obesity",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ371A",
+          "name": "Told reduce sodium for cholesterol",
+          "description": "Told to reduce sodium for cholesterol",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ371B",
+          "name": "Told reduce sodium for hypertension",
+          "description": "Told to reduce sodium for hypertension",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ371C",
+          "name": "Told reduce sodium for diabetes",
+          "description": "Told to reduce sodium for diabetes",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ371D",
+          "name": "Told reduce sodium for obesity",
+          "description": "Told to reduce sodium for obesity",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ380",
+          "name": "Coughing blood",
+          "description": "Ever coughed up blood",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ520",
+          "name": "Abdominal pain",
+          "description": "Abdominal pain in past 12 months",
+          "type": "categorical"
+        }
+      ]
+    },
+    {
+      "category": "Physical Function & Disability",
+      "variables": [
+        {
+          "code": "PFD069A",
+          "name": "Difficulty managing money",
+          "description": "Difficulty managing money",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ041",
+          "name": "Difficulty walking 1/4 mile",
+          "description": "Difficulty walking for a quarter mile",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ063B",
+          "name": "Difficulty stooping/crouching/kneeling",
+          "description": "Difficulty stooping, crouching or kneeling",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ063C",
+          "name": "Difficulty lifting/carrying",
+          "description": "Difficulty lifting or carrying something",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ063D",
+          "name": "Difficulty grasping",
+          "description": "Difficulty grasping small objects",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ063E",
+          "name": "Difficulty reaching up",
+          "description": "Difficulty reaching up over head",
+          "type": "categorical"
+        },
+        {
+          "code": "DLQ040",
+          "name": "Difficulty standing for long period",
+          "description": "Difficulty standing for long periods",
+          "type": "categorical"
+        },
+        {
+          "code": "DLQ050",
+          "name": "Difficulty sitting for long period",
+          "description": "Difficulty sitting for long periods",
+          "type": "categorical"
+        },
+        {
+          "code": "DLQ060",
+          "name": "Difficulty climbing stairs",
+          "description": "Difficulty climbing stairs",
+          "type": "categorical"
+        },
+        {
+          "code": "DLQ080",
+          "name": "Difficulty walking",
+          "description": "Difficulty walking",
+          "type": "categorical"
+        },
+        {
+          "code": "DLQ100",
+          "name": "Difficulty with finger movements",
+          "description": "Difficulty with finger movements",
+          "type": "categorical"
+        },
+        {
+          "code": "DLQ110",
+          "name": "Difficulty reading",
+          "description": "Difficulty reading ordinary print",
+          "type": "categorical"
+        },
+        {
+          "code": "DLQ130",
+          "name": "Difficulty concentrating",
+          "description": "Difficulty concentrating/remembering",
+          "type": "categorical"
+        },
+        {
+          "code": "DLQ140",
+          "name": "Difficulty hearing",
+          "description": "Difficulty hearing",
+          "type": "categorical"
+        },
+        {
+          "code": "DLQ150",
+          "name": "Difficulty dressing",
+          "description": "Difficulty dressing",
+          "type": "categorical"
+        },
+        {
+          "code": "DLQ170",
+          "name": "Difficulty eating",
+          "description": "Difficulty eating",
+          "type": "categorical"
+        }
+      ]
+    },
+    {
+      "category": "Smoking & Tobacco",
+      "variables": [
+        {
+          "code": "SMQ020",
+          "name": "Smoked at least 100 cigarettes",
+          "description": "Smoked at least 100 cigarettes in lifetime",
+          "type": "categorical"
+        },
+        {
+          "code": "SMD680",
+          "name": "Used last 5 days",
+          "description": "Used tobacco in last 5 days",
+          "type": "categorical"
+        },
+        {
+          "code": "SMQ077",
+          "name": "Smoke now",
+          "description": "Currently smoke cigarettes",
+          "type": "categorical"
+        },
+        {
+          "code": "SMQ680",
+          "name": "Used smokeless tobacco",
+          "description": "Ever used smokeless tobacco",
+          "type": "categorical"
+        },
+        {
+          "code": "SMDUPCA",
+          "name": "Cigarettes per day",
+          "description": "Number of cigarettes smoked per day",
+          "type": "numeric"
+        },
+        {
+          "code": "SMD093",
+          "name": "Age started smoking regularly",
+          "description": "Age when started smoking regularly",
+          "unit": "years",
+          "type": "numeric"
+        },
+        {
+          "code": "SMQ890",
+          "name": "Quit smoking",
+          "description": "Ever quit smoking for 1 year or more",
+          "type": "categorical"
+        },
+        {
+          "code": "SMQ900",
+          "name": "Ever used e-cigarette",
+          "description": "Ever used an e-cigarette",
+          "type": "categorical"
+        },
+        {
+          "code": "SMQ910",
+          "name": "Use e-cigarette now",
+          "description": "Currently use e-cigarettes",
+          "type": "categorical"
+        }
+      ]
+    },
+    {
+      "category": "Alcohol Use",
+      "variables": [
+        {
+          "code": "ALQ130",
+          "name": "Avg alcoholic drinks per day",
+          "description": "Average number of alcoholic drinks per day",
+          "type": "numeric"
+        },
+        {
+          "code": "ALQ141Q",
+          "name": "Days drank alcohol",
+          "description": "Number of days drank alcohol in past year",
+          "type": "numeric"
+        }
+      ]
+    },
+    {
+      "category": "Drug Use",
+      "variables": [
+        {
+          "code": "DUAISC",
+          "name": "Drug use assessment score",
+          "description": "Drug use assessment interview score",
+          "type": "numeric"
+        },
+        {
+          "code": "DUQ200",
+          "name": "Ever used marijuana",
+          "description": "Ever used marijuana or hashish",
+          "type": "categorical"
+        },
+        {
+          "code": "DUQ210",
+          "name": "Age first used marijuana",
+          "description": "Age when first tried marijuana",
+          "unit": "years",
+          "type": "numeric"
+        },
+        {
+          "code": "DUQ211",
+          "name": "Used marijuana last month",
+          "description": "Used marijuana in the last 30 days",
+          "type": "categorical"
+        },
+        {
+          "code": "DUQ220Q",
+          "name": "Days used marijuana",
+          "description": "Number of days used marijuana",
+          "type": "numeric"
+        },
+        {
+          "code": "DUQ220U",
+          "name": "Unit for marijuana use",
+          "description": "Time unit for marijuana use (days/weeks/months)",
+          "type": "categorical"
+        },
+        {
+          "code": "DUQ240",
+          "name": "Ever used cocaine",
+          "description": "Ever used cocaine/crack/freebase",
+          "type": "categorical"
+        },
+        {
+          "code": "DUQ370",
+          "name": "Ever used any illegal drug",
+          "description": "Ever used any illegal drug",
+          "type": "categorical"
+        },
+        {
+          "code": "DUQ430",
+          "name": "Ever injected illegal drug",
+          "description": "Ever injected illegal drugs",
+          "type": "categorical"
+        }
+      ]
+    },
+    {
+      "category": "Diet & Nutrition",
+      "variables": [
+        {
+          "code": "DBQ095",
+          "name": "Type of milk usually drink",
+          "description": "Type of milk usually consumed",
+          "type": "categorical"
+        },
+        {
+          "code": "DBQ110",
+          "name": "Eat meals from fast food",
+          "description": "Number of fast food meals per week",
+          "type": "numeric"
+        },
+        {
+          "code": "DBQ120",
+          "name": "Eat meals from restaurant",
+          "description": "Number of restaurant meals per week",
+          "type": "numeric"
+        },
+        {
+          "code": "DBQ130",
+          "name": "Eat frozen meals",
+          "description": "Number of frozen meals per week",
+          "type": "numeric"
+        },
+        {
+          "code": "DBQ140",
+          "name": "Drink regular soda",
+          "description": "How often drink regular soda",
+          "type": "categorical"
+        },
+        {
+          "code": "DBD195",
+          "name": "Times ate seafood",
+          "description": "Number of times ate seafood in past 30 days",
+          "type": "numeric"
+        },
+        {
+          "code": "DBD102",
+          "name": "Number of times ate pizza",
+          "description": "Number of times ate pizza in past 30 days",
+          "type": "numeric"
+        },
+        {
+          "code": "DBD103",
+          "name": "Number of times had salad",
+          "description": "Number of times had salad in past 30 days",
+          "type": "numeric"
+        },
+        {
+          "code": "DBD196",
+          "name": "Times ate shellfish",
+          "description": "Number of times ate shellfish in past 30 days",
+          "type": "numeric"
+        },
+        {
+          "code": "DBD197",
+          "name": "Times ate fish",
+          "description": "Number of times ate fish in past 30 days",
+          "type": "numeric"
+        },
+        {
+          "code": "DBD091",
+          "name": "Meals not home prepared",
+          "description": "Number of meals not prepared at home",
+          "type": "numeric"
+        },
+        {
+          "code": "DBD222A",
+          "name": "You drink tap water",
+          "description": "Whether respondent drinks tap water",
+          "type": "categorical"
+        },
+        {
+          "code": "DBD222B",
+          "name": "You drink bottled water",
+          "description": "Whether respondent drinks bottled water",
+          "type": "categorical"
+        },
+        {
+          "code": "DBD229",
+          "name": "Regular milk drinker",
+          "description": "Whether respondent regularly drinks milk",
+          "type": "categorical"
+        },
+        {
+          "code": "DBD235AE",
+          "name": "How often drink milk",
+          "description": "Frequency of milk consumption",
+          "type": "categorical"
+        },
+        {
+          "code": "DBD235BE",
+          "name": "How often eat cheese",
+          "description": "Frequency of cheese consumption",
+          "type": "categorical"
+        },
+        {
+          "code": "DBD235CE",
+          "name": "How often eat yogurt",
+          "description": "Frequency of yogurt consumption",
+          "type": "categorical"
+        },
+        {
+          "code": "DBQ330",
+          "name": "Heard of MyPyramid",
+          "description": "Heard of MyPyramid food guidance",
+          "type": "categorical"
+        },
+        {
+          "code": "DBQ720",
+          "name": "Food security - worried food would run out",
+          "description": "Worried food would run out before got money to buy more",
+          "type": "categorical"
+        },
+        {
+          "code": "DBQ730",
+          "name": "Food security - food didn't last",
+          "description": "Food didn't last and didn't have money to get more",
+          "type": "categorical"
+        },
+        {
+          "code": "DBQ740",
+          "name": "Food security - couldn't afford balanced meals",
+          "description": "Couldn't afford to eat balanced meals",
+          "type": "categorical"
+        },
+        {
+          "code": "DBQ750",
+          "name": "Food security - adults cut meal size",
+          "description": "Adults cut the size of meals or skipped meals",
+          "type": "categorical"
+        },
+        {
+          "code": "DBQ760",
+          "name": "Food security - how often cut meal size",
+          "description": "How often adults cut meal size or skipped meals",
+          "type": "categorical"
+        },
+        {
+          "code": "DBQ770",
+          "name": "Food security - ate less than should",
+          "description": "Ate less than felt should",
+          "type": "categorical"
+        },
+        {
+          "code": "DBQ780",
+          "name": "Food security - hungry but didn't eat",
+          "description": "Hungry but didn't eat because couldn't afford food",
+          "type": "categorical"
+        },
+        {
+          "code": "DBQ790",
+          "name": "Food security - lost weight",
+          "description": "Lost weight because not enough money for food",
+          "type": "categorical"
+        },
+        {
+          "code": "DBQ800",
+          "name": "Food security - didn't eat whole day",
+          "description": "Didn't eat for a whole day because not enough money",
+          "type": "categorical"
+        },
+        {
+          "code": "DBQ810",
+          "name": "Food security - how often didn't eat whole day",
+          "description": "How often didn't eat for whole day",
+          "type": "categorical"
+        },
+        {
+          "code": "DBQ820",
+          "name": "Food security - children not eating enough",
+          "description": "Children not eating enough due to lack of money",
+          "type": "categorical"
+        },
+        {
+          "code": "DBQ830",
+          "name": "Food security - cut children's meal size",
+          "description": "Had to cut size of children's meals",
+          "type": "categorical"
+        },
+        {
+          "code": "DBQ840",
+          "name": "Food security - children skipped meals",
+          "description": "Children skipped meals due to lack of money",
+          "type": "categorical"
+        },
+        {
+          "code": "DBQ850",
+          "name": "Food security - how often children skipped meals",
+          "description": "How often children skipped meals",
+          "type": "categorical"
+        },
+        {
+          "code": "DBQ860",
+          "name": "Food security - children hungry",
+          "description": "Children were hungry but couldn't afford more food",
+          "type": "categorical"
+        },
+        {
+          "code": "DBQ870",
+          "name": "Food security - children didn't eat whole day",
+          "description": "Children didn't eat for whole day",
+          "type": "categorical"
+        },
+        {
+          "code": "DBQ880",
+          "name": "Child received WIC benefits",
+          "description": "Child received WIC benefits",
+          "type": "categorical"
+        },
+        {
+          "code": "DBQ890",
+          "name": "Authorized to use WIC",
+          "description": "Authorized to use WIC card",
+          "type": "categorical"
+        },
+        {
+          "code": "DBQ915",
+          "name": "Grocery store access",
+          "description": "How do you usually get to the grocery store",
+          "type": "categorical"
+        },
+        {
+          "code": "DBQ920",
+          "name": "Time to grocery store",
+          "description": "How long does it take to get to grocery store",
+          "unit": "minutes",
+          "type": "numeric"
+        }
+      ]
+    },
+    {
+      "category": "Consumer Behavior",
+      "variables": [
+        {
+          "code": "CBQ505",
+          "name": "Bought food in past 30 days",
+          "description": "Bought food from grocery store in past 30 days",
+          "type": "categorical"
+        },
+        {
+          "code": "CBQ535",
+          "name": "Where bought food",
+          "description": "Where most of the food was bought",
+          "type": "categorical"
+        },
+        {
+          "code": "CBQ545",
+          "name": "Use nutrition facts label",
+          "description": "How often use nutrition facts label when shopping",
+          "type": "categorical"
+        },
+        {
+          "code": "CBQ550",
+          "name": "Use ingredients list",
+          "description": "How often use ingredients list when shopping",
+          "type": "categorical"
+        },
+        {
+          "code": "CBQ552",
+          "name": "Use serving size info",
+          "description": "How often use serving size info when shopping",
+          "type": "categorical"
+        },
+        {
+          "code": "CBQ580",
+          "name": "Check sodium on food label",
+          "description": "How often check sodium on food labels",
+          "type": "categorical"
+        },
+        {
+          "code": "CBQ590",
+          "name": "Check sugars on food label",
+          "description": "How often check sugars on food labels",
+          "type": "categorical"
+        },
+        {
+          "code": "CBQ595",
+          "name": "Use health claims on food packages",
+          "description": "How often use health claims on food packages",
+          "type": "categorical"
+        }
+      ]
+    },
+    {
+      "category": "Physical Activity",
+      "variables": [
+        {
+          "code": "PAQ480",
+          "name": "Minutes of moderate activity",
+          "description": "Minutes of moderate physical activity per day",
+          "unit": "minutes",
+          "type": "numeric"
+        },
+        {
+          "code": "PAD480",
+          "name": "Minutes of vigorous activity",
+          "description": "Minutes of vigorous physical activity per day",
+          "unit": "minutes",
+          "type": "numeric"
+        },
+        {
+          "code": "MCD160M",
+          "name": "Minutes walked or biked",
+          "description": "Minutes walked or bicycled for transportation",
+          "unit": "minutes",
+          "type": "numeric"
+        }
+      ]
+    },
+    {
+      "category": "Health Status & Access",
+      "variables": [
+        {
+          "code": "HSQ570",
+          "name": "Ever had surgery",
+          "description": "Ever had any kind of surgery",
+          "type": "categorical"
+        },
+        {
+          "code": "HSD570",
+          "name": "Number of surgeries",
+          "description": "Number of surgeries had",
+          "type": "numeric"
+        },
+        {
+          "code": "HSQ590",
+          "name": "Blood donated in past 12 months",
+          "description": "Donated blood in past 12 months",
+          "type": "categorical"
+        },
+        {
+          "code": "HSQ493",
+          "name": "Hospital overnight in past year",
+          "description": "Hospital overnight patient in past year",
+          "type": "categorical"
+        },
+        {
+          "code": "HSQ496",
+          "name": "How many times hospital overnight",
+          "description": "Number of times hospital overnight patient",
+          "type": "numeric"
+        }
+      ]
+    },
+    {
+      "category": "Prescription Medications",
+      "variables": [
+        {
+          "code": "RXDDRGID",
+          "name": "Drug ID code",
+          "description": "Generic drug code for prescription medication",
+          "type": "categorical"
+        }
+      ]
+    },
+    {
+      "category": "Blood Collection & Fasting",
+      "variables": [
+        {
+          "code": "PHAFSTHR",
+          "name": "Fasting time (hours)",
+          "description": "Total number of hours fasted before blood draw",
+          "unit": "hours",
+          "type": "numeric"
+        },
+        {
+          "code": "PHAFSTMN",
+          "name": "Fasting time (minutes)",
+          "description": "Total number of minutes fasted before blood draw",
+          "unit": "minutes",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXPT21",
+          "name": "Prothrombin time",
+          "description": "Prothrombin time (blood clotting test)",
+          "unit": "seconds",
+          "type": "numeric"
+        }
+      ]
+    },
+    {
+      "category": "Survey Administration",
+      "variables": [
+        {
+          "code": "minutes",
+          "name": "Interview duration",
+          "description": "Length of interview in minutes",
+          "unit": "minutes",
+          "type": "numeric"
+        },
+        {
+          "code": "KIDUQUEX",
+          "name": "Quality of exam",
+          "description": "Quality of the examination",
+          "type": "categorical"
+        },
+        {
+          "code": "WTINTPRP",
+          "name": "Interview weight",
+          "description": "Full sample interview weight",
+          "type": "numeric"
+        },
+        {
+          "code": "WTMECPRP",
+          "name": "Exam weight",
+          "description": "Full sample MEC exam weight",
+          "type": "numeric"
+        }
+      ]
+    },
+    {
+      "category": "Body Composition - Extended",
+      "variables": [
+        {
+          "code": "ALD100",
+          "name": "Android lean mass",
+          "description": "Android (upper body) lean tissue mass",
+          "unit": "grams",
+          "type": "numeric"
+        },
+        {
+          "code": "BMAEXLEN",
+          "name": "Exam length",
+          "description": "Length of body composition examination",
+          "unit": "minutes",
+          "type": "numeric"
+        },
+        {
+          "code": "BMAEXSTS",
+          "name": "Exam status",
+          "description": "Status of body composition examination",
+          "type": "categorical"
+        },
+        {
+          "code": "BMAAMP",
+          "name": "Amputation status",
+          "description": "Amputation or missing limb status",
+          "type": "categorical"
+        }
+      ]
+    },
+    {
+      "category": "Household & Income",
+      "variables": [
+        {
+          "code": "DMDMARTZ",
+          "name": "Marital status (alternate)",
+          "description": "Alternative marital status coding",
+          "type": "categorical"
+        },
+        {
+          "code": "DMDHRAGZ",
+          "name": "Household age composition",
+          "description": "Age composition of household members",
+          "type": "categorical"
+        },
+        {
+          "code": "DMDHREDZ",
+          "name": "Household education composition",
+          "description": "Education composition of household members",
+          "type": "categorical"
+        },
+        {
+          "code": "DMDHRMAZ",
+          "name": "Household marital composition",
+          "description": "Marital status composition of household",
+          "type": "categorical"
+        },
+        {
+          "code": "DMDHRBR2",
+          "name": "Household birthplace region",
+          "description": "Birthplace region of household reference person",
+          "type": "categorical"
+        }
+      ]
+    },
+    {
+      "category": "Alternative/Calculated Values",
+      "variables": [
+        {
+          "code": "LBXLDLM",
+          "name": "LDL cholesterol (Martin-Hopkins)",
+          "description": "LDL cholesterol calculated by Martin-Hopkins equation",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXLDMSI",
+          "name": "LDL cholesterol (Martin-Hopkins, SI)",
+          "description": "LDL cholesterol (Martin-Hopkins) in SI units",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXLDLN",
+          "name": "LDL cholesterol (NIH equation)",
+          "description": "LDL cholesterol calculated by NIH equation",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXLDNSI",
+          "name": "LDL cholesterol (NIH, SI)",
+          "description": "LDL cholesterol (NIH) in SI units",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXINLC",
+          "name": "Insulin (LC method)",
+          "description": "Insulin measured by liquid chromatography",
+          "unit": "µU/mL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSATLC",
+          "name": "ALT (LC method)",
+          "description": "Alanine aminotransferase by liquid chromatography",
+          "unit": "U/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSGTLC",
+          "name": "GGT (LC method)",
+          "description": "Gamma-glutamyl transferase by liquid chromatography",
+          "unit": "U/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSTBLC",
+          "name": "Total bilirubin (LC method)",
+          "description": "Total bilirubin by liquid chromatography",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDPCT",
+          "name": "Transferrin saturation (calculated)",
+          "description": "Calculated transferrin saturation percentage",
+          "unit": "%",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXGLUSI",
+          "name": "Glucose (SI units)",
+          "description": "Glucose in SI units",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXINSI",
+          "name": "Insulin (SI units)",
+          "description": "Insulin in SI units",
+          "unit": "pmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSALSI",
+          "name": "Albumin (SI units, LC)",
+          "description": "Albumin in SI units by liquid chromatography",
+          "unit": "g/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSBUSI",
+          "name": "BUN (SI units, LC)",
+          "description": "Blood urea nitrogen in SI units by LC",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSCRSI",
+          "name": "Creatinine (SI units, LC)",
+          "description": "Creatinine in SI units by LC",
+          "unit": "μmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSGBSI",
+          "name": "Globulin (SI units, LC)",
+          "description": "Globulin in SI units by LC",
+          "unit": "g/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSGLSI",
+          "name": "Glucose (SI units, LC)",
+          "description": "Glucose in SI units by LC",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSIRSI",
+          "name": "Iron (SI units, LC)",
+          "description": "Iron in SI units by LC",
+          "unit": "μmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSPHSI",
+          "name": "Phosphate (SI units, LC)",
+          "description": "Phosphate in SI units by LC",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSTBSI",
+          "name": "Total bilirubin (SI units, LC)",
+          "description": "Total bilirubin in SI units by LC",
+          "unit": "μmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSCASI",
+          "name": "Calcium (SI units, LC)",
+          "description": "Calcium in SI units by LC",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSCHSI",
+          "name": "Cholesterol (SI units, LC)",
+          "description": "Cholesterol in SI units by LC",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSTPSI",
+          "name": "Total protein (SI units, LC)",
+          "description": "Total protein in SI units by LC",
+          "unit": "g/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSTRSI",
+          "name": "Triglycerides (SI units, LC)",
+          "description": "Triglycerides in SI units by LC",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXSUASI",
+          "name": "Uric acid (SI units, LC)",
+          "description": "Uric acid in SI units by LC",
+          "unit": "μmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXLYMNO",
+          "name": "Lymphocyte count (absolute)",
+          "description": "Absolute lymphocyte count",
+          "unit": "1000 cells/μL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXMONO",
+          "name": "Monocyte count (absolute)",
+          "description": "Absolute monocyte count",
+          "unit": "1000 cells/μL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXNENO",
+          "name": "Neutrophil count (absolute)",
+          "description": "Absolute neutrophil count",
+          "unit": "1000 cells/μL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXEONO",
+          "name": "Eosinophil count (absolute)",
+          "description": "Absolute eosinophil count",
+          "unit": "1000 cells/μL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXBANO",
+          "name": "Basophil count (absolute)",
+          "description": "Absolute basophil count",
+          "unit": "1000 cells/μL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXFERSI",
+          "name": "Ferritin (SI units)",
+          "description": "Ferritin in SI units",
+          "unit": "μg/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXIRNSI",
+          "name": "Iron (serum, SI units)",
+          "description": "Serum iron in SI units",
+          "unit": "μmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXTIBSI",
+          "name": "TIBC (SI units)",
+          "description": "Total iron binding capacity in SI units",
+          "unit": "μmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXHDDSI",
+          "name": "Direct HDL (SI units)",
+          "description": "Direct HDL cholesterol in SI units",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXTCSI",
+          "name": "Total cholesterol (SI units, alternate)",
+          "description": "Total cholesterol in SI units",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXTRSI",
+          "name": "Triglycerides (SI units, alternate)",
+          "description": "Triglycerides in SI units",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXLDL",
+          "name": "LDL cholesterol (calculated)",
+          "description": "LDL cholesterol calculated by Friedewald equation",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXLDLSI",
+          "name": "LDL cholesterol (SI units)",
+          "description": "LDL cholesterol in SI units",
+          "unit": "mmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXBPBSI",
+          "name": "Lead (SI units)",
+          "description": "Blood lead in SI units",
+          "unit": "μmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXBPBLC",
+          "name": "Lead (LC method)",
+          "description": "Blood lead by LC-MS/MS",
+          "unit": "μg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXBCDSI",
+          "name": "Cadmium (SI units)",
+          "description": "Blood cadmium in SI units",
+          "unit": "nmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXBCDLC",
+          "name": "Cadmium (LC method)",
+          "description": "Blood cadmium by LC-MS/MS",
+          "unit": "μg/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXTHGSI",
+          "name": "Mercury (SI units)",
+          "description": "Blood total mercury in SI units",
+          "unit": "nmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXTHGLC",
+          "name": "Mercury (LC method)",
+          "description": "Blood total mercury by LC-MS/MS",
+          "unit": "μg/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXBSESI",
+          "name": "Selenium (SI units)",
+          "description": "Blood selenium in SI units",
+          "unit": "μmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXBSELC",
+          "name": "Selenium (LC method)",
+          "description": "Blood selenium by LC-MS/MS",
+          "unit": "μg/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXBMNSI",
+          "name": "Manganese (SI units)",
+          "description": "Blood manganese in SI units",
+          "unit": "nmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXBMNLC",
+          "name": "Manganese (LC method)",
+          "description": "Blood manganese by LC-MS/MS",
+          "unit": "μg/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXVD2MS",
+          "name": "25-hydroxyvitamin D2",
+          "description": "25-hydroxyvitamin D2 by LC-MS/MS",
+          "unit": "ng/mL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDVD2LC",
+          "name": "25-hydroxyvitamin D2 (SI units)",
+          "description": "25-hydroxyvitamin D2 in SI units",
+          "unit": "nmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXVD3MS",
+          "name": "25-hydroxyvitamin D3",
+          "description": "25-hydroxyvitamin D3 by LC-MS/MS",
+          "unit": "ng/mL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDVD3LC",
+          "name": "25-hydroxyvitamin D3 (SI units)",
+          "description": "25-hydroxyvitamin D3 in SI units",
+          "unit": "nmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXVE3MS",
+          "name": "Vitamin E (gamma-tocopherol)",
+          "description": "Gamma-tocopherol by LC-MS/MS",
+          "unit": "μg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDVE3LC",
+          "name": "Vitamin E (gamma-tocopherol, SI units)",
+          "description": "Gamma-tocopherol in SI units",
+          "unit": "μmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXVIA",
+          "name": "Vitamin A (retinol)",
+          "description": "Retinol (vitamin A)",
+          "unit": "μg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDVIASI",
+          "name": "Vitamin A (SI units)",
+          "description": "Retinol in SI units",
+          "unit": "μmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXVIE",
+          "name": "Vitamin E (alpha-tocopherol)",
+          "description": "Alpha-tocopherol (vitamin E)",
+          "unit": "μg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDVIESI",
+          "name": "Vitamin E (SI units)",
+          "description": "Alpha-tocopherol in SI units",
+          "unit": "μmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDVIDLC",
+          "name": "Vitamin D total (SI units)",
+          "description": "Total 25-hydroxyvitamin D in SI units",
+          "unit": "nmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXRBF",
+          "name": "Red blood cell folate",
+          "description": "Red blood cell folate",
+          "unit": "ng/mL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDRBFSI",
+          "name": "RBC folate (SI units)",
+          "description": "Red blood cell folate in SI units",
+          "unit": "nmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXB12",
+          "name": "Vitamin B12 (serum)",
+          "description": "Serum vitamin B12",
+          "unit": "pg/mL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDB12SI",
+          "name": "Vitamin B12 (SI units)",
+          "description": "Serum vitamin B12 in SI units",
+          "unit": "pmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXFOL",
+          "name": "Folate (serum)",
+          "description": "Serum folate",
+          "unit": "ng/mL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDFOLSI",
+          "name": "Folate (SI units)",
+          "description": "Serum folate in SI units",
+          "unit": "nmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDFERSI",
+          "name": "Ferritin (alternate, SI units)",
+          "description": "Ferritin in SI units",
+          "unit": "μg/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXGH",
+          "name": "Glycohemoglobin (HbA1c)",
+          "description": "Glycosylated hemoglobin",
+          "unit": "%",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXIN",
+          "name": "Insulin (serum)",
+          "description": "Serum insulin",
+          "unit": "μU/mL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBDINSI",
+          "name": "Insulin (alternate, SI units)",
+          "description": "Serum insulin in SI units",
+          "unit": "pmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXCRP",
+          "name": "C-reactive protein",
+          "description": "High-sensitivity C-reactive protein",
+          "unit": "mg/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXCPSI",
+          "name": "C-peptide (SI units)",
+          "description": "C-peptide in SI units",
+          "unit": "nmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXHP1",
+          "name": "Haptoglobin",
+          "description": "Haptoglobin",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "LBXBAP",
+          "name": "Bone alkaline phosphatase",
+          "description": "Bone-specific alkaline phosphatase",
+          "unit": "μg/L",
+          "type": "numeric"
+        },
+        {
+          "code": "Ferritin",
+          "name": "Ferritin (conventional units)",
+          "description": "Ferritin",
+          "unit": "ng/mL",
+          "type": "numeric"
+        },
+        {
+          "code": "Cotinine",
+          "name": "Cotinine (serum)",
+          "description": "Serum cotinine (nicotine metabolite)",
+          "unit": "ng/mL",
+          "type": "numeric"
+        },
+        {
+          "code": "Homocysteine",
+          "name": "Homocysteine (total)",
+          "description": "Total homocysteine",
+          "unit": "μmol/L",
+          "type": "numeric"
+        },
+        {
+          "code": "Gamma-tocopherol",
+          "name": "Gamma-tocopherol (vitamin E)",
+          "description": "Gamma-tocopherol",
+          "unit": "μg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "Triglycerides",
+          "name": "Triglycerides (conventional)",
+          "description": "Triglycerides",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "Thyroglobulin",
+          "name": "Thyroglobulin (serum)",
+          "description": "Serum thyroglobulin",
+          "unit": "ng/mL",
+          "type": "numeric"
+        },
+        {
+          "code": "Albumin",
+          "name": "Albumin (serum)",
+          "description": "Serum albumin",
+          "unit": "g/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "Calcium",
+          "name": "Calcium (total serum)",
+          "description": "Total serum calcium",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "Iron",
+          "name": "Iron (serum)",
+          "description": "Serum iron",
+          "unit": "μg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "Phosphate",
+          "name": "Phosphate (serum)",
+          "description": "Serum phosphate",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "Creatinine",
+          "name": "Creatinine (serum)",
+          "description": "Serum creatinine",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "Globulin",
+          "name": "Globulin (calculated)",
+          "description": "Calculated serum globulin",
+          "unit": "g/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "Hemoglobin",
+          "name": "Hemoglobin (blood)",
+          "description": "Blood hemoglobin",
+          "unit": "g/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "Hematocrit",
+          "name": "Hematocrit",
+          "description": "Hematocrit (packed cell volume)",
+          "unit": "%",
+          "type": "numeric"
+        },
+        {
+          "code": "MCHC",
+          "name": "Mean corpuscular hemoglobin concentration",
+          "description": "Mean corpuscular hemoglobin concentration",
+          "unit": "g/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "RIDAGEEX",
+          "name": "Age at exam (months)",
+          "description": "Age in months at time of examination",
+          "unit": "months",
+          "type": "numeric"
+        },
+        {
+          "code": "Weight",
+          "name": "Body weight",
+          "description": "Body weight",
+          "unit": "kg",
+          "type": "numeric"
+        },
+        {
+          "code": "Height",
+          "name": "Standing height",
+          "description": "Standing height",
+          "unit": "cm",
+          "type": "numeric"
+        },
+        {
+          "code": "DMDHRGND",
+          "name": "Gender",
+          "description": "Gender (1=Male, 2=Female)",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "DMDHSEDU",
+          "name": "Education level",
+          "description": "Highest grade or level of education completed",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "AIALANG",
+          "name": "Interview language",
+          "description": "Language of questionnaire interview",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "DMDBORN",
+          "name": "Country of birth",
+          "description": "In what country were you born?",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "DMQMILIT",
+          "name": "Military service",
+          "description": "Ever served in armed forces?",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "DMQMILIZ",
+          "name": "Military service location",
+          "description": "Where did you serve in the military?",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "INDHHINC",
+          "name": "Household income",
+          "description": "Total household income",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "INDFMINC",
+          "name": "Family income",
+          "description": "Total family income",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "INDHHIN2",
+          "name": "Household income (alternate)",
+          "description": "Total household income (alternate coding)",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "INDFMIN2",
+          "name": "Family income (alternate)",
+          "description": "Total family income (alternate coding)",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "DMDHRBRN",
+          "name": "Head of household birthplace",
+          "description": "Country where household reference person was born",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "DMDHRBR4",
+          "name": "Head of household birthplace region",
+          "description": "Region where household reference person was born",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "DMDHHSZA",
+          "name": "Household size category A",
+          "description": "Number of people in the household (category A)",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "DMDHHSZB",
+          "name": "Household size category B",
+          "description": "Number of people in the household (category B)",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "DMDHHSZE",
+          "name": "Household size category E",
+          "description": "Number of people in the household (category E)",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "HSD010",
+          "name": "General health condition",
+          "description": "Would you say your health in general is...",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "HSQ470",
+          "name": "Health insurance coverage",
+          "description": "Do you have health insurance?",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "HSQ480",
+          "name": "Type of health insurance",
+          "description": "What kind of health insurance do you have?",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "HSQ490",
+          "name": "Medicare coverage",
+          "description": "Are you covered by Medicare?",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "HSQ571",
+          "name": "Ever donated blood",
+          "description": "Have you ever donated blood?",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "DIQ170",
+          "name": "Taking diabetes medication",
+          "description": "Are you taking medication for diabetes?",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "ALQ101",
+          "name": "Alcohol consumption frequency",
+          "description": "In the past 12 months, how often did you drink alcohol?",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "DLQ010",
+          "name": "Close-up vision difficulty",
+          "description": "Difficulty seeing up close",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "DLQ020",
+          "name": "Distance vision difficulty",
+          "description": "Difficulty seeing far away",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "MCQ160N",
+          "name": "Doctor said you had cancer",
+          "description": "Has a doctor ever told you that you had cancer?",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "Arthritis",
+          "name": "Arthritis diagnosis",
+          "description": "Doctor told you have arthritis",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "Angina",
+          "name": "Angina pectoris",
+          "description": "Doctor told you have angina",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "Stroke",
+          "name": "Stroke history",
+          "description": "Ever had a stroke",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "COPD",
+          "name": "Chronic obstructive pulmonary disease",
+          "description": "Doctor told you have COPD",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "Gout",
+          "name": "Gout diagnosis",
+          "description": "Doctor told you have gout",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "GERD",
+          "name": "Gastroesophageal reflux disease",
+          "description": "Doctor told you have GERD",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "Psoriasis",
+          "name": "Psoriasis diagnosis",
+          "description": "Doctor told you have psoriasis",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "Osteoporosis",
+          "name": "Osteoporosis diagnosis",
+          "description": "Doctor told you have osteoporosis",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "PAQ710",
+          "name": "Walk or bicycle for transportation",
+          "description": "Do you walk or use a bicycle for transportation?",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "PAQ715",
+          "name": "Moderate recreational activities",
+          "description": "Do moderate-intensity sports or recreational activities?",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "PAD590",
+          "name": "Minutes of walking/bicycling",
+          "description": "Minutes walked or bicycled",
+          "unit": "minutes",
+          "type": "numeric"
+        },
+        {
+          "code": "PAD600",
+          "name": "Minutes of moderate activity",
+          "description": "Minutes of moderate physical activity",
+          "unit": "minutes",
+          "type": "numeric"
+        },
+        {
+          "code": "PFQ049",
+          "name": "Limitations in activity",
+          "description": "Limited in any way due to physical, mental or emotional problem",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ051",
+          "name": "Need special equipment",
+          "description": "Need special equipment to walk",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ054",
+          "name": "Health problems limit work",
+          "description": "Health problems limit kind or amount of work",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ057",
+          "name": "Physical function difficulties",
+          "description": "Any difficulty with physical functioning",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ061A",
+          "name": "Difficulty walking 1/4 mile",
+          "description": "Difficulty walking a quarter of a mile",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ061B",
+          "name": "Difficulty walking up 10 steps",
+          "description": "Difficulty walking up 10 steps without resting",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ061C",
+          "name": "Difficulty stooping/crouching/kneeling",
+          "description": "Difficulty stooping, crouching, or kneeling",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ061D",
+          "name": "Difficulty standing from chair",
+          "description": "Difficulty standing up from armless chair",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ061E",
+          "name": "Difficulty standing for long periods",
+          "description": "Difficulty standing for long periods",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ061F",
+          "name": "Difficulty sitting for long periods",
+          "description": "Difficulty sitting for long periods",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ061G",
+          "name": "Difficulty reaching up overhead",
+          "description": "Difficulty reaching up over head",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ061H",
+          "name": "Difficulty using fingers",
+          "description": "Difficulty using fingers to grasp small objects",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ061I",
+          "name": "Difficulty lifting/carrying 10 lbs",
+          "description": "Difficulty lifting or carrying 10 pounds",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ061J",
+          "name": "Difficulty doing chores",
+          "description": "Difficulty doing house chores",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ061K",
+          "name": "Difficulty preparing meals",
+          "description": "Difficulty preparing own meals",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ061L",
+          "name": "Difficulty walking between rooms",
+          "description": "Difficulty walking from room to room on same floor",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ061M",
+          "name": "Difficulty standing up",
+          "description": "Difficulty standing up from sitting position",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ061N",
+          "name": "Difficulty getting in/out of bed",
+          "description": "Difficulty getting in or out of bed",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ061O",
+          "name": "Difficulty eating",
+          "description": "Difficulty eating, like holding fork or drinking from cup",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ061P",
+          "name": "Difficulty dressing",
+          "description": "Difficulty dressing yourself",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ061Q",
+          "name": "Difficulty with bladder control",
+          "description": "Difficulty controlling or managing bladder",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ061R",
+          "name": "Difficulty managing money",
+          "description": "Difficulty managing money and bills",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ061S",
+          "name": "Difficulty participating in social activities",
+          "description": "Difficulty participating in social activities",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ061T",
+          "name": "Difficulty with leisure activities",
+          "description": "Difficulty doing leisure activities at home",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "LBXHP1",
+          "name": "Haptoglobin",
+          "description": "Haptoglobin",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "Haptoglobin",
+          "name": "Haptoglobin",
+          "description": "Haptoglobin",
+          "unit": "mg/dL",
+          "type": "numeric"
+        },
+        {
+          "code": "Gender",
+          "name": "Gender",
+          "description": "Gender (1=Male, 2=Female)",
+          "unit": "",
+          "type": "categorical"
+        },
+        {
+          "code": "PFQ063A",
+          "name": "Difficulty with vision",
+          "description": "Difficulty seeing even with glasses",
+          "unit": "",
+          "type": "categorical"
+        }
+      ]
+    }
+  ],
+  "notes": {
+    "si_units": "Many variables have both conventional and SI (International System) unit measurements. SI unit variables typically end with 'SI' in their code.",
+    "lc_method": "Variables with 'LC' in the name indicate measurements using liquid chromatography or liquid chromatography-mass spectrometry (LC-MS/MS) methods.",
+    "categorical_coding": "Categorical variables typically use numeric codes (e.g., 1=Yes, 2=No, 7=Refused, 9=Don't know). Refer to NHANES codebooks for specific value mappings.",
+    "missing_values": "Missing values and special codes (refused, don't know) are typically represented by specific numeric codes in the actual data.",
+    "data_quality": "Some measurements may have quality flags or comments. Check NHANES documentation for data quality indicators.",
+    "confidentiality": "Some geographic and detailed demographic variables may be suppressed or top-coded to protect participant confidentiality."
+  },
+  "common_use_cases": {
+    "cardiovascular_risk": ["LBXTC", "LBDHDL", "LBDLDL", "LBXTR", "BMXBMI", "BMXWAIST", "LBXCRP"],
+    "diabetes_assessment": ["LBXGLU", "LBXIN", "LBXGH", "DIQ172", "DIQ190A", "DIQ190B"],
+    "kidney_function": ["LBXSCR", "LBXSBU", "URXUMA", "URXUCR", "URDUMA2S"],
+    "liver_function": ["LBXSATSI", "LBXSASSI", "LBXSGTSI", "LBXSTB", "LBXSAL", "LBXSGB"],
+    "anemia_assessment": ["LBXHGB", "LBXHCT", "LBXFER", "LBXIRN", "LBXFOL", "LBXB12"],
+    "nutritional_status": ["LBXFOL", "LBXB12", "LBXFER", "LBXVIA", "LBXVIE", "LBXVIDLC"],
+    "bone_health": ["LBXSCA", "LBXSPH", "LBXBAP", "MCQ180M"],
+    "thyroid_function": ["LBXTSH1", "LBXTT4", "LBXT4F", "LBXTT3", "LBXT3F"],
+    "inflammation_markers": ["LBXCRP", "LBXHP1"],
+    "toxic_exposure": ["LBXBPB", "LBXBCD", "LBXTHG", "LBXCOT"],
+    "complete_metabolic_panel": ["LBXGLU", "LBXSCA", "LBXSBU", "LBXSCR", "LBXSAL", "LBXSTP", "LBXSTB", "LBXSGTSI"]
+  }
+}

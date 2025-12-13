@@ -1,0 +1,1264 @@
+{
+  "Simvastatin": {
+    "LBXTC": {
+      "true_mean_effect": -45.0,
+      "observed_mean": -32.07903298639848,
+      "observed_std": 11.859659360474668,
+      "sample_size": 195,
+      "effect_size_cohen_d": -2.7048865411185434
+    },
+    "LBDLDL": {
+      "true_mean_effect": -55.0,
+      "observed_mean": -37.64261876546228,
+      "observed_std": 14.635882856426814,
+      "sample_size": 195,
+      "effect_size_cohen_d": -2.5719404244160713
+    },
+    "LBXSCH": {
+      "true_mean_effect": 8.0,
+      "observed_mean": 5.668435483295012,
+      "observed_std": 2.071833913543896,
+      "sample_size": 195,
+      "effect_size_cohen_d": 2.7359507179796507
+    },
+    "LBXSAS": {
+      "true_mean_effect": 12.0,
+      "observed_mean": 8.49429718941557,
+      "observed_std": 3.207380794566275,
+      "sample_size": 195,
+      "effect_size_cohen_d": 2.648359435152205
+    }
+  },
+  "Gentamicin": {
+    "LBDSCR": {
+      "true_mean_effect": 8.0,
+      "observed_mean": 6.817136639009274,
+      "observed_std": 1.739501733774944,
+      "sample_size": 176,
+      "effect_size_cohen_d": 3.9190168693969647
+    },
+    "LBXSBU": {
+      "true_mean_effect": 6.0,
+      "observed_mean": 5.081867143419151,
+      "observed_std": 1.1060686587376891,
+      "sample_size": 176,
+      "effect_size_cohen_d": 4.594531364100741
+    }
+  },
+  "Dofetilide": {
+    "LBXSK": {
+      "true_mean_effect": 0.15,
+      "observed_mean": 0.12471867266269346,
+      "observed_std": 0.030834082733975768,
+      "sample_size": 170,
+      "effect_size_cohen_d": 4.044831615025382
+    }
+  },
+  "Aspirin": {
+    "LBDSCR": {
+      "true_mean_effect": 1.0,
+      "observed_mean": 0.8618768377428413,
+      "observed_std": 0.19443444588440592,
+      "sample_size": 182,
+      "effect_size_cohen_d": 4.432737387773561
+    },
+    "LBXSUA": {
+      "true_mean_effect": -0.5,
+      "observed_mean": -0.42229135558322295,
+      "observed_std": 0.09456552815442569,
+      "sample_size": 182,
+      "effect_size_cohen_d": -4.465595062226273
+    }
+  },
+  "Losartan": {
+    "LBDSCR": {
+      "true_mean_effect": 2.0,
+      "observed_mean": 1.5855897084556616,
+      "observed_std": 0.5133653085664805,
+      "sample_size": 186,
+      "effect_size_cohen_d": 3.0886187321135052
+    },
+    "LBXSK": {
+      "true_mean_effect": 0.1,
+      "observed_mean": 0.07771388605329005,
+      "observed_std": 0.025139267869219918,
+      "sample_size": 186,
+      "effect_size_cohen_d": 3.0913344993806113
+    },
+    "BPXSY1": {
+      "true_mean_effect": -9.0,
+      "observed_mean": -6.987237213542118,
+      "observed_std": 2.4430634146463768,
+      "sample_size": 186,
+      "effect_size_cohen_d": -2.8600310461255427
+    },
+    "BPXDI1": {
+      "true_mean_effect": -6.0,
+      "observed_mean": -4.55751407458115,
+      "observed_std": 1.4135012988591809,
+      "sample_size": 186,
+      "effect_size_cohen_d": -3.224273000852184
+    }
+  },
+  "Hydrochlorothiazide": {
+    "LBXSK": {
+      "true_mean_effect": -0.4,
+      "observed_mean": -0.3188058874895464,
+      "observed_std": 0.10046352762138801,
+      "sample_size": 180,
+      "effect_size_cohen_d": -3.173349523331637
+    },
+    "LBXSUA": {
+      "true_mean_effect": 1.0,
+      "observed_mean": 0.8223654602106564,
+      "observed_std": 0.2257501145245762,
+      "sample_size": 180,
+      "effect_size_cohen_d": 3.642813036629179
+    },
+    "BPXSY1": {
+      "true_mean_effect": -8.0,
+      "observed_mean": -6.460599595408365,
+      "observed_std": 1.8502421635514674,
+      "sample_size": 180,
+      "effect_size_cohen_d": -3.4917589290082423
+    },
+    "BPXDI1": {
+      "true_mean_effect": -5.0,
+      "observed_mean": -3.9881577094331844,
+      "observed_std": 1.197227519503089,
+      "sample_size": 180,
+      "effect_size_cohen_d": -3.3311610737852693
+    },
+    "LBXSNA": {
+      "true_mean_effect": -1.5,
+      "observed_mean": -1.2383908802845058,
+      "observed_std": 0.3290193292105877,
+      "sample_size": 180,
+      "effect_size_cohen_d": -3.7638848855955147
+    }
+  },
+  "Flecainide": {
+    "LBXSK": {
+      "true_mean_effect": 0.1,
+      "observed_mean": 0.08065046253249569,
+      "observed_std": 0.02212443439081198,
+      "sample_size": 174,
+      "effect_size_cohen_d": 3.6453118352254417
+    }
+  },
+  "Verapamil": {
+    "LBDSCR": {
+      "true_mean_effect": 1.0,
+      "observed_mean": 0.8271245288962055,
+      "observed_std": 0.22361905939085405,
+      "sample_size": 194,
+      "effect_size_cohen_d": 3.6988105179823263
+    },
+    "BPXSY1": {
+      "true_mean_effect": -8.5,
+      "observed_mean": -6.923959093881767,
+      "observed_std": 2.1662180854716095,
+      "sample_size": 194,
+      "effect_size_cohen_d": -3.196335189111093
+    },
+    "BPXDI1": {
+      "true_mean_effect": -6.5,
+      "observed_mean": -5.297735890236426,
+      "observed_std": 1.4404547868213926,
+      "sample_size": 194,
+      "effect_size_cohen_d": -3.6778217120766263
+    }
+  },
+  "Eplerenone": {
+    "LBXSK": {
+      "true_mean_effect": 0.4,
+      "observed_mean": 0.31460106645601726,
+      "observed_std": 0.07835324305295537,
+      "sample_size": 165,
+      "effect_size_cohen_d": 4.015163306557621
+    },
+    "BPXSY1": {
+      "true_mean_effect": -3.5,
+      "observed_mean": -2.7484086450306524,
+      "observed_std": 0.7790607228052874,
+      "sample_size": 165,
+      "effect_size_cohen_d": -3.527849068213864
+    }
+  },
+  "Ezetimibe": {
+    "LBXTC": {
+      "true_mean_effect": -15.0,
+      "observed_mean": -11.192900275724625,
+      "observed_std": 3.541034411434789,
+      "sample_size": 173,
+      "effect_size_cohen_d": -3.1609125964944753
+    },
+    "LBDLDL": {
+      "true_mean_effect": -18.0,
+      "observed_mean": -13.7920806458359,
+      "observed_std": 4.447439285622808,
+      "sample_size": 173,
+      "effect_size_cohen_d": -3.1011284831748958
+    }
+  },
+  "Furosemide": {
+    "LBDSCR": {
+      "true_mean_effect": 3.0,
+      "observed_mean": 2.4989447285674427,
+      "observed_std": 0.6043424206605653,
+      "sample_size": 176,
+      "effect_size_cohen_d": 4.134981499124317
+    },
+    "LBXSBU": {
+      "true_mean_effect": 5.0,
+      "observed_mean": 4.269145928624805,
+      "observed_std": 0.9283970506937109,
+      "sample_size": 176,
+      "effect_size_cohen_d": 4.598405310997962
+    },
+    "LBXSK": {
+      "true_mean_effect": -0.5,
+      "observed_mean": -0.4116207235006309,
+      "observed_std": 0.09733677472531621,
+      "sample_size": 176,
+      "effect_size_cohen_d": -4.2288305181902945
+    },
+    "BPXSY1": {
+      "true_mean_effect": -8.0,
+      "observed_mean": -6.794278528697646,
+      "observed_std": 1.781859838192719,
+      "sample_size": 176,
+      "effect_size_cohen_d": -3.81302635766731
+    },
+    "LBXSNA": {
+      "true_mean_effect": -2.0,
+      "observed_mean": -1.6759967227976131,
+      "observed_std": 0.3972565277928509,
+      "sample_size": 176,
+      "effect_size_cohen_d": -4.218928086869752
+    }
+  },
+  "Empagliflozin": {
+    "LBDSCR": {
+      "true_mean_effect": 2.0,
+      "observed_mean": 1.6077897366147718,
+      "observed_std": 0.4241752678093384,
+      "sample_size": 185,
+      "effect_size_cohen_d": 3.79039010199306
+    },
+    "BPXSY1": {
+      "true_mean_effect": -3.0,
+      "observed_mean": -2.4198552158144,
+      "observed_std": 0.6915690685653966,
+      "sample_size": 185,
+      "effect_size_cohen_d": -3.499079594225045
+    },
+    "LBXSGL": {
+      "true_mean_effect": -22.0,
+      "observed_mean": -16.182324388778653,
+      "observed_std": 5.893762307648462,
+      "sample_size": 185,
+      "effect_size_cohen_d": -2.745669666348523
+    },
+    "LBXGH": {
+      "true_mean_effect": -0.9,
+      "observed_mean": -0.7151872657388648,
+      "observed_std": 0.21457337866069298,
+      "sample_size": 185,
+      "effect_size_cohen_d": -3.3330661529536596
+    }
+  },
+  "Canagliflozin": {
+    "LBDSCR": {
+      "true_mean_effect": 2.5,
+      "observed_mean": 1.984435264278565,
+      "observed_std": 0.6265182813160405,
+      "sample_size": 178,
+      "effect_size_cohen_d": 3.1674020111753736
+    },
+    "BPXSY1": {
+      "true_mean_effect": -3.5,
+      "observed_mean": -2.768803590653649,
+      "observed_std": 0.9307039355561101,
+      "sample_size": 178,
+      "effect_size_cohen_d": -2.9749563581669456
+    },
+    "LBXSGL": {
+      "true_mean_effect": -24.0,
+      "observed_mean": -16.638043122780097,
+      "observed_std": 7.459145316625374,
+      "sample_size": 178,
+      "effect_size_cohen_d": -2.2305562388892284
+    },
+    "LBXGH": {
+      "true_mean_effect": -1.0,
+      "observed_mean": -0.7399099958386378,
+      "observed_std": 0.2847115335022933,
+      "sample_size": 178,
+      "effect_size_cohen_d": -2.598805839499572
+    }
+  },
+  "Niacin": {
+    "LBXTC": {
+      "true_mean_effect": -10.0,
+      "observed_mean": -7.182006985636915,
+      "observed_std": 2.697795856335081,
+      "sample_size": 167,
+      "effect_size_cohen_d": -2.662175853214325
+    },
+    "LBDLDL": {
+      "true_mean_effect": -8.0,
+      "observed_mean": -5.636646739153863,
+      "observed_std": 2.2906480648373635,
+      "sample_size": 167,
+      "effect_size_cohen_d": -2.460721411411607
+    },
+    "LBXSCH": {
+      "true_mean_effect": 15.0,
+      "observed_mean": 10.792921716180237,
+      "observed_std": 3.9716789471280296,
+      "sample_size": 167,
+      "effect_size_cohen_d": 2.7174708378643575
+    },
+    "LBXSGL": {
+      "true_mean_effect": 5.0,
+      "observed_mean": 3.5425149449216558,
+      "observed_std": 1.3383987116934781,
+      "sample_size": 167,
+      "effect_size_cohen_d": 2.6468308090638444
+    }
+  },
+  "Glyburide": {
+    "LBXTC": {
+      "true_mean_effect": 4.0,
+      "observed_mean": 3.268142696279214,
+      "observed_std": 0.8933365561956306,
+      "sample_size": 172,
+      "effect_size_cohen_d": 3.65835549168272
+    },
+    "LBXSGL": {
+      "true_mean_effect": -32.0,
+      "observed_mean": -22.586518181141564,
+      "observed_std": 10.602015025767196,
+      "sample_size": 172,
+      "effect_size_cohen_d": -2.13039862009695
+    },
+    "LBXGH": {
+      "true_mean_effect": -1.3,
+      "observed_mean": -0.9870332705099857,
+      "observed_std": 0.35325883008590575,
+      "sample_size": 172,
+      "effect_size_cohen_d": -2.7940795429514336
+    }
+  },
+  "Gemfibrozil": {
+    "LBXTC": {
+      "true_mean_effect": -20.0,
+      "observed_mean": -14.433768738476516,
+      "observed_std": 4.985831797467527,
+      "sample_size": 164,
+      "effect_size_cohen_d": -2.894957015158016
+    },
+    "LBDLDL": {
+      "true_mean_effect": -12.0,
+      "observed_mean": -9.084225240687138,
+      "observed_std": 3.262750974614709,
+      "sample_size": 164,
+      "effect_size_cohen_d": -2.784222673248875
+    },
+    "LBXSCH": {
+      "true_mean_effect": 10.0,
+      "observed_mean": 6.829241556160862,
+      "observed_std": 2.4393647419207487,
+      "sample_size": 164,
+      "effect_size_cohen_d": 2.7995983703460174
+    }
+  },
+  "Amoxicillin": {
+    "LBXSAS": {
+      "true_mean_effect": 3.0,
+      "observed_mean": 2.5724033770289094,
+      "observed_std": 0.5618192973733475,
+      "sample_size": 169,
+      "effect_size_cohen_d": 4.578702420966261
+    },
+    "LBXSAL": {
+      "true_mean_effect": 2.0,
+      "observed_mean": 1.7079507505161642,
+      "observed_std": 0.3680674555362223,
+      "sample_size": 169,
+      "effect_size_cohen_d": 4.640319932736029
+    }
+  },
+  "Spironolactone": {
+    "LBXSK": {
+      "true_mean_effect": 0.5,
+      "observed_mean": 0.3961858200803702,
+      "observed_std": 0.11295993889543778,
+      "sample_size": 178,
+      "effect_size_cohen_d": 3.507312627418315
+    },
+    "BPXSY1": {
+      "true_mean_effect": -4.0,
+      "observed_mean": -3.2526263462408003,
+      "observed_std": 0.9548677987662451,
+      "sample_size": 178,
+      "effect_size_cohen_d": -3.406363006945482
+    },
+    "LBXSNA": {
+      "true_mean_effect": -1.0,
+      "observed_mean": -0.8146348472853479,
+      "observed_std": 0.23779482148367084,
+      "sample_size": 178,
+      "effect_size_cohen_d": -3.4257888468832283
+    }
+  },
+  "Ramipril": {
+    "LBDSCR": {
+      "true_mean_effect": 3.5,
+      "observed_mean": 2.723642270460485,
+      "observed_std": 0.7854531552608219,
+      "sample_size": 189,
+      "effect_size_cohen_d": 3.467606250249332
+    },
+    "LBXSK": {
+      "true_mean_effect": 0.2,
+      "observed_mean": 0.15233923407090508,
+      "observed_std": 0.0406580675112449,
+      "sample_size": 189,
+      "effect_size_cohen_d": 3.746839025951547
+    },
+    "BPXSY1": {
+      "true_mean_effect": -10.0,
+      "observed_mean": -7.7539158409741855,
+      "observed_std": 2.4258059666172134,
+      "sample_size": 189,
+      "effect_size_cohen_d": -3.1964287118095522
+    },
+    "BPXDI1": {
+      "true_mean_effect": -6.0,
+      "observed_mean": -4.804900693344511,
+      "observed_std": 1.5012693261515002,
+      "sample_size": 189,
+      "effect_size_cohen_d": -3.200558760273788
+    }
+  },
+  "Sitagliptin": {
+    "LBXSGL": {
+      "true_mean_effect": -18.0,
+      "observed_mean": -13.60455452379957,
+      "observed_std": 4.811251914381709,
+      "sample_size": 172,
+      "effect_size_cohen_d": -2.8276537512270092
+    },
+    "LBXGH": {
+      "true_mean_effect": -0.7,
+      "observed_mean": -0.5387688730367024,
+      "observed_std": 0.16824201413301712,
+      "sample_size": 172,
+      "effect_size_cohen_d": -3.2023444073294067
+    }
+  },
+  "Diltiazem": {
+    "BPXSY1": {
+      "true_mean_effect": -9.0,
+      "observed_mean": -7.301958245973153,
+      "observed_std": 1.9715434537099414,
+      "sample_size": 188,
+      "effect_size_cohen_d": -3.703676037285778
+    },
+    "BPXDI1": {
+      "true_mean_effect": -6.0,
+      "observed_mean": -5.017334628583119,
+      "observed_std": 1.2685327378783653,
+      "sample_size": 188,
+      "effect_size_cohen_d": -3.9552267582582576
+    }
+  },
+  "Azithromycin": {
+    "LBXSAS": {
+      "true_mean_effect": 2.0,
+      "observed_mean": 1.6958934547426423,
+      "observed_std": 0.39351694123418035,
+      "sample_size": 190,
+      "effect_size_cohen_d": 4.309581817300778
+    }
+  },
+  "Warfarin": {
+    "LBXSAS": {
+      "true_mean_effect": 5.0,
+      "observed_mean": 4.194592199614488,
+      "observed_std": 0.9063230624080003,
+      "sample_size": 173,
+      "effect_size_cohen_d": 4.628142407046246
+    },
+    "LBXSGB": {
+      "true_mean_effect": 0.3,
+      "observed_mean": 0.25349308324760556,
+      "observed_std": 0.057387898913342617,
+      "sample_size": 173,
+      "effect_size_cohen_d": 4.417187038514642
+    }
+  },
+  "Allopurinol": {
+    "LBDSCR": {
+      "true_mean_effect": 1.5,
+      "observed_mean": 1.110618967684333,
+      "observed_std": 0.36167969796730004,
+      "sample_size": 172,
+      "effect_size_cohen_d": 3.0707252132928557
+    },
+    "LBXSUA": {
+      "true_mean_effect": -3.0,
+      "observed_mean": -2.076738860413401,
+      "observed_std": 0.7515488350466311,
+      "sample_size": 172,
+      "effect_size_cohen_d": -2.763278663434488
+    }
+  },
+  "Propranolol": {
+    "LBXTC": {
+      "true_mean_effect": 10.0,
+      "observed_mean": 8.115991677563578,
+      "observed_std": 2.429795182193348,
+      "sample_size": 177,
+      "effect_size_cohen_d": 3.34019580623144
+    },
+    "BPXSY1": {
+      "true_mean_effect": -6.0,
+      "observed_mean": -4.887486328080144,
+      "observed_std": 1.413457050313653,
+      "sample_size": 177,
+      "effect_size_cohen_d": -3.457824436190394
+    },
+    "BPXDI1": {
+      "true_mean_effect": -4.0,
+      "observed_mean": -3.2386181070356983,
+      "observed_std": 0.9876797597063821,
+      "sample_size": 177,
+      "effect_size_cohen_d": -3.279016376723642
+    }
+  },
+  "Sotalol": {
+    "LBXSK": {
+      "true_mean_effect": 0.2,
+      "observed_mean": 0.16968806532210526,
+      "observed_std": 0.0443423424687115,
+      "sample_size": 166,
+      "effect_size_cohen_d": 3.8267726934326762
+    },
+    "BPXSY1": {
+      "true_mean_effect": -5.0,
+      "observed_mean": -4.010255721716245,
+      "observed_std": 1.0907499756985015,
+      "sample_size": 166,
+      "effect_size_cohen_d": -3.67660399822437
+    }
+  },
+  "Ceftriaxone": {
+    "LBXSGB": {
+      "true_mean_effect": 0.2,
+      "observed_mean": 0.16923820003036255,
+      "observed_std": 0.040538891084738966,
+      "sample_size": 165,
+      "effect_size_cohen_d": 4.174712122159478
+    }
+  },
+  "Glipizide": {
+    "LBXTC": {
+      "true_mean_effect": 3.0,
+      "observed_mean": 2.469189523867318,
+      "observed_std": 0.6758707332458042,
+      "sample_size": 188,
+      "effect_size_cohen_d": 3.653345828438632
+    },
+    "LBXSGL": {
+      "true_mean_effect": -30.0,
+      "observed_mean": -21.903106365709856,
+      "observed_std": 8.479642607746499,
+      "sample_size": 188,
+      "effect_size_cohen_d": -2.5830223488075403
+    },
+    "LBXGH": {
+      "true_mean_effect": -1.2,
+      "observed_mean": -0.9334384729865918,
+      "observed_std": 0.3127734053352126,
+      "sample_size": 188,
+      "effect_size_cohen_d": -2.984392077664615
+    }
+  },
+  "Tacrolimus": {
+    "LBXTC": {
+      "true_mean_effect": 15.0,
+      "observed_mean": 11.630738909449883,
+      "observed_std": 3.2866326905892467,
+      "sample_size": 189,
+      "effect_size_cohen_d": 3.538800956599947
+    },
+    "LBDSCR": {
+      "true_mean_effect": 10.0,
+      "observed_mean": 8.009543004326709,
+      "observed_std": 2.364739887635396,
+      "sample_size": 189,
+      "effect_size_cohen_d": 3.3870714687084638
+    },
+    "LBXSBU": {
+      "true_mean_effect": 7.0,
+      "observed_mean": 5.467404708657276,
+      "observed_std": 1.4971854208976385,
+      "sample_size": 189,
+      "effect_size_cohen_d": 3.651788637762242
+    },
+    "LBXSGL": {
+      "true_mean_effect": 6.0,
+      "observed_mean": 4.655080419561942,
+      "observed_std": 1.332210533503127,
+      "sample_size": 189,
+      "effect_size_cohen_d": 3.494252824530017
+    }
+  },
+  "Metformin": {
+    "LBXTC": {
+      "true_mean_effect": -5.0,
+      "observed_mean": -3.1508258148286985,
+      "observed_std": 1.3035717711770909,
+      "sample_size": 173,
+      "effect_size_cohen_d": -2.4170712226942332
+    },
+    "LBDSCR": {
+      "true_mean_effect": 2.0,
+      "observed_mean": 1.2103453238752384,
+      "observed_std": 0.4925506223391786,
+      "sample_size": 173,
+      "effect_size_cohen_d": 2.4573013797590417
+    },
+    "LBXSGL": {
+      "true_mean_effect": -25.0,
+      "observed_mean": -13.866205704458569,
+      "observed_std": 7.092022972434734,
+      "sample_size": 173,
+      "effect_size_cohen_d": -1.9551834164037145
+    },
+    "LBXGH": {
+      "true_mean_effect": -1.0,
+      "observed_mean": -0.573221179124028,
+      "observed_std": 0.2658452803979993,
+      "sample_size": 173,
+      "effect_size_cohen_d": -2.1562210104533492
+    }
+  },
+  "Pioglitazone": {
+    "LBXTC": {
+      "true_mean_effect": 8.0,
+      "observed_mean": 4.773987483153647,
+      "observed_std": 2.070779874171423,
+      "sample_size": 151,
+      "effect_size_cohen_d": 2.305405583036127
+    },
+    "LBXSCH": {
+      "true_mean_effect": 5.0,
+      "observed_mean": 3.0241093145079083,
+      "observed_std": 1.270849933889181,
+      "sample_size": 151,
+      "effect_size_cohen_d": 2.379595917555135
+    },
+    "LBXSGL": {
+      "true_mean_effect": -20.0,
+      "observed_mean": -10.969106661589663,
+      "observed_std": 5.413798671099244,
+      "sample_size": 151,
+      "effect_size_cohen_d": -2.026138637209877
+    },
+    "LBXGH": {
+      "true_mean_effect": -0.8,
+      "observed_mean": -0.48408123406599957,
+      "observed_std": 0.2126940624927105,
+      "sample_size": 151,
+      "effect_size_cohen_d": -2.275950858207855
+    }
+  },
+  "Carvedilol": {
+    "BPXSY1": {
+      "true_mean_effect": -8.0,
+      "observed_mean": -6.382942018948265,
+      "observed_std": 1.8574532167250528,
+      "sample_size": 175,
+      "effect_size_cohen_d": -3.4363945005313647
+    },
+    "BPXDI1": {
+      "true_mean_effect": -6.0,
+      "observed_mean": -4.800258622327236,
+      "observed_std": 1.3522255991123837,
+      "sample_size": 175,
+      "effect_size_cohen_d": -3.5498947997125487
+    }
+  },
+  "Metoprolol": {
+    "BPXSY1": {
+      "true_mean_effect": -7.5,
+      "observed_mean": -6.0591329075035505,
+      "observed_std": 1.8143031006105608,
+      "sample_size": 205,
+      "effect_size_cohen_d": -3.339647551428696
+    },
+    "BPXDI1": {
+      "true_mean_effect": -5.5,
+      "observed_mean": -4.487987041499663,
+      "observed_std": 1.2918717048359216,
+      "sample_size": 205,
+      "effect_size_cohen_d": -3.474019149656718
+    },
+    "LBXSGL": {
+      "true_mean_effect": 4.0,
+      "observed_mean": 3.31956264299804,
+      "observed_std": 0.8778536431749526,
+      "sample_size": 205,
+      "effect_size_cohen_d": 3.781453399215961
+    }
+  },
+  "Lisinopril": {
+    "LBDSCR": {
+      "true_mean_effect": 5.0,
+      "observed_mean": 3.9329029958152306,
+      "observed_std": 1.1458527636466813,
+      "sample_size": 172,
+      "effect_size_cohen_d": 3.4322935027871733
+    },
+    "LBXSBU": {
+      "true_mean_effect": 3.0,
+      "observed_mean": 2.316340656715002,
+      "observed_std": 0.6693577370980707,
+      "sample_size": 172,
+      "effect_size_cohen_d": 3.4605421411235957
+    },
+    "LBXSK": {
+      "true_mean_effect": 0.3,
+      "observed_mean": 0.23040981559872908,
+      "observed_std": 0.06873020273609835,
+      "sample_size": 172,
+      "effect_size_cohen_d": 3.3523808518858575
+    },
+    "BPXSY1": {
+      "true_mean_effect": -12.0,
+      "observed_mean": -9.111744088502686,
+      "observed_std": 2.731436207970813,
+      "sample_size": 172,
+      "effect_size_cohen_d": -3.335880245679181
+    },
+    "BPXDI1": {
+      "true_mean_effect": -8.0,
+      "observed_mean": -6.380400932769844,
+      "observed_std": 1.7322315027429516,
+      "sample_size": 172,
+      "effect_size_cohen_d": -3.6833419336079594
+    }
+  },
+  "Cyclosporine": {
+    "LBXTC": {
+      "true_mean_effect": 20.0,
+      "observed_mean": 15.650161060431934,
+      "observed_std": 4.773623590270848,
+      "sample_size": 153,
+      "effect_size_cohen_d": 3.278465669628545
+    },
+    "LBDSCR": {
+      "true_mean_effect": 12.0,
+      "observed_mean": 9.53135719225671,
+      "observed_std": 2.8931654860313154,
+      "sample_size": 153,
+      "effect_size_cohen_d": 3.294438993647508
+    },
+    "LBXSBU": {
+      "true_mean_effect": 8.0,
+      "observed_mean": 5.999483857929194,
+      "observed_std": 1.8671809017002199,
+      "sample_size": 153,
+      "effect_size_cohen_d": 3.2131240483801955
+    },
+    "LBXSGL": {
+      "true_mean_effect": 8.0,
+      "observed_mean": 6.11908900549715,
+      "observed_std": 2.0529802802339003,
+      "sample_size": 153,
+      "effect_size_cohen_d": 2.9805883010235195
+    }
+  },
+  "Prednisone": {
+    "LBXTC": {
+      "true_mean_effect": 15.0,
+      "observed_mean": 12.68734248382337,
+      "observed_std": 2.7937912925298516,
+      "sample_size": 172,
+      "effect_size_cohen_d": 4.541263521633589
+    },
+    "LBXSK": {
+      "true_mean_effect": -0.4,
+      "observed_mean": -0.32241770192373914,
+      "observed_std": 0.08556340022881749,
+      "sample_size": 172,
+      "effect_size_cohen_d": -3.76817308640745
+    },
+    "LBXSNA": {
+      "true_mean_effect": 3.0,
+      "observed_mean": 2.5819051262839205,
+      "observed_std": 0.5802488353281882,
+      "sample_size": 172,
+      "effect_size_cohen_d": 4.449651544450921
+    },
+    "LBXSGL": {
+      "true_mean_effect": 30.0,
+      "observed_mean": 25.1839594530885,
+      "observed_std": 5.460468176597899,
+      "sample_size": 172,
+      "effect_size_cohen_d": 4.612051318423609
+    }
+  },
+  "Valsartan": {
+    "LBDSCR": {
+      "true_mean_effect": 2.5,
+      "observed_mean": 1.9551085444750713,
+      "observed_std": 0.7026085958375804,
+      "sample_size": 193,
+      "effect_size_cohen_d": 2.782642506877367
+    },
+    "BPXSY1": {
+      "true_mean_effect": -9.5,
+      "observed_mean": -7.3283933535516015,
+      "observed_std": 2.61649158947371,
+      "sample_size": 193,
+      "effect_size_cohen_d": -2.8008472807763387
+    },
+    "BPXDI1": {
+      "true_mean_effect": -6.5,
+      "observed_mean": -5.021732174884103,
+      "observed_std": 1.6752863615677893,
+      "sample_size": 193,
+      "effect_size_cohen_d": -2.9975365943913
+    }
+  },
+  "Sulfasalazine": {
+    "LBXSAS": {
+      "true_mean_effect": 5.0,
+      "observed_mean": 4.115507202499147,
+      "observed_std": 0.9495527699164059,
+      "sample_size": 177,
+      "effect_size_cohen_d": 4.3341532275888754
+    },
+    "LBXSAL": {
+      "true_mean_effect": 4.0,
+      "observed_mean": 3.3167838781676187,
+      "observed_std": 0.8064964134564168,
+      "sample_size": 177,
+      "effect_size_cohen_d": 4.112583543865764
+    }
+  },
+  "Atenolol": {
+    "LBXTC": {
+      "true_mean_effect": 8.0,
+      "observed_mean": 6.338087005028703,
+      "observed_std": 1.7828881224755166,
+      "sample_size": 173,
+      "effect_size_cohen_d": 3.554954977336633
+    },
+    "BPXSY1": {
+      "true_mean_effect": -7.0,
+      "observed_mean": -5.42342633442854,
+      "observed_std": 1.6735600241436712,
+      "sample_size": 173,
+      "effect_size_cohen_d": -3.240652415322602
+    },
+    "BPXDI1": {
+      "true_mean_effect": -5.0,
+      "observed_mean": -4.010392652346984,
+      "observed_std": 1.154884391784809,
+      "sample_size": 173,
+      "effect_size_cohen_d": -3.4725490108573958
+    },
+    "LBXSGL": {
+      "true_mean_effect": 5.0,
+      "observed_mean": 3.986742581606756,
+      "observed_std": 1.1268241354234851,
+      "sample_size": 173,
+      "effect_size_cohen_d": 3.5380344246073956
+    }
+  },
+  "Rosuvastatin": {
+    "LBXTC": {
+      "true_mean_effect": -55.0,
+      "observed_mean": -41.07484455757605,
+      "observed_std": 13.64617417371666,
+      "sample_size": 165,
+      "effect_size_cohen_d": -3.009989762309251
+    },
+    "LBDLDL": {
+      "true_mean_effect": -65.0,
+      "observed_mean": -45.68953059618926,
+      "observed_std": 16.013901591517772,
+      "sample_size": 165,
+      "effect_size_cohen_d": -2.8531167333006495
+    },
+    "LBXSCH": {
+      "true_mean_effect": 10.0,
+      "observed_mean": 7.487949664368183,
+      "observed_std": 2.450964804340599,
+      "sample_size": 165,
+      "effect_size_cohen_d": 3.0551028929943045
+    },
+    "LBXSAS": {
+      "true_mean_effect": 8.0,
+      "observed_mean": 5.99355502247185,
+      "observed_std": 1.8951529595469117,
+      "sample_size": 165,
+      "effect_size_cohen_d": 3.1625705947792064
+    }
+  },
+  "Probenecid": {
+    "LBXSUA": {
+      "true_mean_effect": -2.0,
+      "observed_mean": -1.5992580087144956,
+      "observed_std": 0.4060922999595255,
+      "sample_size": 171,
+      "effect_size_cohen_d": -3.9381638333794826
+    }
+  },
+  "Fenofibrate": {
+    "LBXTC": {
+      "true_mean_effect": -25.0,
+      "observed_mean": -16.664127841260242,
+      "observed_std": 6.278235450681655,
+      "sample_size": 170,
+      "effect_size_cohen_d": -2.65426933605221
+    },
+    "LBDLDL": {
+      "true_mean_effect": -15.0,
+      "observed_mean": -10.285640345339855,
+      "observed_std": 3.86060821927485,
+      "sample_size": 170,
+      "effect_size_cohen_d": -2.664253858753852
+    },
+    "LBXSCH": {
+      "true_mean_effect": 12.0,
+      "observed_mean": 8.422531747314784,
+      "observed_std": 3.3176228593354944,
+      "sample_size": 170,
+      "effect_size_cohen_d": 2.5387248956325856
+    },
+    "LBXSUA": {
+      "true_mean_effect": -1.5,
+      "observed_mean": -1.0636682493295282,
+      "observed_std": 0.4139677641506306,
+      "sample_size": 170,
+      "effect_size_cohen_d": -2.569447047433604
+    }
+  },
+  "Vancomycin": {
+    "LBDSCR": {
+      "true_mean_effect": 5.0,
+      "observed_mean": 4.184056713992633,
+      "observed_std": 0.9095627735657648,
+      "sample_size": 183,
+      "effect_size_cohen_d": 4.600074712369603
+    },
+    "LBXSBU": {
+      "true_mean_effect": 4.0,
+      "observed_mean": 3.389566170901639,
+      "observed_std": 0.7580678138061355,
+      "sample_size": 183,
+      "effect_size_cohen_d": 4.47132315759876
+    }
+  },
+  "Enalapril": {
+    "LBDSCR": {
+      "true_mean_effect": 4.0,
+      "observed_mean": 3.081506388582655,
+      "observed_std": 0.9499303790446523,
+      "sample_size": 163,
+      "effect_size_cohen_d": 3.2439286673637437
+    },
+    "LBXSK": {
+      "true_mean_effect": 0.25,
+      "observed_mean": 0.20099274291292413,
+      "observed_std": 0.06580618752991002,
+      "sample_size": 163,
+      "effect_size_cohen_d": 3.0543137424815794
+    },
+    "BPXSY1": {
+      "true_mean_effect": -11.0,
+      "observed_mean": -8.636315804266026,
+      "observed_std": 2.816466069109475,
+      "sample_size": 163,
+      "effect_size_cohen_d": -3.0663660034777913
+    },
+    "BPXDI1": {
+      "true_mean_effect": -7.0,
+      "observed_mean": -5.522402645125475,
+      "observed_std": 1.6838049643866209,
+      "sample_size": 163,
+      "effect_size_cohen_d": -3.279716334092877
+    }
+  },
+  "Atorvastatin": {
+    "LBXTC": {
+      "true_mean_effect": -50.0,
+      "observed_mean": -35.44709407224337,
+      "observed_std": 13.158483674411382,
+      "sample_size": 185,
+      "effect_size_cohen_d": -2.693858574386917
+    },
+    "LBDLDL": {
+      "true_mean_effect": -60.0,
+      "observed_mean": -41.201867867873226,
+      "observed_std": 16.679664540010233,
+      "sample_size": 185,
+      "effect_size_cohen_d": -2.470185642465442
+    },
+    "LBXSCH": {
+      "true_mean_effect": 5.0,
+      "observed_mean": 3.5184424547064306,
+      "observed_std": 1.2610174146039843,
+      "sample_size": 185,
+      "effect_size_cohen_d": 2.7901616694257774
+    },
+    "LBXSAS": {
+      "true_mean_effect": 10.0,
+      "observed_mean": 7.038358686992122,
+      "observed_std": 2.5551654687774246,
+      "sample_size": 185,
+      "effect_size_cohen_d": 2.7545608192489315
+    },
+    "LBXSGL": {
+      "true_mean_effect": 3.0,
+      "observed_mean": 2.0884940392041234,
+      "observed_std": 0.7596258796652533,
+      "sample_size": 185,
+      "effect_size_cohen_d": 2.7493718883359617
+    }
+  },
+  "Ibuprofen": {
+    "LBDSCR": {
+      "true_mean_effect": 8.0,
+      "observed_mean": 6.677097418964191,
+      "observed_std": 1.445934691591123,
+      "sample_size": 187,
+      "effect_size_cohen_d": 4.6178416340620725
+    },
+    "LBXSBU": {
+      "true_mean_effect": 6.0,
+      "observed_mean": 5.098882446520391,
+      "observed_std": 1.135321293929467,
+      "sample_size": 187,
+      "effect_size_cohen_d": 4.491136098463035
+    },
+    "LBXSK": {
+      "true_mean_effect": 0.2,
+      "observed_mean": 0.1671332361681988,
+      "observed_std": 0.03773872157602585,
+      "sample_size": 187,
+      "effect_size_cohen_d": 4.428693638482258
+    }
+  },
+  "Colchicine": {
+    "LBDSCR": {
+      "true_mean_effect": 1.5,
+      "observed_mean": 1.2955408439527838,
+      "observed_std": 0.3099622065558545,
+      "sample_size": 164,
+      "effect_size_cohen_d": 4.179673574879298
+    }
+  },
+  "Digoxin": {
+    "LBDSCR": {
+      "true_mean_effect": 1.0,
+      "observed_mean": 0.8150910740000434,
+      "observed_std": 0.2373925860523212,
+      "sample_size": 198,
+      "effect_size_cohen_d": 3.4335152902390886
+    },
+    "LBXSK": {
+      "true_mean_effect": 0.1,
+      "observed_mean": 0.07951015854258135,
+      "observed_std": 0.020916956578929526,
+      "sample_size": 198,
+      "effect_size_cohen_d": 3.801229793758575
+    }
+  },
+  "Amlodipine": {
+    "LBDSCR": {
+      "true_mean_effect": 0.5,
+      "observed_mean": 0.4058357642935031,
+      "observed_std": 0.10922145326251073,
+      "sample_size": 158,
+      "effect_size_cohen_d": 3.715714744410955
+    },
+    "BPXSY1": {
+      "true_mean_effect": -10.0,
+      "observed_mean": -8.128257769571073,
+      "observed_std": 2.1088219255631673,
+      "sample_size": 158,
+      "effect_size_cohen_d": -3.8544068946933
+    },
+    "BPXDI1": {
+      "true_mean_effect": -7.0,
+      "observed_mean": -5.682225641659707,
+      "observed_std": 1.4845965511298098,
+      "sample_size": 158,
+      "effect_size_cohen_d": -3.827454426817448
+    }
+  },
+  "Amiodarone": {
+    "LBXTC": {
+      "true_mean_effect": 10.0,
+      "observed_mean": 6.962037319264038,
+      "observed_std": 2.7007017662129873,
+      "sample_size": 177,
+      "effect_size_cohen_d": 2.57786231947648
+    },
+    "LBXSAS": {
+      "true_mean_effect": 15.0,
+      "observed_mean": 10.56165855857411,
+      "observed_std": 4.055261005740861,
+      "sample_size": 177,
+      "effect_size_cohen_d": 2.6044337327788316
+    },
+    "LBXSAL": {
+      "true_mean_effect": 12.0,
+      "observed_mean": 8.344108144311745,
+      "observed_std": 3.2066910762232634,
+      "sample_size": 177,
+      "effect_size_cohen_d": 2.6020929194523985
+    }
+  },
+  "Methotrexate": {
+    "LBXSAS": {
+      "true_mean_effect": 8.0,
+      "observed_mean": 6.546285647411874,
+      "observed_std": 1.5895228239532668,
+      "sample_size": 163,
+      "effect_size_cohen_d": 4.118396759557533
+    },
+    "LBDSCR": {
+      "true_mean_effect": 2.0,
+      "observed_mean": 1.6576423363717465,
+      "observed_std": 0.42688639118542926,
+      "sample_size": 163,
+      "effect_size_cohen_d": 3.8830995098452465
+    },
+    "LBXSAL": {
+      "true_mean_effect": 6.0,
+      "observed_mean": 4.833753816154365,
+      "observed_std": 1.1739308792842031,
+      "sample_size": 163,
+      "effect_size_cohen_d": 4.1175795793886225
+    }
+  },
+  "Chlorthalidone": {
+    "LBXSK": {
+      "true_mean_effect": -0.5,
+      "observed_mean": -0.40244436484967894,
+      "observed_std": 0.11743431000537596,
+      "sample_size": 162,
+      "effect_size_cohen_d": -3.4269743214845443
+    },
+    "LBXSUA": {
+      "true_mean_effect": 1.2,
+      "observed_mean": 0.9757346647208354,
+      "observed_std": 0.2650486177595976,
+      "sample_size": 162,
+      "effect_size_cohen_d": 3.681342211736561
+    },
+    "BPXSY1": {
+      "true_mean_effect": -9.0,
+      "observed_mean": -7.362042098396951,
+      "observed_std": 1.9472742640375391,
+      "sample_size": 162,
+      "effect_size_cohen_d": -3.7806909043887136
+    },
+    "BPXDI1": {
+      "true_mean_effect": -6.0,
+      "observed_mean": -5.031523943060815,
+      "observed_std": 1.2968814343021835,
+      "sample_size": 162,
+      "effect_size_cohen_d": -3.8797100567394125
+    }
+  },
+  "Levofloxacin": {
+    "LBXSK": {
+      "true_mean_effect": 0.1,
+      "observed_mean": 0.08558504470081243,
+      "observed_std": 0.01837697114386526,
+      "sample_size": 187,
+      "effect_size_cohen_d": 4.657189916162168
+    },
+    "LBXSGL": {
+      "true_mean_effect": 2.0,
+      "observed_mean": 1.7149544659198035,
+      "observed_std": 0.3723130081148061,
+      "sample_size": 187,
+      "effect_size_cohen_d": 4.6062168888576185
+    }
+  },
+  "Nifedipine": {
+    "LBDSCR": {
+      "true_mean_effect": 0.5,
+      "observed_mean": 0.40876924637339623,
+      "observed_std": 0.1083687322064952,
+      "sample_size": 182,
+      "effect_size_cohen_d": 3.7720220404026854
+    },
+    "BPXSY1": {
+      "true_mean_effect": -10.0,
+      "observed_mean": -7.788903924773354,
+      "observed_std": 2.218700849238752,
+      "sample_size": 182,
+      "effect_size_cohen_d": -3.5105696774965263
+    },
+    "BPXDI1": {
+      "true_mean_effect": -7.0,
+      "observed_mean": -5.7098280774247625,
+      "observed_std": 1.3789440047287629,
+      "sample_size": 182,
+      "effect_size_cohen_d": -4.140725118528566
+    }
+  },
+  "Hydroxychloroquine": {
+    "LBXSAS": {
+      "true_mean_effect": 3.0,
+      "observed_mean": 2.344825655940844,
+      "observed_std": 0.7444293147833541,
+      "sample_size": 170,
+      "effect_size_cohen_d": 3.149829821818935
+    }
+  },
+  "Ciprofloxacin": {
+    "LBXSK": {
+      "true_mean_effect": 0.1,
+      "observed_mean": 0.0826149514699523,
+      "observed_std": 0.01808069354471386,
+      "sample_size": 153,
+      "effect_size_cohen_d": 4.5692357577791
+    }
+  },
+  "Pravastatin": {
+    "LBXTC": {
+      "true_mean_effect": -40.0,
+      "observed_mean": -27.131371870094732,
+      "observed_std": 11.619272457942502,
+      "sample_size": 165,
+      "effect_size_cohen_d": -2.335031902238314
+    },
+    "LBDLDL": {
+      "true_mean_effect": -50.0,
+      "observed_mean": -32.8255083980941,
+      "observed_std": 14.777433814752209,
+      "sample_size": 165,
+      "effect_size_cohen_d": -2.22132670730182
+    },
+    "LBXSCH": {
+      "true_mean_effect": 6.0,
+      "observed_mean": 4.048859500413997,
+      "observed_std": 1.7280091867713627,
+      "sample_size": 165,
+      "effect_size_cohen_d": 2.343077531884506
+    }
+  }
+}

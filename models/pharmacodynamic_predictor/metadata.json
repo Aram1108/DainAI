@@ -1,23 +1,23 @@
 {
   "model_info": {
     "name": "Cross-Attention Pharmacodynamic Predictor",
-    "version": "1.0",
+    "version": "2.0",
     "architecture": "CrossAttentionPredictor",
-    "created_at": "2025-11-26 13:45:53",
+    "created_at": "2025-12-12 03:48:45",
     "trained": false,
     "initialization": "xavier_uniform"
   },
   "architecture_config": {
     "patient_dim": 41,
     "drug_dim": 768,
-    "hidden_dim": 256,
-    "num_heads": 8,
-    "num_layers": 4,
+    "hidden_dim": 64,
+    "num_heads": 2,
+    "num_layers": 1,
     "output_dim": 22
   },
   "parameters": {
-    "total": 3469206,
-    "trainable": 3469206
+    "total": 85878,
+    "trainable": 85878
   },
   "input_features": {
     "patient_state": [

@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# PyTorch (only ignore large files, keep small models < 100MB)
+# *.pt files are allowed (current models are < 10MB total)
+*.ckpt
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environment
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data (keep structure, ignore large files)
+data/cdisc/real_augmentations_temp.csv
+*.log
+
+# Results (generated files)
+results/figures/*
+results/metrics/*
+results/predictions/*
+!results/.gitkeep
+
+# Models (keep all - they're small < 10MB total)
+# models/*/*.pt - ALLOWED (small models)
+# models/*/*.pth - ALLOWED (small models)
+
+# Temporary files
+*.tmp
+*.temp
+*_temp.csv
+*_temp.json
+

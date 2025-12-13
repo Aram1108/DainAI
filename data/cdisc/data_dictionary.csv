@@ -1,0 +1,42 @@
+variable,type,description,range,missing_allowed,unit,distribution,values,missing_mechanism
+patient_id,integer,Unique patient identifier,0-1999,False,,,,
+age,integer,Patient age at treatment start,18-90,False,years,"Normal(μ=55, σ=15)",,
+sex,categorical,Patient sex,,False,,,"['M', 'F']",
+bmi,float,Body Mass Index,15-50,False,kg/m²,,,
+days_on_drug,integer,Number of days patient has been on drug,1-180,False,days,,,
+adherence,float,Medication adherence rate,0.7-1.0,False,proportion,,,
+statin_myalgia,binary,Presence of statin_myalgia,,False,,,"[0, 1]",
+ace_cough,binary,Presence of ace_cough,,False,,,"[0, 1]",
+metformin_gi_upset,binary,Presence of metformin_gi_upset,,False,,,"[0, 1]",
+LBXSGL_baseline,float,LBXSGL value before treatment,70-300,True,,,,MAR
+LBXSGL_delta,float,Change in LBXSGL caused by drug,,True,,,,
+LBXGH_baseline,float,LBXGH value before treatment,4.0-12.0,True,,,,MAR
+LBXGH_delta,float,Change in LBXGH caused by drug,,True,,,,
+LBXTC_baseline,float,LBXTC value before treatment,100-400,True,,,,MAR
+LBXTC_delta,float,Change in LBXTC caused by drug,,True,,,,
+LBDLDL_baseline,float,LBDLDL value before treatment,40-300,True,,,,MAR
+LBDLDL_delta,float,Change in LBDLDL caused by drug,,True,,,,
+LBXSCH_baseline,float,LBXSCH value before treatment,20-100,True,,,,MAR
+LBXSCH_delta,float,Change in LBXSCH caused by drug,,True,,,,
+LBDSCR_baseline,float,LBDSCR value before treatment,40-200,True,,,,MAR
+LBDSCR_delta,float,Change in LBDSCR caused by drug,,True,,,,
+LBXSBU_baseline,float,LBXSBU value before treatment,5-50,True,,,,MAR
+LBXSBU_delta,float,Change in LBXSBU caused by drug,,True,,,,
+LBXSK_baseline,float,LBXSK value before treatment,3.0-6.0,True,,,,MAR
+LBXSK_delta,float,Change in LBXSK caused by drug,,True,,,,
+LBXSNA_baseline,float,LBXSNA value before treatment,130-150,True,,,,MAR
+LBXSNA_delta,float,Change in LBXSNA caused by drug,,True,,,,
+LBXSCA_baseline,float,LBXSCA value before treatment,8.0-11.5,True,,,,MAR
+LBXSCA_delta,float,Change in LBXSCA caused by drug,,True,,,,
+LBXSAS_baseline,float,LBXSAS value before treatment,10-100,True,,,,MAR
+LBXSAS_delta,float,Change in LBXSAS caused by drug,,True,,,,
+LBXSAL_baseline,float,LBXSAL value before treatment,10-100,True,,,,MAR
+LBXSAL_delta,float,Change in LBXSAL caused by drug,,True,,,,
+LBXSGB_baseline,float,LBXSGB value before treatment,0.2-3.0,True,,,,MAR
+LBXSGB_delta,float,Change in LBXSGB caused by drug,,True,,,,
+LBXSUA_baseline,float,LBXSUA value before treatment,2.0-10.0,True,,,,MAR
+LBXSUA_delta,float,Change in LBXSUA caused by drug,,True,,,,
+BPXSY1_baseline,float,BPXSY1 value before treatment,90-200,True,,,,MAR
+BPXSY1_delta,float,Change in BPXSY1 caused by drug,,True,,,,
+BPXDI1_baseline,float,BPXDI1 value before treatment,50-120,True,,,,MAR
+BPXDI1_delta,float,Change in BPXDI1 caused by drug,,True,,,,

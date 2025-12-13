@@ -1,0 +1,2624 @@
+{
+  "version": "1.0",
+  "generated_date": "2025-12-12T03:38:57.798194",
+  "true_causal_effects": {
+    "Metformin": {
+      "LBXSGL": {
+        "mean_effect": -25.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 60
+      },
+      "LBXGH": {
+        "mean_effect": -1.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 60
+      },
+      "LBXTC": {
+        "mean_effect": -5.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 60
+      },
+      "LBDSCR": {
+        "mean_effect": 2.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 60
+      }
+    },
+    "Atorvastatin": {
+      "LBXTC": {
+        "mean_effect": -50.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      },
+      "LBDLDL": {
+        "mean_effect": -60.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      },
+      "LBXSCH": {
+        "mean_effect": 5.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      },
+      "LBXSAS": {
+        "mean_effect": 10.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      },
+      "LBXSGL": {
+        "mean_effect": 3.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      }
+    },
+    "Lisinopril": {
+      "BPXSY1": {
+        "mean_effect": -12.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "BPXDI1": {
+        "mean_effect": -8.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "LBDSCR": {
+        "mean_effect": 5.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "LBXSK": {
+        "mean_effect": 0.3,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "LBXSBU": {
+        "mean_effect": 3.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      }
+    },
+    "Amlodipine": {
+      "BPXSY1": {
+        "mean_effect": -10.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "BPXDI1": {
+        "mean_effect": -7.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "LBDSCR": {
+        "mean_effect": 0.5,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      }
+    },
+    "Furosemide": {
+      "BPXSY1": {
+        "mean_effect": -8.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 1
+      },
+      "LBXSK": {
+        "mean_effect": -0.5,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 1
+      },
+      "LBXSNA": {
+        "mean_effect": -2.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 1
+      },
+      "LBDSCR": {
+        "mean_effect": 3.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 1
+      },
+      "LBXSBU": {
+        "mean_effect": 5.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 1
+      }
+    },
+    "Simvastatin": {
+      "LBXTC": {
+        "mean_effect": -45.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      },
+      "LBDLDL": {
+        "mean_effect": -55.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      },
+      "LBXSCH": {
+        "mean_effect": 8.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      },
+      "LBXSAS": {
+        "mean_effect": 12.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      }
+    },
+    "Prednisone": {
+      "LBXSGL": {
+        "mean_effect": 30.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 3
+      },
+      "LBXSK": {
+        "mean_effect": -0.4,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 3
+      },
+      "LBXSNA": {
+        "mean_effect": 3.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 3
+      },
+      "LBXTC": {
+        "mean_effect": 15.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 3
+      }
+    },
+    "Ibuprofen": {
+      "LBDSCR": {
+        "mean_effect": 8.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 1
+      },
+      "LBXSBU": {
+        "mean_effect": 6.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 1
+      },
+      "LBXSK": {
+        "mean_effect": 0.2,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 1
+      }
+    },
+    "Aspirin": {
+      "LBDSCR": {
+        "mean_effect": 1.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 1
+      },
+      "LBXSUA": {
+        "mean_effect": -0.5,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 1
+      }
+    },
+    "Allopurinol": {
+      "LBXSUA": {
+        "mean_effect": -3.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      },
+      "LBDSCR": {
+        "mean_effect": 1.5,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      }
+    },
+    "Rosuvastatin": {
+      "LBXTC": {
+        "mean_effect": -55.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 28
+      },
+      "LBDLDL": {
+        "mean_effect": -65.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 28
+      },
+      "LBXSCH": {
+        "mean_effect": 10.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 28
+      },
+      "LBXSAS": {
+        "mean_effect": 8.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 28
+      }
+    },
+    "Pravastatin": {
+      "LBXTC": {
+        "mean_effect": -40.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      },
+      "LBDLDL": {
+        "mean_effect": -50.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      },
+      "LBXSCH": {
+        "mean_effect": 6.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      }
+    },
+    "Enalapril": {
+      "BPXSY1": {
+        "mean_effect": -11.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "BPXDI1": {
+        "mean_effect": -7.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "LBDSCR": {
+        "mean_effect": 4.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "LBXSK": {
+        "mean_effect": 0.25,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      }
+    },
+    "Ramipril": {
+      "BPXSY1": {
+        "mean_effect": -10.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "BPXDI1": {
+        "mean_effect": -6.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "LBDSCR": {
+        "mean_effect": 3.5,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "LBXSK": {
+        "mean_effect": 0.2,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      }
+    },
+    "Losartan": {
+      "BPXSY1": {
+        "mean_effect": -9.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "BPXDI1": {
+        "mean_effect": -6.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "LBDSCR": {
+        "mean_effect": 2.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "LBXSK": {
+        "mean_effect": 0.1,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      }
+    },
+    "Valsartan": {
+      "BPXSY1": {
+        "mean_effect": -9.5,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "BPXDI1": {
+        "mean_effect": -6.5,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "LBDSCR": {
+        "mean_effect": 2.5,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      }
+    },
+    "Hydrochlorothiazide": {
+      "BPXSY1": {
+        "mean_effect": -8.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "BPXDI1": {
+        "mean_effect": -5.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "LBXSK": {
+        "mean_effect": -0.4,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "LBXSNA": {
+        "mean_effect": -1.5,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "LBXSUA": {
+        "mean_effect": 1.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      }
+    },
+    "Chlorthalidone": {
+      "BPXSY1": {
+        "mean_effect": -9.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "BPXDI1": {
+        "mean_effect": -6.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "LBXSK": {
+        "mean_effect": -0.5,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "LBXSUA": {
+        "mean_effect": 1.2,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      }
+    },
+    "Atenolol": {
+      "BPXSY1": {
+        "mean_effect": -7.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "BPXDI1": {
+        "mean_effect": -5.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "LBXSGL": {
+        "mean_effect": 5.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "LBXTC": {
+        "mean_effect": 8.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      }
+    },
+    "Metoprolol": {
+      "BPXSY1": {
+        "mean_effect": -7.5,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "BPXDI1": {
+        "mean_effect": -5.5,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "LBXSGL": {
+        "mean_effect": 4.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      }
+    },
+    "Carvedilol": {
+      "BPXSY1": {
+        "mean_effect": -8.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "BPXDI1": {
+        "mean_effect": -6.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      }
+    },
+    "Propranolol": {
+      "BPXSY1": {
+        "mean_effect": -6.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "BPXDI1": {
+        "mean_effect": -4.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "LBXTC": {
+        "mean_effect": 10.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      }
+    },
+    "Diltiazem": {
+      "BPXSY1": {
+        "mean_effect": -9.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "BPXDI1": {
+        "mean_effect": -6.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      }
+    },
+    "Verapamil": {
+      "BPXSY1": {
+        "mean_effect": -8.5,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "BPXDI1": {
+        "mean_effect": -6.5,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "LBDSCR": {
+        "mean_effect": 1.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      }
+    },
+    "Nifedipine": {
+      "BPXSY1": {
+        "mean_effect": -10.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "BPXDI1": {
+        "mean_effect": -7.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "LBDSCR": {
+        "mean_effect": 0.5,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      }
+    },
+    "Glipizide": {
+      "LBXSGL": {
+        "mean_effect": -30.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "LBXGH": {
+        "mean_effect": -1.2,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "LBXTC": {
+        "mean_effect": 3.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      }
+    },
+    "Glyburide": {
+      "LBXSGL": {
+        "mean_effect": -32.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "LBXGH": {
+        "mean_effect": -1.3,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "LBXTC": {
+        "mean_effect": 4.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      }
+    },
+    "Pioglitazone": {
+      "LBXSGL": {
+        "mean_effect": -20.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 60
+      },
+      "LBXGH": {
+        "mean_effect": -0.8,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 60
+      },
+      "LBXTC": {
+        "mean_effect": 8.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 60
+      },
+      "LBXSCH": {
+        "mean_effect": 5.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 60
+      }
+    },
+    "Sitagliptin": {
+      "LBXSGL": {
+        "mean_effect": -18.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "LBXGH": {
+        "mean_effect": -0.7,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      }
+    },
+    "Empagliflozin": {
+      "LBXSGL": {
+        "mean_effect": -22.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "LBXGH": {
+        "mean_effect": -0.9,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "BPXSY1": {
+        "mean_effect": -3.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "LBDSCR": {
+        "mean_effect": 2.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      }
+    },
+    "Canagliflozin": {
+      "LBXSGL": {
+        "mean_effect": -24.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "LBXGH": {
+        "mean_effect": -1.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "BPXSY1": {
+        "mean_effect": -3.5,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "LBDSCR": {
+        "mean_effect": 2.5,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      }
+    },
+    "Warfarin": {
+      "LBXSGB": {
+        "mean_effect": 0.3,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "LBXSAS": {
+        "mean_effect": 5.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      }
+    },
+    "Digoxin": {
+      "LBXSK": {
+        "mean_effect": 0.1,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "LBDSCR": {
+        "mean_effect": 1.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      }
+    },
+    "Spironolactone": {
+      "BPXSY1": {
+        "mean_effect": -4.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "LBXSK": {
+        "mean_effect": 0.5,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "LBXSNA": {
+        "mean_effect": -1.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      }
+    },
+    "Eplerenone": {
+      "BPXSY1": {
+        "mean_effect": -3.5,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "LBXSK": {
+        "mean_effect": 0.4,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      }
+    },
+    "Amiodarone": {
+      "LBXSAS": {
+        "mean_effect": 15.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      },
+      "LBXSAL": {
+        "mean_effect": 12.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      },
+      "LBXTC": {
+        "mean_effect": 10.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      }
+    },
+    "Flecainide": {
+      "LBXSK": {
+        "mean_effect": 0.1,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      }
+    },
+    "Sotalol": {
+      "BPXSY1": {
+        "mean_effect": -5.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "LBXSK": {
+        "mean_effect": 0.2,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      }
+    },
+    "Dofetilide": {
+      "LBXSK": {
+        "mean_effect": 0.15,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      }
+    },
+    "Amoxicillin": {
+      "LBXSAS": {
+        "mean_effect": 3.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 1
+      },
+      "LBXSAL": {
+        "mean_effect": 2.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 1
+      }
+    },
+    "Ciprofloxacin": {
+      "LBXSK": {
+        "mean_effect": 0.1,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 1
+      }
+    },
+    "Levofloxacin": {
+      "LBXSK": {
+        "mean_effect": 0.1,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 1
+      },
+      "LBXSGL": {
+        "mean_effect": 2.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 1
+      }
+    },
+    "Azithromycin": {
+      "LBXSAS": {
+        "mean_effect": 2.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 1
+      }
+    },
+    "Ceftriaxone": {
+      "LBXSGB": {
+        "mean_effect": 0.2,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 1
+      }
+    },
+    "Vancomycin": {
+      "LBDSCR": {
+        "mean_effect": 5.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 3
+      },
+      "LBXSBU": {
+        "mean_effect": 4.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 3
+      }
+    },
+    "Gentamicin": {
+      "LBDSCR": {
+        "mean_effect": 8.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 1
+      },
+      "LBXSBU": {
+        "mean_effect": 6.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 1
+      }
+    },
+    "Cyclosporine": {
+      "LBDSCR": {
+        "mean_effect": 12.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "LBXSBU": {
+        "mean_effect": 8.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "LBXTC": {
+        "mean_effect": 20.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "LBXSGL": {
+        "mean_effect": 8.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      }
+    },
+    "Tacrolimus": {
+      "LBDSCR": {
+        "mean_effect": 10.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "LBXSBU": {
+        "mean_effect": 7.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "LBXTC": {
+        "mean_effect": 15.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "LBXSGL": {
+        "mean_effect": 6.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      }
+    },
+    "Methotrexate": {
+      "LBXSAS": {
+        "mean_effect": 8.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "LBXSAL": {
+        "mean_effect": 6.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "LBDSCR": {
+        "mean_effect": 2.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      }
+    },
+    "Sulfasalazine": {
+      "LBXSAS": {
+        "mean_effect": 5.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      },
+      "LBXSAL": {
+        "mean_effect": 4.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      }
+    },
+    "Hydroxychloroquine": {
+      "LBXSAS": {
+        "mean_effect": 3.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      }
+    },
+    "Colchicine": {
+      "LBDSCR": {
+        "mean_effect": 1.5,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 1
+      }
+    },
+    "Probenecid": {
+      "LBXSUA": {
+        "mean_effect": -2.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 7
+      }
+    },
+    "Fenofibrate": {
+      "LBXTC": {
+        "mean_effect": -25.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      },
+      "LBDLDL": {
+        "mean_effect": -15.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      },
+      "LBXSCH": {
+        "mean_effect": 12.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      },
+      "LBXSUA": {
+        "mean_effect": -1.5,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      }
+    },
+    "Gemfibrozil": {
+      "LBXTC": {
+        "mean_effect": -20.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      },
+      "LBDLDL": {
+        "mean_effect": -12.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      },
+      "LBXSCH": {
+        "mean_effect": 10.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      }
+    },
+    "Ezetimibe": {
+      "LBXTC": {
+        "mean_effect": -15.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      },
+      "LBDLDL": {
+        "mean_effect": -18.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 14
+      }
+    },
+    "Niacin": {
+      "LBXTC": {
+        "mean_effect": -10.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      },
+      "LBDLDL": {
+        "mean_effect": -8.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      },
+      "LBXSCH": {
+        "mean_effect": 15.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      },
+      "LBXSGL": {
+        "mean_effect": 5.0,
+        "effect_type": "additive",
+        "modifiers": [
+          "adherence",
+          "time",
+          "individual_variability"
+        ],
+        "confounders": [
+          "age",
+          "bmi",
+          "sex"
+        ],
+        "tau_days": 30
+      }
+    }
+  },
+  "confounding_structure": {
+    "age": {
+      "affects": [
+        "LBXSGL",
+        "LBXTC",
+        "LBDLDL",
+        "BPXSY1"
+      ],
+      "relationship": "linear_positive",
+      "strength": "moderate"
+    },
+    "bmi": {
+      "affects": [
+        "LBXSGL",
+        "LBXTC",
+        "BPXSY1"
+      ],
+      "relationship": "nonlinear_positive",
+      "strength": "strong"
+    },
+    "sex": {
+      "affects": [
+        "LBDSCR",
+        "LBXSCH"
+      ],
+      "relationship": "categorical",
+      "strength": "moderate"
+    }
+  },
+  "noise_model": {
+    "individual_variability": {
+      "type": "normal",
+      "cv": 0.2
+    },
+    "measurement_error": {
+      "type": "normal",
+      "cv": 0.03
+    }
+  },
+  "data_quality": {
+    "missing_mechanism": "MAR",
+    "missingness_rate": 0.05,
+    "outlier_rate": 0.005
+  }
+}

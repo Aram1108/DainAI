@@ -1,0 +1,2309 @@
+{
+  "timestamp": "2025-12-12T03:38:58.588825",
+  "total_samples": 10000,
+  "checks": [
+    {
+      "check": "LBXSGL_baseline_bounds",
+      "passed": true,
+      "violations": 0,
+      "details": "Expected: (70, 300), Got: [70.00, 225.69]"
+    },
+    {
+      "check": "LBXGH_baseline_bounds",
+      "passed": true,
+      "violations": 0,
+      "details": "Expected: (4.0, 12.0), Got: [4.00, 8.77]"
+    },
+    {
+      "check": "LBXTC_baseline_bounds",
+      "passed": true,
+      "violations": 0,
+      "details": "Expected: (100, 400), Got: [100.00, 344.11]"
+    },
+    {
+      "check": "LBDLDL_baseline_bounds",
+      "passed": true,
+      "violations": 0,
+      "details": "Expected: (40, 300), Got: [40.00, 229.62]"
+    },
+    {
+      "check": "LBXSCH_baseline_bounds",
+      "passed": true,
+      "violations": 0,
+      "details": "Expected: (20, 100), Got: [20.00, 100.00]"
+    },
+    {
+      "check": "LBDSCR_baseline_bounds",
+      "passed": true,
+      "violations": 0,
+      "details": "Expected: (40, 200), Got: [40.00, 182.32]"
+    },
+    {
+      "check": "LBXSBU_baseline_bounds",
+      "passed": true,
+      "violations": 0,
+      "details": "Expected: (5, 50), Got: [5.00, 29.65]"
+    },
+    {
+      "check": "LBXSK_baseline_bounds",
+      "passed": true,
+      "violations": 0,
+      "details": "Expected: (3.0, 6.0), Got: [3.00, 5.44]"
+    },
+    {
+      "check": "LBXSNA_baseline_bounds",
+      "passed": true,
+      "violations": 0,
+      "details": "Expected: (130, 150), Got: [131.03, 147.76]"
+    },
+    {
+      "check": "LBXSAS_baseline_bounds",
+      "passed": true,
+      "violations": 0,
+      "details": "Expected: (10, 100), Got: [10.00, 61.92]"
+    },
+    {
+      "check": "LBXSAL_baseline_bounds",
+      "passed": true,
+      "violations": 0,
+      "details": "Expected: (10, 100), Got: [10.00, 68.18]"
+    },
+    {
+      "check": "LBXSGB_baseline_bounds",
+      "passed": true,
+      "violations": 0,
+      "details": "Expected: (0.2, 3.0), Got: [0.20, 1.60]"
+    },
+    {
+      "check": "LBXSUA_baseline_bounds",
+      "passed": true,
+      "violations": 0,
+      "details": "Expected: (2.0, 10.0), Got: [2.03, 9.97]"
+    },
+    {
+      "check": "BPXSY1_baseline_bounds",
+      "passed": true,
+      "violations": 0,
+      "details": "Expected: (90, 200), Got: [90.00, 190.51]"
+    },
+    {
+      "check": "BPXDI1_baseline_bounds",
+      "passed": true,
+      "violations": 0,
+      "details": "Expected: (50, 120), Got: [50.00, 120.00]"
+    },
+    {
+      "check": "Simvastatin_LBXTC_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-32.08"
+    },
+    {
+      "check": "Simvastatin_LBDLDL_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-37.64"
+    },
+    {
+      "check": "Simvastatin_LBXSCH_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "5.67"
+    },
+    {
+      "check": "Simvastatin_LBXSAS_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "8.49"
+    },
+    {
+      "check": "Gentamicin_LBDSCR_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "6.82"
+    },
+    {
+      "check": "Gentamicin_LBXSBU_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "5.08"
+    },
+    {
+      "check": "Dofetilide_LBXSK_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "0.12"
+    },
+    {
+      "check": "Aspirin_LBDSCR_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "0.86"
+    },
+    {
+      "check": "Aspirin_LBXSUA_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-0.42"
+    },
+    {
+      "check": "Losartan_BPXSY1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-6.99"
+    },
+    {
+      "check": "Losartan_BPXDI1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-4.56"
+    },
+    {
+      "check": "Losartan_LBDSCR_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "1.59"
+    },
+    {
+      "check": "Losartan_LBXSK_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "0.08"
+    },
+    {
+      "check": "Hydrochlorothiazide_BPXSY1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-6.46"
+    },
+    {
+      "check": "Hydrochlorothiazide_BPXDI1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-3.99"
+    },
+    {
+      "check": "Hydrochlorothiazide_LBXSK_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-0.32"
+    },
+    {
+      "check": "Hydrochlorothiazide_LBXSNA_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-1.24"
+    },
+    {
+      "check": "Hydrochlorothiazide_LBXSUA_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "0.82"
+    },
+    {
+      "check": "Flecainide_LBXSK_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "0.08"
+    },
+    {
+      "check": "Verapamil_BPXSY1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-6.92"
+    },
+    {
+      "check": "Verapamil_BPXDI1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-5.30"
+    },
+    {
+      "check": "Verapamil_LBDSCR_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "0.83"
+    },
+    {
+      "check": "Eplerenone_BPXSY1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-2.75"
+    },
+    {
+      "check": "Eplerenone_LBXSK_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "0.31"
+    },
+    {
+      "check": "Ezetimibe_LBXTC_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-11.19"
+    },
+    {
+      "check": "Ezetimibe_LBDLDL_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-13.79"
+    },
+    {
+      "check": "Furosemide_BPXSY1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-6.79"
+    },
+    {
+      "check": "Furosemide_LBXSK_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-0.41"
+    },
+    {
+      "check": "Furosemide_LBXSNA_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-1.68"
+    },
+    {
+      "check": "Furosemide_LBDSCR_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "2.50"
+    },
+    {
+      "check": "Furosemide_LBXSBU_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "4.27"
+    },
+    {
+      "check": "Empagliflozin_LBXSGL_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-16.18"
+    },
+    {
+      "check": "Empagliflozin_LBXGH_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-0.72"
+    },
+    {
+      "check": "Empagliflozin_BPXSY1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-2.42"
+    },
+    {
+      "check": "Empagliflozin_LBDSCR_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "1.61"
+    },
+    {
+      "check": "Canagliflozin_LBXSGL_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-16.64"
+    },
+    {
+      "check": "Canagliflozin_LBXGH_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-0.74"
+    },
+    {
+      "check": "Canagliflozin_BPXSY1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-2.77"
+    },
+    {
+      "check": "Canagliflozin_LBDSCR_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "1.98"
+    },
+    {
+      "check": "Niacin_LBXTC_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-7.18"
+    },
+    {
+      "check": "Niacin_LBDLDL_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-5.64"
+    },
+    {
+      "check": "Niacin_LBXSCH_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "10.79"
+    },
+    {
+      "check": "Niacin_LBXSGL_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "3.54"
+    },
+    {
+      "check": "Glyburide_LBXSGL_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-22.59"
+    },
+    {
+      "check": "Glyburide_LBXGH_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-0.99"
+    },
+    {
+      "check": "Glyburide_LBXTC_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "3.27"
+    },
+    {
+      "check": "Gemfibrozil_LBXTC_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-14.43"
+    },
+    {
+      "check": "Gemfibrozil_LBDLDL_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-9.08"
+    },
+    {
+      "check": "Gemfibrozil_LBXSCH_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "6.83"
+    },
+    {
+      "check": "Amoxicillin_LBXSAS_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "2.57"
+    },
+    {
+      "check": "Amoxicillin_LBXSAL_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "1.71"
+    },
+    {
+      "check": "Spironolactone_BPXSY1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-3.25"
+    },
+    {
+      "check": "Spironolactone_LBXSK_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "0.40"
+    },
+    {
+      "check": "Spironolactone_LBXSNA_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-0.81"
+    },
+    {
+      "check": "Ramipril_BPXSY1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-7.75"
+    },
+    {
+      "check": "Ramipril_BPXDI1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-4.80"
+    },
+    {
+      "check": "Ramipril_LBDSCR_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "2.72"
+    },
+    {
+      "check": "Ramipril_LBXSK_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "0.15"
+    },
+    {
+      "check": "Sitagliptin_LBXSGL_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-13.60"
+    },
+    {
+      "check": "Sitagliptin_LBXGH_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-0.54"
+    },
+    {
+      "check": "Diltiazem_BPXSY1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-7.30"
+    },
+    {
+      "check": "Diltiazem_BPXDI1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-5.02"
+    },
+    {
+      "check": "Azithromycin_LBXSAS_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "1.70"
+    },
+    {
+      "check": "Warfarin_LBXSGB_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "0.25"
+    },
+    {
+      "check": "Warfarin_LBXSAS_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "4.19"
+    },
+    {
+      "check": "Allopurinol_LBXSUA_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-2.08"
+    },
+    {
+      "check": "Allopurinol_LBDSCR_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "1.11"
+    },
+    {
+      "check": "Propranolol_BPXSY1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-4.89"
+    },
+    {
+      "check": "Propranolol_BPXDI1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-3.24"
+    },
+    {
+      "check": "Propranolol_LBXTC_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "8.12"
+    },
+    {
+      "check": "Sotalol_BPXSY1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-4.01"
+    },
+    {
+      "check": "Sotalol_LBXSK_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "0.17"
+    },
+    {
+      "check": "Ceftriaxone_LBXSGB_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "0.17"
+    },
+    {
+      "check": "Glipizide_LBXSGL_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-21.90"
+    },
+    {
+      "check": "Glipizide_LBXGH_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-0.93"
+    },
+    {
+      "check": "Glipizide_LBXTC_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "2.47"
+    },
+    {
+      "check": "Tacrolimus_LBDSCR_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "8.01"
+    },
+    {
+      "check": "Tacrolimus_LBXSBU_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "5.47"
+    },
+    {
+      "check": "Tacrolimus_LBXTC_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "11.63"
+    },
+    {
+      "check": "Tacrolimus_LBXSGL_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "4.66"
+    },
+    {
+      "check": "Metformin_LBXSGL_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-13.87"
+    },
+    {
+      "check": "Metformin_LBXGH_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-0.57"
+    },
+    {
+      "check": "Metformin_LBXTC_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-3.15"
+    },
+    {
+      "check": "Metformin_LBDSCR_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "1.21"
+    },
+    {
+      "check": "Pioglitazone_LBXSGL_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-10.97"
+    },
+    {
+      "check": "Pioglitazone_LBXGH_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-0.48"
+    },
+    {
+      "check": "Pioglitazone_LBXTC_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "4.77"
+    },
+    {
+      "check": "Pioglitazone_LBXSCH_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "3.02"
+    },
+    {
+      "check": "Carvedilol_BPXSY1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-6.38"
+    },
+    {
+      "check": "Carvedilol_BPXDI1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-4.80"
+    },
+    {
+      "check": "Metoprolol_BPXSY1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-6.06"
+    },
+    {
+      "check": "Metoprolol_BPXDI1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-4.49"
+    },
+    {
+      "check": "Metoprolol_LBXSGL_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "3.32"
+    },
+    {
+      "check": "Lisinopril_BPXSY1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-9.11"
+    },
+    {
+      "check": "Lisinopril_BPXDI1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-6.38"
+    },
+    {
+      "check": "Lisinopril_LBDSCR_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "3.93"
+    },
+    {
+      "check": "Lisinopril_LBXSK_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "0.23"
+    },
+    {
+      "check": "Lisinopril_LBXSBU_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "2.32"
+    },
+    {
+      "check": "Cyclosporine_LBDSCR_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "9.53"
+    },
+    {
+      "check": "Cyclosporine_LBXSBU_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "6.00"
+    },
+    {
+      "check": "Cyclosporine_LBXTC_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "15.65"
+    },
+    {
+      "check": "Cyclosporine_LBXSGL_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "6.12"
+    },
+    {
+      "check": "Prednisone_LBXSGL_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "25.18"
+    },
+    {
+      "check": "Prednisone_LBXSK_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-0.32"
+    },
+    {
+      "check": "Prednisone_LBXSNA_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "2.58"
+    },
+    {
+      "check": "Prednisone_LBXTC_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "12.69"
+    },
+    {
+      "check": "Valsartan_BPXSY1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-7.33"
+    },
+    {
+      "check": "Valsartan_BPXDI1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-5.02"
+    },
+    {
+      "check": "Valsartan_LBDSCR_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "1.96"
+    },
+    {
+      "check": "Sulfasalazine_LBXSAS_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "4.12"
+    },
+    {
+      "check": "Sulfasalazine_LBXSAL_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "3.32"
+    },
+    {
+      "check": "Atenolol_BPXSY1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-5.42"
+    },
+    {
+      "check": "Atenolol_BPXDI1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-4.01"
+    },
+    {
+      "check": "Atenolol_LBXSGL_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "3.99"
+    },
+    {
+      "check": "Atenolol_LBXTC_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "6.34"
+    },
+    {
+      "check": "Rosuvastatin_LBXTC_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-41.07"
+    },
+    {
+      "check": "Rosuvastatin_LBDLDL_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-45.69"
+    },
+    {
+      "check": "Rosuvastatin_LBXSCH_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "7.49"
+    },
+    {
+      "check": "Rosuvastatin_LBXSAS_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "5.99"
+    },
+    {
+      "check": "Probenecid_LBXSUA_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-1.60"
+    },
+    {
+      "check": "Fenofibrate_LBXTC_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-16.66"
+    },
+    {
+      "check": "Fenofibrate_LBDLDL_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-10.29"
+    },
+    {
+      "check": "Fenofibrate_LBXSCH_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "8.42"
+    },
+    {
+      "check": "Fenofibrate_LBXSUA_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-1.06"
+    },
+    {
+      "check": "Vancomycin_LBDSCR_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "4.18"
+    },
+    {
+      "check": "Vancomycin_LBXSBU_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "3.39"
+    },
+    {
+      "check": "Enalapril_BPXSY1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-8.64"
+    },
+    {
+      "check": "Enalapril_BPXDI1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-5.52"
+    },
+    {
+      "check": "Enalapril_LBDSCR_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "3.08"
+    },
+    {
+      "check": "Enalapril_LBXSK_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "0.20"
+    },
+    {
+      "check": "Atorvastatin_LBXTC_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-35.45"
+    },
+    {
+      "check": "Atorvastatin_LBDLDL_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-41.20"
+    },
+    {
+      "check": "Atorvastatin_LBXSCH_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "3.52"
+    },
+    {
+      "check": "Atorvastatin_LBXSAS_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "7.04"
+    },
+    {
+      "check": "Atorvastatin_LBXSGL_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "2.09"
+    },
+    {
+      "check": "Ibuprofen_LBDSCR_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "6.68"
+    },
+    {
+      "check": "Ibuprofen_LBXSBU_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "5.10"
+    },
+    {
+      "check": "Ibuprofen_LBXSK_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "0.17"
+    },
+    {
+      "check": "Colchicine_LBDSCR_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "1.30"
+    },
+    {
+      "check": "Digoxin_LBXSK_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "0.08"
+    },
+    {
+      "check": "Digoxin_LBDSCR_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "0.82"
+    },
+    {
+      "check": "Amlodipine_BPXSY1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-8.13"
+    },
+    {
+      "check": "Amlodipine_BPXDI1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-5.68"
+    },
+    {
+      "check": "Amlodipine_LBDSCR_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "0.41"
+    },
+    {
+      "check": "Amiodarone_LBXSAS_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "10.56"
+    },
+    {
+      "check": "Amiodarone_LBXSAL_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "8.34"
+    },
+    {
+      "check": "Amiodarone_LBXTC_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "6.96"
+    },
+    {
+      "check": "Methotrexate_LBXSAS_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "6.55"
+    },
+    {
+      "check": "Methotrexate_LBXSAL_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "4.83"
+    },
+    {
+      "check": "Methotrexate_LBDSCR_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "1.66"
+    },
+    {
+      "check": "Chlorthalidone_BPXSY1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-7.36"
+    },
+    {
+      "check": "Chlorthalidone_BPXDI1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-5.03"
+    },
+    {
+      "check": "Chlorthalidone_LBXSK_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-0.40"
+    },
+    {
+      "check": "Chlorthalidone_LBXSUA_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "0.98"
+    },
+    {
+      "check": "Levofloxacin_LBXSK_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "0.09"
+    },
+    {
+      "check": "Levofloxacin_LBXSGL_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "1.71"
+    },
+    {
+      "check": "Nifedipine_BPXSY1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-7.79"
+    },
+    {
+      "check": "Nifedipine_BPXDI1_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-5.71"
+    },
+    {
+      "check": "Nifedipine_LBDSCR_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "0.41"
+    },
+    {
+      "check": "Hydroxychloroquine_LBXSAS_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "2.34"
+    },
+    {
+      "check": "Ciprofloxacin_LBXSK_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "0.08"
+    },
+    {
+      "check": "Pravastatin_LBXTC_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-27.13"
+    },
+    {
+      "check": "Pravastatin_LBDLDL_sign",
+      "passed": true,
+      "expected": "decrease",
+      "observed": "-32.83"
+    },
+    {
+      "check": "Pravastatin_LBXSCH_sign",
+      "passed": true,
+      "expected": "increase",
+      "observed": "4.05"
+    },
+    {
+      "check": "LBXTC_final_values_in_bounds",
+      "passed": true,
+      "violations": 0
+    },
+    {
+      "check": "LBDLDL_final_values_in_bounds",
+      "passed": true,
+      "violations": 0
+    },
+    {
+      "check": "LBXSCH_final_values_in_bounds",
+      "passed": true,
+      "violations": 0
+    },
+    {
+      "check": "LBXSAS_final_values_in_bounds",
+      "passed": true,
+      "violations": 0
+    },
+    {
+      "check": "LBDSCR_final_values_in_bounds",
+      "passed": true,
+      "violations": 0
+    },
+    {
+      "check": "LBXSBU_final_values_in_bounds",
+      "passed": true,
+      "violations": 0
+    },
+    {
+      "check": "LBXSK_final_values_in_bounds",
+      "passed": true,
+      "violations": 0
+    },
+    {
+      "check": "LBXSUA_final_values_in_bounds",
+      "passed": true,
+      "violations": 0
+    },
+    {
+      "check": "BPXSY1_final_values_in_bounds",
+      "passed": true,
+      "violations": 0
+    },
+    {
+      "check": "BPXDI1_final_values_in_bounds",
+      "passed": true,
+      "violations": 0
+    },
+    {
+      "check": "LBXSNA_final_values_in_bounds",
+      "passed": true,
+      "violations": 0
+    },
+    {
+      "check": "LBXSGL_final_values_in_bounds",
+      "passed": true,
+      "violations": 0
+    },
+    {
+      "check": "LBXGH_final_values_in_bounds",
+      "passed": true,
+      "violations": 0
+    },
+    {
+      "check": "LBXSAL_final_values_in_bounds",
+      "passed": true,
+      "violations": 0
+    },
+    {
+      "check": "LBXSGB_final_values_in_bounds",
+      "passed": true,
+      "violations": 0
+    },
+    {
+      "check": "Simvastatin_LBXTC_magnitude",
+      "passed": true,
+      "expected": -45.0,
+      "observed": -32.07903298639848,
+      "deviation_pct": 28.713260030225594
+    },
+    {
+      "check": "Simvastatin_LBDLDL_magnitude",
+      "passed": false,
+      "expected": -55.0,
+      "observed": -37.64261876546228,
+      "deviation_pct": 31.558874971886762
+    },
+    {
+      "check": "Simvastatin_LBXSCH_magnitude",
+      "passed": true,
+      "expected": 8.0,
+      "observed": 5.668435483295012,
+      "deviation_pct": 29.144556458812353
+    },
+    {
+      "check": "Simvastatin_LBXSAS_magnitude",
+      "passed": true,
+      "expected": 12.0,
+      "observed": 8.49429718941557,
+      "deviation_pct": 29.21419008820358
+    },
+    {
+      "check": "Gentamicin_LBDSCR_magnitude",
+      "passed": true,
+      "expected": 8.0,
+      "observed": 6.817136639009274,
+      "deviation_pct": 14.78579201238408
+    },
+    {
+      "check": "Gentamicin_LBXSBU_magnitude",
+      "passed": true,
+      "expected": 6.0,
+      "observed": 5.081867143419151,
+      "deviation_pct": 15.302214276347481
+    },
+    {
+      "check": "Dofetilide_LBXSK_magnitude",
+      "passed": true,
+      "expected": 0.15,
+      "observed": 0.12471867266269346,
+      "deviation_pct": 16.854218224871026
+    },
+    {
+      "check": "Aspirin_LBDSCR_magnitude",
+      "passed": true,
+      "expected": 1.0,
+      "observed": 0.8618768377428413,
+      "deviation_pct": 13.81231622571587
+    },
+    {
+      "check": "Aspirin_LBXSUA_magnitude",
+      "passed": true,
+      "expected": -0.5,
+      "observed": -0.42229135558322295,
+      "deviation_pct": 15.541728883355411
+    },
+    {
+      "check": "Losartan_BPXSY1_magnitude",
+      "passed": true,
+      "expected": -9.0,
+      "observed": -6.987237213542118,
+      "deviation_pct": 22.364030960643134
+    },
+    {
+      "check": "Losartan_BPXDI1_magnitude",
+      "passed": true,
+      "expected": -6.0,
+      "observed": -4.55751407458115,
+      "deviation_pct": 24.04143209031416
+    },
+    {
+      "check": "Losartan_LBDSCR_magnitude",
+      "passed": true,
+      "expected": 2.0,
+      "observed": 1.5855897084556616,
+      "deviation_pct": 20.72051457721692
+    },
+    {
+      "check": "Losartan_LBXSK_magnitude",
+      "passed": true,
+      "expected": 0.1,
+      "observed": 0.07771388605329005,
+      "deviation_pct": 22.286113946709957
+    },
+    {
+      "check": "Hydrochlorothiazide_BPXSY1_magnitude",
+      "passed": true,
+      "expected": -8.0,
+      "observed": -6.460599595408365,
+      "deviation_pct": 19.24250505739544
+    },
+    {
+      "check": "Hydrochlorothiazide_BPXDI1_magnitude",
+      "passed": true,
+      "expected": -5.0,
+      "observed": -3.9881577094331844,
+      "deviation_pct": 20.236845811336313
+    },
+    {
+      "check": "Hydrochlorothiazide_LBXSK_magnitude",
+      "passed": true,
+      "expected": -0.4,
+      "observed": -0.3188058874895464,
+      "deviation_pct": 20.2985281276134
+    },
+    {
+      "check": "Hydrochlorothiazide_LBXSNA_magnitude",
+      "passed": true,
+      "expected": -1.5,
+      "observed": -1.2383908802845058,
+      "deviation_pct": 17.440607981032944
+    },
+    {
+      "check": "Hydrochlorothiazide_LBXSUA_magnitude",
+      "passed": true,
+      "expected": 1.0,
+      "observed": 0.8223654602106564,
+      "deviation_pct": 17.76345397893436
+    },
+    {
+      "check": "Flecainide_LBXSK_magnitude",
+      "passed": true,
+      "expected": 0.1,
+      "observed": 0.08065046253249569,
+      "deviation_pct": 19.349537467504312
+    },
+    {
+      "check": "Verapamil_BPXSY1_magnitude",
+      "passed": true,
+      "expected": -8.5,
+      "observed": -6.923959093881767,
+      "deviation_pct": 18.54165771903803
+    },
+    {
+      "check": "Verapamil_BPXDI1_magnitude",
+      "passed": true,
+      "expected": -6.5,
+      "observed": -5.297735890236426,
+      "deviation_pct": 18.4963709194396
+    },
+    {
+      "check": "Verapamil_LBDSCR_magnitude",
+      "passed": true,
+      "expected": 1.0,
+      "observed": 0.8271245288962055,
+      "deviation_pct": 17.287547110379453
+    },
+    {
+      "check": "Eplerenone_BPXSY1_magnitude",
+      "passed": true,
+      "expected": -3.5,
+      "observed": -2.7484086450306524,
+      "deviation_pct": 21.474038713409932
+    },
+    {
+      "check": "Eplerenone_LBXSK_magnitude",
+      "passed": true,
+      "expected": 0.4,
+      "observed": 0.31460106645601726,
+      "deviation_pct": 21.34973338599569
+    },
+    {
+      "check": "Ezetimibe_LBXTC_magnitude",
+      "passed": true,
+      "expected": -15.0,
+      "observed": -11.192900275724625,
+      "deviation_pct": 25.380664828502496
+    },
+    {
+      "check": "Ezetimibe_LBDLDL_magnitude",
+      "passed": true,
+      "expected": -18.0,
+      "observed": -13.7920806458359,
+      "deviation_pct": 23.377329745356107
+    },
+    {
+      "check": "Furosemide_BPXSY1_magnitude",
+      "passed": true,
+      "expected": -8.0,
+      "observed": -6.794278528697646,
+      "deviation_pct": 15.071518391279426
+    },
+    {
+      "check": "Furosemide_LBXSK_magnitude",
+      "passed": true,
+      "expected": -0.5,
+      "observed": -0.4116207235006309,
+      "deviation_pct": 17.67585529987382
+    },
+    {
+      "check": "Furosemide_LBXSNA_magnitude",
+      "passed": true,
+      "expected": -2.0,
+      "observed": -1.6759967227976131,
+      "deviation_pct": 16.200163860119343
+    },
+    {
+      "check": "Furosemide_LBDSCR_magnitude",
+      "passed": true,
+      "expected": 3.0,
+      "observed": 2.4989447285674427,
+      "deviation_pct": 16.701842381085243
+    },
+    {
+      "check": "Furosemide_LBXSBU_magnitude",
+      "passed": true,
+      "expected": 5.0,
+      "observed": 4.269145928624805,
+      "deviation_pct": 14.617081427503908
+    },
+    {
+      "check": "Empagliflozin_LBXSGL_magnitude",
+      "passed": true,
+      "expected": -22.0,
+      "observed": -16.182324388778653,
+      "deviation_pct": 26.443980051006122
+    },
+    {
+      "check": "Empagliflozin_LBXGH_magnitude",
+      "passed": true,
+      "expected": -0.9,
+      "observed": -0.7151872657388648,
+      "deviation_pct": 20.534748251237247
+    },
+    {
+      "check": "Empagliflozin_BPXSY1_magnitude",
+      "passed": true,
+      "expected": -3.0,
+      "observed": -2.4198552158144,
+      "deviation_pct": 19.338159472853324
+    },
+    {
+      "check": "Empagliflozin_LBDSCR_magnitude",
+      "passed": true,
+      "expected": 2.0,
+      "observed": 1.6077897366147718,
+      "deviation_pct": 19.610513169261413
+    },
+    {
+      "check": "Canagliflozin_LBXSGL_magnitude",
+      "passed": false,
+      "expected": -24.0,
+      "observed": -16.638043122780097,
+      "deviation_pct": 30.674820321749596
+    },
+    {
+      "check": "Canagliflozin_LBXGH_magnitude",
+      "passed": true,
+      "expected": -1.0,
+      "observed": -0.7399099958386378,
+      "deviation_pct": 26.009000416136217
+    },
+    {
+      "check": "Canagliflozin_BPXSY1_magnitude",
+      "passed": true,
+      "expected": -3.5,
+      "observed": -2.768803590653649,
+      "deviation_pct": 20.89132598132432
+    },
+    {
+      "check": "Canagliflozin_LBDSCR_magnitude",
+      "passed": true,
+      "expected": 2.5,
+      "observed": 1.984435264278565,
+      "deviation_pct": 20.622589428857403
+    },
+    {
+      "check": "Niacin_LBXTC_magnitude",
+      "passed": true,
+      "expected": -10.0,
+      "observed": -7.182006985636915,
+      "deviation_pct": 28.179930143630855
+    },
+    {
+      "check": "Niacin_LBDLDL_magnitude",
+      "passed": true,
+      "expected": -8.0,
+      "observed": -5.636646739153863,
+      "deviation_pct": 29.54191576057671
+    },
+    {
+      "check": "Niacin_LBXSCH_magnitude",
+      "passed": true,
+      "expected": 15.0,
+      "observed": 10.792921716180237,
+      "deviation_pct": 28.047188558798425
+    },
+    {
+      "check": "Niacin_LBXSGL_magnitude",
+      "passed": true,
+      "expected": 5.0,
+      "observed": 3.5425149449216558,
+      "deviation_pct": 29.149701101566883
+    },
+    {
+      "check": "Glyburide_LBXSGL_magnitude",
+      "passed": true,
+      "expected": -32.0,
+      "observed": -22.586518181141564,
+      "deviation_pct": 29.417130683932612
+    },
+    {
+      "check": "Glyburide_LBXGH_magnitude",
+      "passed": true,
+      "expected": -1.3,
+      "observed": -0.9870332705099857,
+      "deviation_pct": 24.074363806924183
+    },
+    {
+      "check": "Glyburide_LBXTC_magnitude",
+      "passed": true,
+      "expected": 4.0,
+      "observed": 3.268142696279214,
+      "deviation_pct": 18.296432593019652
+    },
+    {
+      "check": "Gemfibrozil_LBXTC_magnitude",
+      "passed": true,
+      "expected": -20.0,
+      "observed": -14.433768738476516,
+      "deviation_pct": 27.831156307617423
+    },
+    {
+      "check": "Gemfibrozil_LBDLDL_magnitude",
+      "passed": true,
+      "expected": -12.0,
+      "observed": -9.084225240687138,
+      "deviation_pct": 24.298122994273854
+    },
+    {
+      "check": "Gemfibrozil_LBXSCH_magnitude",
+      "passed": false,
+      "expected": 10.0,
+      "observed": 6.829241556160862,
+      "deviation_pct": 31.70758443839138
+    },
+    {
+      "check": "Amoxicillin_LBXSAS_magnitude",
+      "passed": true,
+      "expected": 3.0,
+      "observed": 2.5724033770289094,
+      "deviation_pct": 14.25322076570302
+    },
+    {
+      "check": "Amoxicillin_LBXSAL_magnitude",
+      "passed": true,
+      "expected": 2.0,
+      "observed": 1.7079507505161642,
+      "deviation_pct": 14.60246247419179
+    },
+    {
+      "check": "Spironolactone_BPXSY1_magnitude",
+      "passed": true,
+      "expected": -4.0,
+      "observed": -3.2526263462408003,
+      "deviation_pct": 18.684341343979995
+    },
+    {
+      "check": "Spironolactone_LBXSK_magnitude",
+      "passed": true,
+      "expected": 0.5,
+      "observed": 0.3961858200803702,
+      "deviation_pct": 20.762835983925964
+    },
+    {
+      "check": "Spironolactone_LBXSNA_magnitude",
+      "passed": true,
+      "expected": -1.0,
+      "observed": -0.8146348472853479,
+      "deviation_pct": 18.536515271465216
+    },
+    {
+      "check": "Ramipril_BPXSY1_magnitude",
+      "passed": true,
+      "expected": -10.0,
+      "observed": -7.7539158409741855,
+      "deviation_pct": 22.460841590258145
+    },
+    {
+      "check": "Ramipril_BPXDI1_magnitude",
+      "passed": true,
+      "expected": -6.0,
+      "observed": -4.804900693344511,
+      "deviation_pct": 19.918321777591487
+    },
+    {
+      "check": "Ramipril_LBDSCR_magnitude",
+      "passed": true,
+      "expected": 3.5,
+      "observed": 2.723642270460485,
+      "deviation_pct": 22.181649415414714
+    },
+    {
+      "check": "Ramipril_LBXSK_magnitude",
+      "passed": true,
+      "expected": 0.2,
+      "observed": 0.15233923407090508,
+      "deviation_pct": 23.830382964547468
+    },
+    {
+      "check": "Sitagliptin_LBXSGL_magnitude",
+      "passed": true,
+      "expected": -18.0,
+      "observed": -13.60455452379957,
+      "deviation_pct": 24.419141534446837
+    },
+    {
+      "check": "Sitagliptin_LBXGH_magnitude",
+      "passed": true,
+      "expected": -0.7,
+      "observed": -0.5387688730367024,
+      "deviation_pct": 23.03301813761394
+    },
+    {
+      "check": "Diltiazem_BPXSY1_magnitude",
+      "passed": true,
+      "expected": -9.0,
+      "observed": -7.301958245973153,
+      "deviation_pct": 18.867130600298303
+    },
+    {
+      "check": "Diltiazem_BPXDI1_magnitude",
+      "passed": true,
+      "expected": -6.0,
+      "observed": -5.017334628583119,
+      "deviation_pct": 16.377756190281353
+    },
+    {
+      "check": "Azithromycin_LBXSAS_magnitude",
+      "passed": true,
+      "expected": 2.0,
+      "observed": 1.6958934547426423,
+      "deviation_pct": 15.205327262867884
+    },
+    {
+      "check": "Warfarin_LBXSGB_magnitude",
+      "passed": true,
+      "expected": 0.3,
+      "observed": 0.25349308324760556,
+      "deviation_pct": 15.502305584131479
+    },
+    {
+      "check": "Warfarin_LBXSAS_magnitude",
+      "passed": true,
+      "expected": 5.0,
+      "observed": 4.194592199614488,
+      "deviation_pct": 16.108156007710246
+    },
+    {
+      "check": "Allopurinol_LBXSUA_magnitude",
+      "passed": false,
+      "expected": -3.0,
+      "observed": -2.076738860413401,
+      "deviation_pct": 30.775371319553297
+    },
+    {
+      "check": "Allopurinol_LBDSCR_magnitude",
+      "passed": true,
+      "expected": 1.5,
+      "observed": 1.110618967684333,
+      "deviation_pct": 25.95873548771113
+    },
+    {
+      "check": "Propranolol_BPXSY1_magnitude",
+      "passed": true,
+      "expected": -6.0,
+      "observed": -4.887486328080144,
+      "deviation_pct": 18.541894531997592
+    },
+    {
+      "check": "Propranolol_BPXDI1_magnitude",
+      "passed": true,
+      "expected": -4.0,
+      "observed": -3.2386181070356983,
+      "deviation_pct": 19.034547324107542
+    },
+    {
+      "check": "Propranolol_LBXTC_magnitude",
+      "passed": true,
+      "expected": 10.0,
+      "observed": 8.115991677563578,
+      "deviation_pct": 18.84008322436422
+    },
+    {
+      "check": "Sotalol_BPXSY1_magnitude",
+      "passed": true,
+      "expected": -5.0,
+      "observed": -4.010255721716245,
+      "deviation_pct": 19.794885565675102
+    },
+    {
+      "check": "Sotalol_LBXSK_magnitude",
+      "passed": true,
+      "expected": 0.2,
+      "observed": 0.16968806532210526,
+      "deviation_pct": 15.155967338947377
+    },
+    {
+      "check": "Ceftriaxone_LBXSGB_magnitude",
+      "passed": true,
+      "expected": 0.2,
+      "observed": 0.16923820003036255,
+      "deviation_pct": 15.380899984818729
+    },
+    {
+      "check": "Glipizide_LBXSGL_magnitude",
+      "passed": true,
+      "expected": -30.0,
+      "observed": -21.903106365709856,
+      "deviation_pct": 26.989645447633816
+    },
+    {
+      "check": "Glipizide_LBXGH_magnitude",
+      "passed": true,
+      "expected": -1.2,
+      "observed": -0.9334384729865918,
+      "deviation_pct": 22.213460584450683
+    },
+    {
+      "check": "Glipizide_LBXTC_magnitude",
+      "passed": true,
+      "expected": 3.0,
+      "observed": 2.469189523867318,
+      "deviation_pct": 17.693682537756064
+    },
+    {
+      "check": "Tacrolimus_LBDSCR_magnitude",
+      "passed": true,
+      "expected": 10.0,
+      "observed": 8.009543004326709,
+      "deviation_pct": 19.904569956732914
+    },
+    {
+      "check": "Tacrolimus_LBXSBU_magnitude",
+      "passed": true,
+      "expected": 7.0,
+      "observed": 5.467404708657276,
+      "deviation_pct": 21.894218447753197
+    },
+    {
+      "check": "Tacrolimus_LBXTC_magnitude",
+      "passed": true,
+      "expected": 15.0,
+      "observed": 11.630738909449883,
+      "deviation_pct": 22.461740603667444
+    },
+    {
+      "check": "Tacrolimus_LBXSGL_magnitude",
+      "passed": true,
+      "expected": 6.0,
+      "observed": 4.655080419561942,
+      "deviation_pct": 22.41532634063429
+    },
+    {
+      "check": "Metformin_LBXSGL_magnitude",
+      "passed": false,
+      "expected": -25.0,
+      "observed": -13.866205704458569,
+      "deviation_pct": 44.535177182165725
+    },
+    {
+      "check": "Metformin_LBXGH_magnitude",
+      "passed": false,
+      "expected": -1.0,
+      "observed": -0.573221179124028,
+      "deviation_pct": 42.6778820875972
+    },
+    {
+      "check": "Metformin_LBXTC_magnitude",
+      "passed": false,
+      "expected": -5.0,
+      "observed": -3.1508258148286985,
+      "deviation_pct": 36.98348370342603
+    },
+    {
+      "check": "Metformin_LBDSCR_magnitude",
+      "passed": false,
+      "expected": 2.0,
+      "observed": 1.2103453238752384,
+      "deviation_pct": 39.48273380623808
+    },
+    {
+      "check": "Pioglitazone_LBXSGL_magnitude",
+      "passed": false,
+      "expected": -20.0,
+      "observed": -10.969106661589663,
+      "deviation_pct": 45.154466692051685
+    },
+    {
+      "check": "Pioglitazone_LBXGH_magnitude",
+      "passed": false,
+      "expected": -0.8,
+      "observed": -0.48408123406599957,
+      "deviation_pct": 39.48984574175006
+    },
+    {
+      "check": "Pioglitazone_LBXTC_magnitude",
+      "passed": false,
+      "expected": 8.0,
+      "observed": 4.773987483153647,
+      "deviation_pct": 40.325156460579414
+    },
+    {
+      "check": "Pioglitazone_LBXSCH_magnitude",
+      "passed": false,
+      "expected": 5.0,
+      "observed": 3.0241093145079083,
+      "deviation_pct": 39.51781370984183
+    },
+    {
+      "check": "Carvedilol_BPXSY1_magnitude",
+      "passed": true,
+      "expected": -8.0,
+      "observed": -6.382942018948265,
+      "deviation_pct": 20.213224763146687
+    },
+    {
+      "check": "Carvedilol_BPXDI1_magnitude",
+      "passed": true,
+      "expected": -6.0,
+      "observed": -4.800258622327236,
+      "deviation_pct": 19.995689627879397
+    },
+    {
+      "check": "Metoprolol_BPXSY1_magnitude",
+      "passed": true,
+      "expected": -7.5,
+      "observed": -6.0591329075035505,
+      "deviation_pct": 19.21156123328599
+    },
+    {
+      "check": "Metoprolol_BPXDI1_magnitude",
+      "passed": true,
+      "expected": -5.5,
+      "observed": -4.487987041499663,
+      "deviation_pct": 18.40023560909704
+    },
+    {
+      "check": "Metoprolol_LBXSGL_magnitude",
+      "passed": true,
+      "expected": 4.0,
+      "observed": 3.31956264299804,
+      "deviation_pct": 17.010933925049
+    },
+    {
+      "check": "Lisinopril_BPXSY1_magnitude",
+      "passed": true,
+      "expected": -12.0,
+      "observed": -9.111744088502686,
+      "deviation_pct": 24.068799262477615
+    },
+    {
+      "check": "Lisinopril_BPXDI1_magnitude",
+      "passed": true,
+      "expected": -8.0,
+      "observed": -6.380400932769844,
+      "deviation_pct": 20.244988340376946
+    },
+    {
+      "check": "Lisinopril_LBDSCR_magnitude",
+      "passed": true,
+      "expected": 5.0,
+      "observed": 3.9329029958152306,
+      "deviation_pct": 21.341940083695388
+    },
+    {
+      "check": "Lisinopril_LBXSK_magnitude",
+      "passed": true,
+      "expected": 0.3,
+      "observed": 0.23040981559872908,
+      "deviation_pct": 23.19672813375697
+    },
+    {
+      "check": "Lisinopril_LBXSBU_magnitude",
+      "passed": true,
+      "expected": 3.0,
+      "observed": 2.316340656715002,
+      "deviation_pct": 22.788644776166592
+    },
+    {
+      "check": "Cyclosporine_LBDSCR_magnitude",
+      "passed": true,
+      "expected": 12.0,
+      "observed": 9.53135719225671,
+      "deviation_pct": 20.57202339786075
+    },
+    {
+      "check": "Cyclosporine_LBXSBU_magnitude",
+      "passed": true,
+      "expected": 8.0,
+      "observed": 5.999483857929194,
+      "deviation_pct": 25.006451775885076
+    },
+    {
+      "check": "Cyclosporine_LBXTC_magnitude",
+      "passed": true,
+      "expected": 20.0,
+      "observed": 15.650161060431934,
+      "deviation_pct": 21.74919469784033
+    },
+    {
+      "check": "Cyclosporine_LBXSGL_magnitude",
+      "passed": true,
+      "expected": 8.0,
+      "observed": 6.11908900549715,
+      "deviation_pct": 23.511387431285623
+    },
+    {
+      "check": "Prednisone_LBXSGL_magnitude",
+      "passed": true,
+      "expected": 30.0,
+      "observed": 25.1839594530885,
+      "deviation_pct": 16.053468489704994
+    },
+    {
+      "check": "Prednisone_LBXSK_magnitude",
+      "passed": true,
+      "expected": -0.4,
+      "observed": -0.32241770192373914,
+      "deviation_pct": 19.39557451906522
+    },
+    {
+      "check": "Prednisone_LBXSNA_magnitude",
+      "passed": true,
+      "expected": 3.0,
+      "observed": 2.5819051262839205,
+      "deviation_pct": 13.936495790535982
+    },
+    {
+      "check": "Prednisone_LBXTC_magnitude",
+      "passed": true,
+      "expected": 15.0,
+      "observed": 12.68734248382337,
+      "deviation_pct": 15.417716774510867
+    },
+    {
+      "check": "Valsartan_BPXSY1_magnitude",
+      "passed": true,
+      "expected": -9.5,
+      "observed": -7.3283933535516015,
+      "deviation_pct": 22.859017331035776
+    },
+    {
+      "check": "Valsartan_BPXDI1_magnitude",
+      "passed": true,
+      "expected": -6.5,
+      "observed": -5.021732174884103,
+      "deviation_pct": 22.742581924859955
+    },
+    {
+      "check": "Valsartan_LBDSCR_magnitude",
+      "passed": true,
+      "expected": 2.5,
+      "observed": 1.9551085444750713,
+      "deviation_pct": 21.795658220997147
+    },
+    {
+      "check": "Sulfasalazine_LBXSAS_magnitude",
+      "passed": true,
+      "expected": 5.0,
+      "observed": 4.115507202499147,
+      "deviation_pct": 17.689855950017055
+    },
+    {
+      "check": "Sulfasalazine_LBXSAL_magnitude",
+      "passed": true,
+      "expected": 4.0,
+      "observed": 3.3167838781676187,
+      "deviation_pct": 17.080403045809533
+    },
+    {
+      "check": "Atenolol_BPXSY1_magnitude",
+      "passed": true,
+      "expected": -7.0,
+      "observed": -5.42342633442854,
+      "deviation_pct": 22.522480936735143
+    },
+    {
+      "check": "Atenolol_BPXDI1_magnitude",
+      "passed": true,
+      "expected": -5.0,
+      "observed": -4.010392652346984,
+      "deviation_pct": 19.79214695306032
+    },
+    {
+      "check": "Atenolol_LBXSGL_magnitude",
+      "passed": true,
+      "expected": 5.0,
+      "observed": 3.986742581606756,
+      "deviation_pct": 20.265148367864878
+    },
+    {
+      "check": "Atenolol_LBXTC_magnitude",
+      "passed": true,
+      "expected": 8.0,
+      "observed": 6.338087005028703,
+      "deviation_pct": 20.773912437141217
+    },
+    {
+      "check": "Rosuvastatin_LBXTC_magnitude",
+      "passed": true,
+      "expected": -55.0,
+      "observed": -41.07484455757605,
+      "deviation_pct": 25.318464440770818
+    },
+    {
+      "check": "Rosuvastatin_LBDLDL_magnitude",
+      "passed": true,
+      "expected": -65.0,
+      "observed": -45.68953059618926,
+      "deviation_pct": 29.70841446740114
+    },
+    {
+      "check": "Rosuvastatin_LBXSCH_magnitude",
+      "passed": true,
+      "expected": 10.0,
+      "observed": 7.487949664368183,
+      "deviation_pct": 25.120503356318167
+    },
+    {
+      "check": "Rosuvastatin_LBXSAS_magnitude",
+      "passed": true,
+      "expected": 8.0,
+      "observed": 5.99355502247185,
+      "deviation_pct": 25.080562219101875
+    },
+    {
+      "check": "Probenecid_LBXSUA_magnitude",
+      "passed": true,
+      "expected": -2.0,
+      "observed": -1.5992580087144956,
+      "deviation_pct": 20.037099564275216
+    },
+    {
+      "check": "Fenofibrate_LBXTC_magnitude",
+      "passed": false,
+      "expected": -25.0,
+      "observed": -16.664127841260242,
+      "deviation_pct": 33.34348863495903
+    },
+    {
+      "check": "Fenofibrate_LBDLDL_magnitude",
+      "passed": false,
+      "expected": -15.0,
+      "observed": -10.285640345339855,
+      "deviation_pct": 31.429064364400965
+    },
+    {
+      "check": "Fenofibrate_LBXSCH_magnitude",
+      "passed": true,
+      "expected": 12.0,
+      "observed": 8.422531747314784,
+      "deviation_pct": 29.812235439043473
+    },
+    {
+      "check": "Fenofibrate_LBXSUA_magnitude",
+      "passed": true,
+      "expected": -1.5,
+      "observed": -1.0636682493295282,
+      "deviation_pct": 29.08878337803145
+    },
+    {
+      "check": "Vancomycin_LBDSCR_magnitude",
+      "passed": true,
+      "expected": 5.0,
+      "observed": 4.184056713992633,
+      "deviation_pct": 16.31886572014734
+    },
+    {
+      "check": "Vancomycin_LBXSBU_magnitude",
+      "passed": true,
+      "expected": 4.0,
+      "observed": 3.389566170901639,
+      "deviation_pct": 15.260845727459028
+    },
+    {
+      "check": "Enalapril_BPXSY1_magnitude",
+      "passed": true,
+      "expected": -11.0,
+      "observed": -8.636315804266026,
+      "deviation_pct": 21.48803814303613
+    },
+    {
+      "check": "Enalapril_BPXDI1_magnitude",
+      "passed": true,
+      "expected": -7.0,
+      "observed": -5.522402645125475,
+      "deviation_pct": 21.10853364106464
+    },
+    {
+      "check": "Enalapril_LBDSCR_magnitude",
+      "passed": true,
+      "expected": 4.0,
+      "observed": 3.081506388582655,
+      "deviation_pct": 22.962340285433626
+    },
+    {
+      "check": "Enalapril_LBXSK_magnitude",
+      "passed": true,
+      "expected": 0.25,
+      "observed": 0.20099274291292413,
+      "deviation_pct": 19.60290283483035
+    },
+    {
+      "check": "Atorvastatin_LBXTC_magnitude",
+      "passed": true,
+      "expected": -50.0,
+      "observed": -35.44709407224337,
+      "deviation_pct": 29.105811855513263
+    },
+    {
+      "check": "Atorvastatin_LBDLDL_magnitude",
+      "passed": false,
+      "expected": -60.0,
+      "observed": -41.201867867873226,
+      "deviation_pct": 31.33022022021129
+    },
+    {
+      "check": "Atorvastatin_LBXSCH_magnitude",
+      "passed": true,
+      "expected": 5.0,
+      "observed": 3.5184424547064306,
+      "deviation_pct": 29.63115090587139
+    },
+    {
+      "check": "Atorvastatin_LBXSAS_magnitude",
+      "passed": true,
+      "expected": 10.0,
+      "observed": 7.038358686992122,
+      "deviation_pct": 29.61641313007878
+    },
+    {
+      "check": "Atorvastatin_LBXSGL_magnitude",
+      "passed": false,
+      "expected": 3.0,
+      "observed": 2.0884940392041234,
+      "deviation_pct": 30.38353202652922
+    },
+    {
+      "check": "Ibuprofen_LBDSCR_magnitude",
+      "passed": true,
+      "expected": 8.0,
+      "observed": 6.677097418964191,
+      "deviation_pct": 16.53628226294761
+    },
+    {
+      "check": "Ibuprofen_LBXSBU_magnitude",
+      "passed": true,
+      "expected": 6.0,
+      "observed": 5.098882446520391,
+      "deviation_pct": 15.018625891326817
+    },
+    {
+      "check": "Ibuprofen_LBXSK_magnitude",
+      "passed": true,
+      "expected": 0.2,
+      "observed": 0.1671332361681988,
+      "deviation_pct": 16.433381915900604
+    },
+    {
+      "check": "Colchicine_LBDSCR_magnitude",
+      "passed": true,
+      "expected": 1.5,
+      "observed": 1.2955408439527838,
+      "deviation_pct": 13.630610403147747
+    },
+    {
+      "check": "Digoxin_LBXSK_magnitude",
+      "passed": true,
+      "expected": 0.1,
+      "observed": 0.07951015854258135,
+      "deviation_pct": 20.489841457418652
+    },
+    {
+      "check": "Digoxin_LBDSCR_magnitude",
+      "passed": true,
+      "expected": 1.0,
+      "observed": 0.8150910740000434,
+      "deviation_pct": 18.490892599995657
+    },
+    {
+      "check": "Amlodipine_BPXSY1_magnitude",
+      "passed": true,
+      "expected": -10.0,
+      "observed": -8.128257769571073,
+      "deviation_pct": 18.71742230428927
+    },
+    {
+      "check": "Amlodipine_BPXDI1_magnitude",
+      "passed": true,
+      "expected": -7.0,
+      "observed": -5.682225641659707,
+      "deviation_pct": 18.825347976289905
+    },
+    {
+      "check": "Amlodipine_LBDSCR_magnitude",
+      "passed": true,
+      "expected": 0.5,
+      "observed": 0.4058357642935031,
+      "deviation_pct": 18.832847141299382
+    },
+    {
+      "check": "Amiodarone_LBXSAS_magnitude",
+      "passed": true,
+      "expected": 15.0,
+      "observed": 10.56165855857411,
+      "deviation_pct": 29.588942942839275
+    },
+    {
+      "check": "Amiodarone_LBXSAL_magnitude",
+      "passed": false,
+      "expected": 12.0,
+      "observed": 8.344108144311745,
+      "deviation_pct": 30.465765464068788
+    },
+    {
+      "check": "Amiodarone_LBXTC_magnitude",
+      "passed": false,
+      "expected": 10.0,
+      "observed": 6.962037319264038,
+      "deviation_pct": 30.37962680735962
+    },
+    {
+      "check": "Methotrexate_LBXSAS_magnitude",
+      "passed": true,
+      "expected": 8.0,
+      "observed": 6.546285647411874,
+      "deviation_pct": 18.17142940735158
+    },
+    {
+      "check": "Methotrexate_LBXSAL_magnitude",
+      "passed": true,
+      "expected": 6.0,
+      "observed": 4.833753816154365,
+      "deviation_pct": 19.437436397427245
+    },
+    {
+      "check": "Methotrexate_LBDSCR_magnitude",
+      "passed": true,
+      "expected": 2.0,
+      "observed": 1.6576423363717465,
+      "deviation_pct": 17.117883181412672
+    },
+    {
+      "check": "Chlorthalidone_BPXSY1_magnitude",
+      "passed": true,
+      "expected": -9.0,
+      "observed": -7.362042098396951,
+      "deviation_pct": 18.199532240033882
+    },
+    {
+      "check": "Chlorthalidone_BPXDI1_magnitude",
+      "passed": true,
+      "expected": -6.0,
+      "observed": -5.031523943060815,
+      "deviation_pct": 16.141267615653078
+    },
+    {
+      "check": "Chlorthalidone_LBXSK_magnitude",
+      "passed": true,
+      "expected": -0.5,
+      "observed": -0.40244436484967894,
+      "deviation_pct": 19.511127030064213
+    },
+    {
+      "check": "Chlorthalidone_LBXSUA_magnitude",
+      "passed": true,
+      "expected": 1.2,
+      "observed": 0.9757346647208354,
+      "deviation_pct": 18.688777939930386
+    },
+    {
+      "check": "Levofloxacin_LBXSK_magnitude",
+      "passed": true,
+      "expected": 0.1,
+      "observed": 0.08558504470081243,
+      "deviation_pct": 14.414955299187572
+    },
+    {
+      "check": "Levofloxacin_LBXSGL_magnitude",
+      "passed": true,
+      "expected": 2.0,
+      "observed": 1.7149544659198035,
+      "deviation_pct": 14.252276704009825
+    },
+    {
+      "check": "Nifedipine_BPXSY1_magnitude",
+      "passed": true,
+      "expected": -10.0,
+      "observed": -7.788903924773354,
+      "deviation_pct": 22.110960752266458
+    },
+    {
+      "check": "Nifedipine_BPXDI1_magnitude",
+      "passed": true,
+      "expected": -7.0,
+      "observed": -5.7098280774247625,
+      "deviation_pct": 18.431027465360536
+    },
+    {
+      "check": "Nifedipine_LBDSCR_magnitude",
+      "passed": true,
+      "expected": 0.5,
+      "observed": 0.40876924637339623,
+      "deviation_pct": 18.246150725320753
+    },
+    {
+      "check": "Hydroxychloroquine_LBXSAS_magnitude",
+      "passed": true,
+      "expected": 3.0,
+      "observed": 2.344825655940844,
+      "deviation_pct": 21.839144801971866
+    },
+    {
+      "check": "Ciprofloxacin_LBXSK_magnitude",
+      "passed": true,
+      "expected": 0.1,
+      "observed": 0.0826149514699523,
+      "deviation_pct": 17.3850485300477
+    },
+    {
+      "check": "Pravastatin_LBXTC_magnitude",
+      "passed": false,
+      "expected": -40.0,
+      "observed": -27.131371870094732,
+      "deviation_pct": 32.171570324763174
+    },
+    {
+      "check": "Pravastatin_LBDLDL_magnitude",
+      "passed": false,
+      "expected": -50.0,
+      "observed": -32.8255083980941,
+      "deviation_pct": 34.3489832038118
+    },
+    {
+      "check": "Pravastatin_LBXSCH_magnitude",
+      "passed": false,
+      "expected": 6.0,
+      "observed": 4.048859500413997,
+      "deviation_pct": 32.519008326433394
+    }
+  ],
+  "summary": {
+    "total_checks": 358,
+    "passed": 337,
+    "failed": 21,
+    "pass_rate": 94.1340782122905
+  }
+}
