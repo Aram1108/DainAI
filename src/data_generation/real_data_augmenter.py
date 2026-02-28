@@ -54,8 +54,8 @@ def extract_real_cdisc_data(
         drug_smiles_path: Path to drug SMILES mapping
         
     Returns:
-        DataFrame with columns: patient_id, drug_name, age, sex, bmi, 
-        and lab delta/baseline columns matching clinical_trials_responses.csv format
+        DataFrame with columns: patient_id, drug_SMILES, age, sex, bmi, 
+        and lab delta/baseline columns matching clinical_trial_50k.csv format
     """
     print("\n" + "="*80)
     print("EXTRACTING REAL CDISC DATA")

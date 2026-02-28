@@ -62,7 +62,7 @@ class NovelDrugDataset(Dataset):
     ):
         """
         Args:
-            data_path: Path to clinical_trials_responses.csv
+            data_path: Path to clinical_trial_50k.csv
             drug_encoder: Initialized DrugEncoder (hybrid mode)
             split: 'train' or 'test'
             test_ratio: Fraction of drugs to hold out (not samples!)
@@ -80,7 +80,18 @@ class NovelDrugDataset(Dataset):
         
         # Load CSV
         df = pd.read_csv(data_path)
-        print(f"  Loaded {len(df):,} samples from {df['drug_name'].nunique()} unique drugs")
+        
+        # Handle both drug_SMILES and drug_name columns
+        if 'drug_SMILES' in df.columns:
+            drug_col = 'drug_SMILES'
+            # Create a drug_name column from SMILES (use first 20 chars for readability)
+            df['drug_name'] = df['drug_SMILES'].apply(lambda x: str(x)[:20] if pd.notna(x) else 'Unknown')
+        elif 'drug_name' in df.columns:
+            drug_col = 'drug_name'
+        else:
+            raise ValueError("Data must have either 'drug_SMILES' or 'drug_name' column")
+        
+        print(f"  Loaded {len(df):,} samples from {df[drug_col].nunique()} unique drugs")
         
         # If train/test drugs are provided, use them; otherwise create split
         if train_drugs is not None and test_drugs is not None:
@@ -90,15 +101,15 @@ class NovelDrugDataset(Dataset):
             # Create split (will be done by create_novel_drug_splits)
             raise ValueError("train_drugs and test_drugs must be provided. Use create_novel_drug_splits() first.")
         
-        # Filter data by split
+        # Filter data by split (match on drug_SMILES or drug_name)
         if split == 'train':
-            self.data = df[df['drug_name'].isin(self.train_drugs)].copy()
+            self.data = df[df[drug_col].isin(self.train_drugs)].copy()
         elif split == 'test':
-            self.data = df[df['drug_name'].isin(self.test_drugs)].copy()
+            self.data = df[df[drug_col].isin(self.test_drugs)].copy()
         else:
             raise ValueError(f"split must be 'train' or 'test', got {split}")
         
-        print(f"  {split.capitalize()} set: {len(self.data):,} samples from {self.data['drug_name'].nunique()} drugs")
+        print(f"  {split.capitalize()} set: {len(self.data):,} samples from {self.data[drug_col].nunique()} drugs")
         
         # Cache drug embeddings (avoid re-encoding)
         self._drug_emb_cache = {}
@@ -108,7 +119,10 @@ class NovelDrugDataset(Dataset):
     
     def _validate_data(self):
         """Check that required columns exist."""
-        required_cols = ['patient_id', 'drug_name', 'age', 'sex', 'bmi']
+        required_cols = ['patient_id', 'age', 'sex', 'bmi']
+        # Check for either drug_SMILES or drug_name
+        if 'drug_SMILES' not in self.data.columns and 'drug_name' not in self.data.columns:
+            raise ValueError("Data must have either 'drug_SMILES' or 'drug_name' column")
         missing = [c for c in required_cols if c not in self.data.columns]
         if missing:
             raise ValueError(f"Missing required columns: {missing}")
@@ -128,52 +142,57 @@ class NovelDrugDataset(Dataset):
         # Extract patient features (41 features)
         patient_state = self._extract_patient_state(row)
         
-        # Get drug embedding
-        drug_name = str(row['drug_name'])
-        if drug_name not in self._drug_emb_cache:
-            try:
-                # First, try to get SMILES from mapping if drug name is provided
-                smiles = DRUG_NAME_TO_SMILES.get(drug_name, drug_name)
-                
-                # Also try loading from drug_smiles_mapping.json if available
-                if smiles == drug_name:  # Not found in DRUG_NAME_TO_SMILES
-                    drug_smiles_path = Path('data/mappings/drug_smiles_mapping.json')
-                    if drug_smiles_path.exists():
-                        import json
-                        with open(drug_smiles_path, 'r') as f:
-                            drug_smiles_mapping = json.load(f)
-                        # Try exact match first
-                        if drug_name in drug_smiles_mapping:
-                            mapped_smiles = drug_smiles_mapping[drug_name]
-                            if mapped_smiles is not None:
-                                smiles = mapped_smiles
-                            else:
-                                raise ValueError(f"Drug '{drug_name}' has null SMILES in mapping")
+        # Get drug embedding - prefer drug_SMILES if available, otherwise use drug_name
+        if 'drug_SMILES' in row:
+            smiles = str(row['drug_SMILES'])
+            drug_identifier = smiles  # Use SMILES as cache key
+        else:
+            drug_name = str(row['drug_name'])
+            drug_identifier = drug_name
+            # First, try to get SMILES from mapping if drug name is provided
+            smiles = DRUG_NAME_TO_SMILES.get(drug_name, drug_name)
+            
+            # Also try loading from drug_smiles_mapping.json if available
+            if smiles == drug_name:  # Not found in DRUG_NAME_TO_SMILES
+                drug_smiles_path = Path('data/mappings/drug_smiles_mapping.json')
+                if drug_smiles_path.exists():
+                    import json
+                    with open(drug_smiles_path, 'r') as f:
+                        drug_smiles_mapping = json.load(f)
+                    # Try exact match first
+                    if drug_name in drug_smiles_mapping:
+                        mapped_smiles = drug_smiles_mapping[drug_name]
+                        if mapped_smiles is not None:
+                            smiles = mapped_smiles
                         else:
-                            # Try base name match (e.g., "Xanomeline" -> "Xanomeline Low Dose")
-                            for mapped_name, mapped_smiles in drug_smiles_mapping.items():
-                                if mapped_smiles is not None and drug_name.lower() in mapped_name.lower():
-                                    smiles = mapped_smiles
-                                    break
-                            if smiles == drug_name:
-                                # Don't raise error - just use hash-based embedding silently
-                                raise ValueError(f"Drug '{drug_name}' not found in SMILES mapping")
-                
-                # Try to encode (works if drug_name is already SMILES or we have mapping)
+                            raise ValueError(f"Drug '{drug_name}' has null SMILES in mapping")
+                    else:
+                        # Try base name match (e.g., "Xanomeline" -> "Xanomeline Low Dose")
+                        for mapped_name, mapped_smiles in drug_smiles_mapping.items():
+                            if mapped_smiles is not None and drug_name.lower() in mapped_name.lower():
+                                smiles = mapped_smiles
+                                break
+                        if smiles == drug_name:
+                            # Don't raise error - just use hash-based embedding silently
+                            raise ValueError(f"Drug '{drug_name}' not found in SMILES mapping")
+        
+        if drug_identifier not in self._drug_emb_cache:
+            try:
+                # Try to encode (works if smiles is valid SMILES string)
                 drug_emb = self.drug_encoder.encode(smiles)
-                self._drug_emb_cache[drug_name] = drug_emb
+                self._drug_emb_cache[drug_identifier] = drug_emb
             except Exception as e:
                 # If encoding fails, use a hash-based embedding as fallback
                 # Only warn for unexpected errors, not for missing SMILES (which is expected)
                 if "SMILES mapping" not in str(e):
-                    warnings.warn(f"Failed to encode drug '{drug_name}': {e}. Using hash-based embedding.")
-                # Create a deterministic embedding from drug name hash
-                np.random.seed(hash(drug_name) % (2**32))
+                    warnings.warn(f"Failed to encode drug '{drug_identifier}': {e}. Using hash-based embedding.")
+                # Create a deterministic embedding from drug identifier hash
+                np.random.seed(hash(drug_identifier) % (2**32))
                 drug_emb = np.random.randn(768).astype(np.float32)
                 drug_emb = drug_emb / np.linalg.norm(drug_emb) * 30  # Normalize to reasonable scale
-                self._drug_emb_cache[drug_name] = drug_emb
+                self._drug_emb_cache[drug_identifier] = drug_emb
         else:
-            drug_emb = self._drug_emb_cache[drug_name]
+            drug_emb = self._drug_emb_cache[drug_identifier]
         
         # Extract lab deltas (22 biomarkers)
         lab_delta = self._extract_lab_delta(row)
@@ -285,40 +304,37 @@ class NovelDrugDataset(Dataset):
         return state
     
     def _extract_lab_delta(self, row: pd.Series) -> np.ndarray:
-        """Extract 22 lab biomarker deltas from CSV row."""
+        """Extract 22 lab biomarker deltas from CSV row.
+        
+        Strategy:
+        1. First try to get *_delta column (direct delta)
+        2. If not available, compute delta = final - baseline
+        3. If neither available, delta = 0 (no change)
+        """
         delta = np.zeros(22, dtype=np.float32)
         
-        lab_delta_map = {
-            'LBDSCASI': 'LBDSCASI_delta',
-            'LBDSCH': 'LBDSCH_delta',
-            'LBDSCR': 'LBDSCR_delta',
-            'LBDTC': 'LBDTC_delta',
-            'LBXBCD': 'LBXBCD_delta',
-            'LBXBPB': 'LBXBPB_delta',
-            'LBXCRP': 'LBXCRP_delta',
-            'LBXSAL': 'LBXSAL_delta',
-            'LBXSAS': 'LBXSAS_delta',
-            'LBXSBU': 'LBXSBU_delta',
-            'LBXSCA': 'LBXSCA_delta',
-            'LBXSCH': 'LBXSCH_delta',
-            'LBXSCL': 'LBXSCL_delta',
-            'LBXSGB': 'LBXSGB_baseline',  # May not have delta
-            'LBXSGL': 'LBXSGL_delta',
-            'LBXSGT': 'LBXSGT_delta',
-            'LBXSK': 'LBXSK_delta',
-            'LBXSNA': 'LBXSNA_delta',
-            'LBXSOS': 'LBXSOS_baseline',  # May not have delta
-            'LBXSTP': 'LBXSTP_baseline',  # May not have delta
-            'LBXSUA': 'LBXSUA_delta',
-            'LBXTC': 'LBXTC_delta',
-        }
-        
         for i, lab_feat in enumerate(LAB_BIOMARKER_FEATURES):
-            delta_col = lab_delta_map.get(lab_feat)
-            if delta_col and delta_col in row.index:
+            # Try direct delta column first
+            delta_col = f'{lab_feat}_delta'
+            if delta_col in row.index:
                 val = row[delta_col]
                 if pd.notna(val):
                     delta[i] = float(val)
+                    continue
+            
+            # If no delta column, try computing from baseline and final
+            baseline_col = f'{lab_feat}_baseline'
+            final_col = f'{lab_feat}_final'
+            
+            if baseline_col in row.index and final_col in row.index:
+                baseline_val = row[baseline_col]
+                final_val = row[final_col]
+                if pd.notna(baseline_val) and pd.notna(final_val):
+                    delta[i] = float(final_val) - float(baseline_val)
+                    continue
+            
+            # If still no value, delta remains 0 (no change)
+            # This is fine - some features may not change or may not be measured
         
         return delta
 
@@ -396,8 +412,19 @@ def create_novel_drug_splits(
     """
     df = pd.read_csv(data_path)
     
-    # Get unique drugs
-    unique_drugs = df['drug_name'].unique()
+    # Handle both drug_SMILES and drug_name columns
+    if 'drug_SMILES' in df.columns:
+        # Use drug_SMILES as the identifier, but create drug_name for compatibility
+        if 'drug_name' not in df.columns:
+            df['drug_name'] = df['drug_SMILES'].apply(lambda x: str(x)[:50] if pd.notna(x) else 'Unknown')
+        unique_drugs = df['drug_SMILES'].unique()
+        drug_col = 'drug_SMILES'
+        # Use SMILES directly as drug identifier for splitting
+    elif 'drug_name' in df.columns:
+        unique_drugs = df['drug_name'].unique()
+        drug_col = 'drug_name'
+    else:
+        raise ValueError("Data must have either 'drug_SMILES' or 'drug_name' column")
     print(f"Total unique drugs: {len(unique_drugs)}")
     
     if use_component_based:
@@ -488,8 +515,8 @@ def create_novel_drug_splits(
             train_drugs = [unique_drugs[i] for i in range(len(unique_drugs)) if i not in test_indices]
             
             # Filter data by split
-            train_data = df[df['drug_name'].isin(train_drugs)].copy()
-            test_data = df[df['drug_name'].isin(test_drugs)].copy()
+            train_data = df[df[drug_col].isin(train_drugs)].copy()
+            test_data = df[df[drug_col].isin(test_drugs)].copy()
             
             return train_data, test_data, train_drugs, test_drugs
         else:
@@ -640,9 +667,9 @@ def create_novel_drug_splits(
     print(f"  Test drugs: {len(test_drugs)} (UNSEEN during training)")
     print(f"  Test drugs are molecularly similar to train drugs")
     
-    # Split data
-    train_data = df[df['drug_name'].isin(train_drugs)]
-    test_data = df[df['drug_name'].isin(test_drugs)]
+    # Split data (use drug_col which could be drug_SMILES or drug_name)
+    train_data = df[df[drug_col].isin(train_drugs)]
+    test_data = df[df[drug_col].isin(test_drugs)]
     
     print(f"\nSample split:")
     print(f"  Train samples: {len(train_data):,}")
@@ -665,7 +692,7 @@ if __name__ == '__main__':
     )
     
     # Create splits
-    data_path = 'data/cdisc/clinical_trials_responses.csv'
+    data_path = 'data/cdisc/clinical_trial_50k.csv'
     train_data, test_data, train_drugs, test_drugs = create_novel_drug_splits(
         data_path=data_path,
         drug_encoder=drug_encoder,

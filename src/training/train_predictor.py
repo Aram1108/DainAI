@@ -343,33 +343,18 @@ def evaluate(
 # PREREQUISITE SCRIPTS
 # ============================================================================
 
-def run_prerequisite_scripts():
-    """Run prerequisite scripts to regenerate data with latest improvements."""
-    data_path = Path('data/cdisc/clinical_trials_responses.csv')
+def verify_data_file():
+    """Verify that the main data file exists."""
+    data_path = Path('data/cdisc/clinical_trial_50k.csv')
     
-    print("\n" + "=" * 80)
-    print("REGENERATING SYNTHETIC DATA")
-    print("=" * 80)
-    print(f"\n🔄 Regenerating {data_path} with improved constraints...")
-    print("   This ensures data quality: non-negative values, realistic deltas\n")
-    
-    # Always regenerate to use latest improvements
-    try:
-        from data_generation.clinical_trials_extractor import main as extractor_main
-        extractor_main()
-        print("\n✓ Synthetic data regeneration completed successfully!")
-    except Exception as e:
-        print(f"\n❌ Failed to regenerate synthetic data: {e}")
-        import traceback
-        traceback.print_exc()
-        raise
-    
-    # Verify the file was created
     if not data_path.exists():
-        raise FileNotFoundError(f"Expected data file was not created: {data_path}")
+        raise FileNotFoundError(
+            f"Data file not found at {data_path}\n"
+            "Please ensure clinical_trial_50k.csv is available."
+        )
     
     print(f"✓ Data file ready: {data_path}")
-    print(f"   File size: {data_path.stat().st_size / 1024:.1f} KB\n")
+    print(f"   File size: {data_path.stat().st_size / (1024*1024):.1f} MB\n")
 
 
 # ============================================================================
@@ -381,23 +366,24 @@ def main():
     print("TRAINING FOR NOVEL DRUG GENERALIZATION")
     print("=" * 80)
     
-    # Run prerequisite scripts if needed
-    run_prerequisite_scripts()
+    # Verify data file exists
+    verify_data_file()
     
-    # Hyperparameters - SIMPLIFIED MODEL (Easier but still decent)
-    BATCH_SIZE = 256  # Larger batch for more stable gradients
+    # Hyperparameters - POWERFUL MODEL with strong regularization
+    BATCH_SIZE = 128  # Moderate batch size for better gradient estimates
     EPOCHS = 200  # More epochs with early stopping
-    LEARNING_RATE = 2e-4  # Higher learning rate for simpler model
-    WEIGHT_DECAY = 5e-4  # Reduced weight decay
-    DROPOUT = 0.2  # Lower dropout for easier learning
-    LABEL_SMOOTHING = 0.05  # Reduced label smoothing
-    EARLY_STOPPING_PATIENCE = 20  # More patience with larger dataset
+    LEARNING_RATE = 8e-5  # Slightly lower LR for larger model stability
+    WEIGHT_DECAY = 2e-4  # Increased weight decay for stronger regularization
+    DROPOUT = 0.4  # Higher dropout to prevent overfitting
+    LABEL_SMOOTHING = 0.0  # Disabled - can interfere with learning early on
+    EARLY_STOPPING_PATIENCE = 25  # More patience with larger dataset
     VAL_SPLIT = 0.2  # 20% of training data for validation
     
-    # Model architecture - VERY SIMPLIFIED (Easier for larger dataset)
-    HIDDEN_DIM = 64  # Further simplified from 96
-    NUM_HEADS = 2  # Keep 2 heads (minimum for cross-attention)
-    NUM_LAYERS = 1  # Single layer (simplest that still works)
+    # Model architecture - POWERFUL but regularized (50k samples)
+    # Increased capacity with strong regularization to prevent overfitting
+    HIDDEN_DIM = 256  # Larger hidden dimension for more capacity
+    NUM_HEADS = 8  # More attention heads for richer representations
+    NUM_LAYERS = 3  # Deeper network (3 layers) for complex interactions
     
     # 1. Initialize DrugEncoder (CRITICAL: Use hybrid mode for best generalization)
     print("\n[1/6] Initializing DrugEncoder (Hybrid: Transformer + RDKit)...")
@@ -434,11 +420,11 @@ def main():
     
     # 3. Load synthetic data and create drug-aware split
     print("\n[3/7] Creating drug-aware train/test split...")
-    data_path = Path('data/cdisc/clinical_trials_responses.csv')
+    data_path = Path('data/cdisc/clinical_trial_50k.csv')
     
     if not data_path.exists():
         print(f"❌ Data not found at {data_path}")
-        print("   This should not happen if prerequisites ran successfully.")
+        print("   Please ensure clinical_trial_50k.csv is available.")
         return
     
     train_data, test_data, train_drugs, test_drugs = create_novel_drug_splits(
@@ -558,6 +544,59 @@ def main():
     print(f"  ✓ Train: {len(train_dataset):,} samples from {len(train_drugs)} drugs")
     print(f"  ✓ Test: {len(test_dataset):,} samples from {len(test_drugs)} NOVEL drugs")
     
+    # Verify data generation is working correctly
+    print("\n[5.5/7] Verifying data generation...")
+    try:
+        # Sample a few batches to check data quality
+        sample_batch = next(iter(train_loader))
+        patient_state = sample_batch['patient_state']
+        drug_emb = sample_batch['drug_emb']
+        lab_delta = sample_batch['lab_delta']
+        
+        print(f"  ✓ Sample batch shapes:")
+        print(f"    - Patient state: {patient_state.shape}")
+        print(f"    - Drug embedding: {drug_emb.shape}")
+        print(f"    - Lab delta: {lab_delta.shape}")
+        
+        # Check for NaN or Inf
+        has_nan = torch.isnan(lab_delta).any().item()
+        has_inf = torch.isinf(lab_delta).any().item()
+        if has_nan or has_inf:
+            print(f"  ⚠️  WARNING: Found NaN or Inf in lab_delta!")
+        else:
+            print(f"  ✓ No NaN or Inf values detected")
+        
+        # Check variance per feature
+        lab_delta_np = lab_delta.numpy()
+        feature_vars = np.var(lab_delta_np, axis=0)
+        feature_means = np.mean(np.abs(lab_delta_np), axis=0)
+        zero_var_features = [LAB_BIOMARKER_FEATURES[i] for i in range(len(feature_vars)) if feature_vars[i] < 1e-6]
+        if zero_var_features:
+            print(f"  ⚠️  WARNING: {len(zero_var_features)} features have near-zero variance (all zeros or constant):")
+            for feat in zero_var_features[:10]:
+                idx = LAB_BIOMARKER_FEATURES.index(feat)
+                print(f"      - {feat}: var={feature_vars[idx]:.2e}, mean|abs|={feature_means[idx]:.4f}")
+            print(f"    These features cannot be learned (R² will be 0 or undefined)")
+            print(f"    Check if CSV has {[f'{f}_delta' for f in zero_var_features[:5]]} columns")
+        else:
+            print(f"  ✓ All features have non-zero variance")
+        
+        # Check value ranges (should be reasonable)
+        lab_delta_min = lab_delta.min().item()
+        lab_delta_max = lab_delta.max().item()
+        lab_delta_mean = lab_delta.mean().item()
+        lab_delta_std = lab_delta.std().item()
+        print(f"  ✓ Lab delta stats: mean={lab_delta_mean:.3f}, std={lab_delta_std:.3f}, "
+              f"min={lab_delta_min:.3f}, max={lab_delta_max:.3f}")
+        
+        if abs(lab_delta_mean) > 100 or lab_delta_std > 100:
+            print(f"  ⚠️  WARNING: Lab delta values seem unusually large!")
+        
+    except Exception as e:
+        print(f"  ⚠️  Could not verify data: {e}")
+        import traceback
+        traceback.print_exc()
+    
     # 6. Split training data into train/validation
     print("\n[6/7] Splitting training data into train/validation...")
     from sklearn.model_selection import train_test_split
@@ -591,15 +630,40 @@ def main():
     print(f"  ✓ Validation: {len(val_subset):,} samples")
     print(f"  ✓ Test (Novel Drugs): {len(test_dataset):,} samples")
     
-    # 7. Initialize model with SIMPLIFIED ARCHITECTURE
-    print("\n[7/8] Initializing PharmacodynamicPredictor (simplified but decent)...")
+    # 7. Fit normalization scalers on training data (CRITICAL for learning)
+    print("\n[7/10] Fitting normalization scalers on training data...")
+    # Collect training data for scaler fitting
+    train_patient_data = []
+    train_lab_data = []
+    train_drug_embeddings = []
+    
+    # Sample a subset for scaler fitting (faster, representative)
+    sample_size = min(5000, len(train_subset))
+    sample_indices = np.random.choice(len(train_subset), size=sample_size, replace=False)
+    sample_subset = torch.utils.data.Subset(train_dataset, sample_indices)
+    sample_loader = DataLoader(sample_subset, batch_size=BATCH_SIZE, shuffle=False, num_workers=0)
+    
+    for batch in sample_loader:
+        train_patient_data.append(batch['patient_state'].cpu().numpy())
+        train_lab_data.append(batch['lab_delta'].cpu().numpy())
+        train_drug_embeddings.append(batch['drug_emb'].cpu().numpy())
+    
+    train_patient_data = np.vstack(train_patient_data)
+    train_lab_data = np.vstack(train_lab_data)
+    train_drug_embeddings = np.vstack(train_drug_embeddings)
+    
+    print(f"  Collected {len(train_patient_data):,} samples for scaler fitting")
+    
+    # 8. Initialize model with POWERFUL ARCHITECTURE + STRONG REGULARIZATION
+    print("\n[8/10] Initializing PharmacodynamicPredictor (powerful architecture with regularization)...")
     print(f"  Architecture: hidden_dim={HIDDEN_DIM}, num_heads={NUM_HEADS}, num_layers={NUM_LAYERS}, dropout={DROPOUT}")
+    print(f"  Regularization: weight_decay={WEIGHT_DECAY}, label_smoothing={LABEL_SMOOTHING}, grad_clip=0.5")
     predictor = PharmacodynamicPredictor(
         predictor_type='cross_attention',
-        hidden_dim=HIDDEN_DIM,  # Simplified: 96 (was 128)
-        num_heads=NUM_HEADS,  # Simplified: 2 (was 4)
-        num_layers=NUM_LAYERS,  # Simplified: 1 (was 2)
-        dropout=DROPOUT,  # Moderate dropout: 0.3 (was 0.5)
+        hidden_dim=HIDDEN_DIM,
+        num_heads=NUM_HEADS,
+        num_layers=NUM_LAYERS,
+        dropout=DROPOUT,
         use_constraints=False,  # Disable during training
         device=DEVICE
     )
@@ -608,33 +672,43 @@ def main():
     total_params = sum(p.numel() for p in predictor.model.parameters())
     trainable_params = sum(p.numel() for p in predictor.model.parameters() if p.requires_grad)
     print(f"  ✓ Model initialized: {total_params / 1e6:.2f}M total parameters ({trainable_params / 1e6:.2f}M trainable)")
-    print(f"  ✓ Simplified architecture for better generalization")
+    print(f"  ✓ Powerful architecture with strong regularization to prevent overfitting")
     
-    # 8. Initialize constraint loss (SIMPLIFIED weights)
-    print("\n[8/8] Initializing pharmacology constraint loss (simplified weights)...")
+    # Fit scalers on training data (CRITICAL - enables normalization)
+    predictor.fit_scalers(
+        train_patient_data=train_patient_data,
+        train_lab_data=train_lab_data,
+        train_drug_embeddings=train_drug_embeddings
+    )
+    
+    # 9. Initialize constraint loss (REDUCED weights to allow better learning)
+    print("\n[9/10] Initializing pharmacology constraint loss (reduced weights for better learning)...")
     criterion = PharmacologyConstraintLoss(
-        lambda_monotonicity=0.005,  # Simplified: minimal constraints
-        lambda_mechanism=0.02,      # Simplified: let model learn naturally
-        lambda_consistency=0.01,    # Simplified: minimal consistency
-        lambda_bounds=0.01,         # Simplified: minimal bounds
+        lambda_monotonicity=0.005,  # Reduced - let model learn first, then enforce
+        lambda_mechanism=0.02,      # Reduced - mechanism constraints can interfere early
+        lambda_consistency=0.01,    # Reduced - consistency less important initially
+        lambda_bounds=0.01,         # Reduced - bounds can be enforced later
         drug_encoder=drug_encoder  # Pass encoder to compute real mechanism signatures
     ).to(DEVICE)
     
     # Base MSE loss with label smoothing
     base_criterion = nn.MSELoss()
     
+    # Optimizer with strong regularization
     optimizer = optim.AdamW(
         predictor.model.parameters(),
         lr=LEARNING_RATE,
-        weight_decay=WEIGHT_DECAY  # Increased for regularization
+        weight_decay=WEIGHT_DECAY,  # Strong weight decay
+        betas=(0.9, 0.999),  # Standard AdamW betas
+        eps=1e-8
     )
     
-    # Learning rate scheduler with warmup
-    from torch.optim.lr_scheduler import CosineAnnealingLR, LambdaLR
+    # Learning rate scheduler with warmup and cosine annealing
+    from torch.optim.lr_scheduler import CosineAnnealingLR, LambdaLR, OneCycleLR
     
-    # Warmup + cosine annealing
+    # Warmup + cosine annealing with restarts for better convergence
     def lr_lambda(epoch):
-        warmup_epochs = 5
+        warmup_epochs = 10  # Longer warmup for larger model
         if epoch < warmup_epochs:
             return (epoch + 1) / warmup_epochs  # Linear warmup
         else:
@@ -654,8 +728,8 @@ def main():
     best_val_loss = float('inf')
     best_test_r2 = -float('inf')
     best_test_loss = float('inf')
-    best_val_mape = float('inf')
-    best_test_mape = float('inf')
+    best_val_smape = float('inf')
+    best_test_smape = float('inf')
     best_epoch = 0
     patience_counter = 0
     
@@ -674,37 +748,76 @@ def main():
         }
         
         for batch in train_loader:
-            patient_state = batch['patient_state'].to(DEVICE)
-            drug_emb = batch['drug_emb'].to(DEVICE)
-            lab_delta_true = batch['lab_delta'].to(DEVICE)
+            patient_state_raw = batch['patient_state'].to(DEVICE)
+            drug_emb_raw = batch['drug_emb'].to(DEVICE)
+            lab_delta_true_raw = batch['lab_delta'].to(DEVICE)
+            
+            # Normalize inputs for training
+            if predictor.feature_scaler is not None:
+                patient_state_np = patient_state_raw.cpu().numpy()
+                patient_state_np = predictor.feature_scaler.transform(patient_state_np)
+                patient_state = torch.tensor(patient_state_np, dtype=torch.float32, device=DEVICE)
+            else:
+                patient_state = patient_state_raw
+            
+            if predictor.drug_scaler is not None:
+                drug_emb_np = drug_emb_raw.cpu().numpy()
+                drug_emb_np = predictor.drug_scaler.transform(drug_emb_np)
+                drug_emb = torch.tensor(drug_emb_np, dtype=torch.float32, device=DEVICE)
+            else:
+                drug_emb = drug_emb_raw
+            
+            if predictor.lab_scaler is not None:
+                lab_delta_true_np = lab_delta_true_raw.cpu().numpy()
+                lab_delta_true_np = predictor.lab_scaler.transform(lab_delta_true_np)
+                lab_delta_true = torch.tensor(lab_delta_true_np, dtype=torch.float32, device=DEVICE)
+            else:
+                lab_delta_true = lab_delta_true_raw
             
             optimizer.zero_grad()
-            lab_delta_pred, _ = predictor.model(patient_state, drug_emb, return_attention=False)
+            lab_delta_pred_normalized, _ = predictor.model(patient_state, drug_emb, return_attention=False)
             
-            # Base loss with label smoothing
-            base_loss = base_criterion(lab_delta_pred, lab_delta_true)
+            # Base loss on normalized values (much better for training)
+            base_loss = base_criterion(lab_delta_pred_normalized, lab_delta_true)
             
-            # Apply label smoothing: mix true labels with uniform distribution
+            # Apply label smoothing if enabled (regularization)
             if LABEL_SMOOTHING > 0:
-                # Create smoothed targets: (1 - alpha) * true + alpha * uniform
-                # Use zero-centered noise instead of batch statistics for better regularization
-                noise = torch.randn_like(lab_delta_true) * lab_delta_true.std() * 0.3
+                # Smooth targets: mix true labels with small noise
+                noise_scale = lab_delta_true.std() * 0.1  # Small noise
+                noise = torch.randn_like(lab_delta_true) * noise_scale
                 smoothed_target = (1 - LABEL_SMOOTHING) * lab_delta_true + LABEL_SMOOTHING * noise
-                base_loss = base_criterion(lab_delta_pred, smoothed_target)
+                base_loss = base_criterion(lab_delta_pred_normalized, smoothed_target)
             
-            # Constraint loss
+            # Denormalize predictions for constraint loss (constraints work on original scale)
+            if predictor.lab_scaler is not None:
+                lab_delta_pred_np = lab_delta_pred_normalized.detach().cpu().numpy()
+                lab_delta_pred_denorm = predictor.lab_scaler.inverse_transform(lab_delta_pred_np)
+                lab_delta_pred_denorm = torch.tensor(lab_delta_pred_denorm, dtype=torch.float32, device=DEVICE)
+            else:
+                lab_delta_pred_denorm = lab_delta_pred_normalized.detach()
+            
+            # Constraint loss on denormalized values
             constraint_loss, components = criterion(
-                lab_delta_pred, lab_delta_true,
-                drug_emb, patient_state,
+                lab_delta_pred_denorm, lab_delta_true_raw,
+                drug_emb_raw, patient_state_raw,  # Use raw for constraints
                 return_components=True
             )
             
-            # Combined loss
-            loss = base_loss + constraint_loss
+            # Combined loss: Use normalized base_loss as primary
+            # Constraint loss is secondary (already has reduced weights)
+            # The constraint_loss includes its own base MSE, but we use our normalized one
+            # So we use only the constraint components (excluding the base MSE from constraint_loss)
+            constraint_base = components.get('base', 0.0)
+            if isinstance(constraint_loss, torch.Tensor):
+                constraint_only = constraint_loss - torch.tensor(constraint_base, device=constraint_loss.device, dtype=constraint_loss.dtype)
+            else:
+                constraint_only = constraint_loss - constraint_base
+            
+            loss = base_loss + constraint_only
             
             loss.backward()
-            # Very aggressive gradient clipping
-            torch.nn.utils.clip_grad_norm_(predictor.model.parameters(), 0.5)  # Very tight clipping
+            # Moderate gradient clipping for stability (allows more learning)
+            torch.nn.utils.clip_grad_norm_(predictor.model.parameters(), 1.0)  # Less restrictive
             optimizer.step()
             
             train_loss += loss.item()
@@ -720,70 +833,138 @@ def main():
         val_loss = 0.0
         val_preds = []
         val_targets = []
+        val_preds_denorm = []  # For sMAPE calculation on original scale
+        val_targets_denorm = []  # For sMAPE calculation on original scale
         
         with torch.no_grad():
             for batch in val_loader:
-                patient_state = batch['patient_state'].to(DEVICE)
-                drug_emb = batch['drug_emb'].to(DEVICE)
-                lab_delta_true = batch['lab_delta'].to(DEVICE)
+                patient_state_raw = batch['patient_state'].to(DEVICE)
+                drug_emb_raw = batch['drug_emb'].to(DEVICE)
+                lab_delta_true_raw = batch['lab_delta'].to(DEVICE)
                 
-                lab_delta_pred, _ = predictor.model(patient_state, drug_emb, return_attention=False)
-                loss = nn.MSELoss()(lab_delta_pred, lab_delta_true)
+                # Normalize inputs
+                if predictor.feature_scaler is not None:
+                    patient_state_np = patient_state_raw.cpu().numpy()
+                    patient_state_np = predictor.feature_scaler.transform(patient_state_np)
+                    patient_state = torch.tensor(patient_state_np, dtype=torch.float32, device=DEVICE)
+                else:
+                    patient_state = patient_state_raw
+                
+                if predictor.drug_scaler is not None:
+                    drug_emb_np = drug_emb_raw.cpu().numpy()
+                    drug_emb_np = predictor.drug_scaler.transform(drug_emb_np)
+                    drug_emb = torch.tensor(drug_emb_np, dtype=torch.float32, device=DEVICE)
+                else:
+                    drug_emb = drug_emb_raw
+                
+                if predictor.lab_scaler is not None:
+                    lab_delta_true_np = lab_delta_true_raw.cpu().numpy()
+                    lab_delta_true_np = predictor.lab_scaler.transform(lab_delta_true_np)
+                    lab_delta_true = torch.tensor(lab_delta_true_np, dtype=torch.float32, device=DEVICE)
+                else:
+                    lab_delta_true = lab_delta_true_raw
+                
+                lab_delta_pred_normalized, _ = predictor.model(patient_state, drug_emb, return_attention=False)
+                loss = nn.MSELoss()(lab_delta_pred_normalized, lab_delta_true)
                 val_loss += loss.item()
                 
-                val_preds.append(lab_delta_pred.cpu().numpy())
+                # Store normalized for R² calculation
+                val_preds.append(lab_delta_pred_normalized.cpu().numpy())
                 val_targets.append(lab_delta_true.cpu().numpy())
+                
+                # Denormalize for sMAPE calculation
+                if predictor.lab_scaler is not None:
+                    pred_denorm = predictor.lab_scaler.inverse_transform(lab_delta_pred_normalized.cpu().numpy())
+                    val_preds_denorm.append(pred_denorm)
+                    val_targets_denorm.append(lab_delta_true_raw.cpu().numpy())
+                else:
+                    val_preds_denorm.append(lab_delta_pred_normalized.cpu().numpy())
+                    val_targets_denorm.append(lab_delta_true_raw.cpu().numpy())
         
         val_loss /= len(val_loader)
         val_preds = np.vstack(val_preds)
         val_targets = np.vstack(val_targets)
+        val_preds_denorm = np.vstack(val_preds_denorm)
+        val_targets_denorm = np.vstack(val_targets_denorm)
         val_r2 = r2_score(val_targets, val_preds)
         
         val_mae = mean_absolute_error(val_targets, val_preds)
         
-        # Calculate MAPE (Mean Absolute Percentage Error) - perfect for regression
-        # MAPE = mean(|actual - predicted| / |actual|) * 100
-        # Lower is better, shows average error as percentage
-        val_abs_targets = np.abs(val_targets)
-        val_errors = np.abs(val_targets - val_preds)
-        # Avoid division by zero: use small epsilon for near-zero targets
-        val_mape = float(np.mean(np.where(val_abs_targets > 1e-6, 
-                                          val_errors / (val_abs_targets + 1e-6), 
-                                          val_errors)) * 100)
+        # Calculate symmetric MAPE (sMAPE) on denormalized values - more accurate for near-zero deltas
+        # sMAPE = mean(|pred - true| / (|pred| + |true| + epsilon)) * 100
+        # This handles near-zero values much better than regular MAPE
+        val_errors = np.abs(val_preds_denorm - val_targets_denorm)
+        val_denom = np.abs(val_preds_denorm) + np.abs(val_targets_denorm) + 1e-6
+        val_smape = float(np.mean(val_errors / val_denom) * 100)
         
         # Evaluate on NOVEL drugs (test set)
         test_loss = 0.0
-        all_preds = []
-        all_targets = []
+        test_preds_normalized = []
+        test_targets_normalized = []
+        test_preds_denorm = []  # For sMAPE calculation on original scale
+        test_targets_denorm = []  # For sMAPE calculation on original scale
         
         with torch.no_grad():
             for batch in test_loader:
-                patient_state = batch['patient_state'].to(DEVICE)
-                drug_emb = batch['drug_emb'].to(DEVICE)
-                lab_delta_true = batch['lab_delta'].to(DEVICE)
+                patient_state_raw = batch['patient_state'].to(DEVICE)
+                drug_emb_raw = batch['drug_emb'].to(DEVICE)
+                lab_delta_true_raw = batch['lab_delta'].to(DEVICE)
                 
-                lab_delta_pred, _ = predictor.model(patient_state, drug_emb, return_attention=False)
-                loss = nn.MSELoss()(lab_delta_pred, lab_delta_true)
+                # Normalize inputs
+                if predictor.feature_scaler is not None:
+                    patient_state_np = patient_state_raw.cpu().numpy()
+                    patient_state_np = predictor.feature_scaler.transform(patient_state_np)
+                    patient_state = torch.tensor(patient_state_np, dtype=torch.float32, device=DEVICE)
+                else:
+                    patient_state = patient_state_raw
+                
+                if predictor.drug_scaler is not None:
+                    drug_emb_np = drug_emb_raw.cpu().numpy()
+                    drug_emb_np = predictor.drug_scaler.transform(drug_emb_np)
+                    drug_emb = torch.tensor(drug_emb_np, dtype=torch.float32, device=DEVICE)
+                else:
+                    drug_emb = drug_emb_raw
+                
+                if predictor.lab_scaler is not None:
+                    lab_delta_true_np = lab_delta_true_raw.cpu().numpy()
+                    lab_delta_true_np = predictor.lab_scaler.transform(lab_delta_true_np)
+                    lab_delta_true = torch.tensor(lab_delta_true_np, dtype=torch.float32, device=DEVICE)
+                else:
+                    lab_delta_true = lab_delta_true_raw
+                
+                lab_delta_pred_normalized, _ = predictor.model(patient_state, drug_emb, return_attention=False)
+                loss = nn.MSELoss()(lab_delta_pred_normalized, lab_delta_true)
                 test_loss += loss.item()
                 
-                all_preds.append(lab_delta_pred.cpu().numpy())
-                all_targets.append(lab_delta_true.cpu().numpy())
+                # Store normalized for R² calculation
+                test_preds_normalized.append(lab_delta_pred_normalized.cpu().numpy())
+                test_targets_normalized.append(lab_delta_true.cpu().numpy())
+                
+                # Denormalize for sMAPE calculation
+                if predictor.lab_scaler is not None:
+                    pred_denorm = predictor.lab_scaler.inverse_transform(lab_delta_pred_normalized.cpu().numpy())
+                    test_preds_denorm.append(pred_denorm)
+                    test_targets_denorm.append(lab_delta_true_raw.cpu().numpy())
+                else:
+                    test_preds_denorm.append(lab_delta_pred_normalized.cpu().numpy())
+                    test_targets_denorm.append(lab_delta_true_raw.cpu().numpy())
         
         test_loss /= len(test_loader)
-        all_preds = np.vstack(all_preds)
-        all_targets = np.vstack(all_targets)
-        test_r2 = r2_score(all_targets, all_preds)
-        test_mae = mean_absolute_error(all_targets, all_preds)
+        test_preds_normalized = np.vstack(test_preds_normalized)
+        test_targets_normalized = np.vstack(test_targets_normalized)
+        test_preds_denorm = np.vstack(test_preds_denorm)
+        test_targets_denorm = np.vstack(test_targets_denorm)
         
-        # Calculate MAPE (Mean Absolute Percentage Error) - perfect for regression
-        # MAPE = mean(|actual - predicted| / |actual|) * 100
-        # Lower is better, shows average error as percentage
-        test_abs_targets = np.abs(all_targets)
-        test_errors = np.abs(all_targets - all_preds)
-        # Avoid division by zero: use small epsilon for near-zero targets
-        test_mape = float(np.mean(np.where(test_abs_targets > 1e-6, 
-                                           test_errors / (test_abs_targets + 1e-6), 
-                                           test_errors)) * 100)
+        # Calculate metrics on normalized data (better for comparing across scales)
+        test_r2 = r2_score(test_targets_normalized, test_preds_normalized)
+        test_mae = mean_absolute_error(test_targets_normalized, test_preds_normalized)
+        
+        # Calculate symmetric MAPE (sMAPE) on denormalized values - more accurate for near-zero deltas
+        # sMAPE = mean(|pred - true| / (|pred| + |true| + epsilon)) * 100
+        # This handles near-zero values much better than regular MAPE
+        test_errors = np.abs(test_preds_denorm - test_targets_denorm)
+        test_denom = np.abs(test_preds_denorm) + np.abs(test_targets_denorm) + 1e-6
+        test_smape = float(np.mean(test_errors / test_denom) * 100)
         
         # Update scheduler (per epoch)
         scheduler.step()
@@ -791,30 +972,102 @@ def main():
         # Also compute per-feature R² to see which biomarkers are learning
         if epoch % 20 == 0:
             per_feature_r2 = []
-            for i in range(all_targets.shape[1]):
+            per_feature_stats = []
+            # Use test set for per-feature analysis (novel drugs)
+            for i in range(test_targets_normalized.shape[1]):
                 try:
-                    feat_r2 = r2_score(all_targets[:, i], all_preds[:, i])
+                    feat_targets = test_targets_normalized[:, i]
+                    feat_preds = test_preds_normalized[:, i]
+                    
+                    # Check for low variance (can cause R² issues)
+                    target_var = np.var(feat_targets)
+                    target_mean = np.mean(np.abs(feat_targets))
+                    target_std = np.std(feat_targets)
+                    
+                    # Skip R² calculation if variance is too low (will be undefined/0)
+                    if target_var < 1e-8:
+                        per_feature_r2.append((LAB_BIOMARKER_FEATURES[i], 0.0))
+                        per_feature_stats.append({
+                            'name': LAB_BIOMARKER_FEATURES[i],
+                            'r2': 0.0,
+                            'mae': 0.0,
+                            'target_var': target_var,
+                            'target_mean_abs': target_mean,
+                            'target_std': target_std,
+                            'note': 'ZERO_VARIANCE'
+                        })
+                        continue
+                    
+                    # Calculate R²
+                    feat_r2 = r2_score(feat_targets, feat_preds)
+                    
+                    # Calculate MAE for context
+                    feat_mae = mean_absolute_error(feat_targets, feat_preds)
+                    
                     per_feature_r2.append((LAB_BIOMARKER_FEATURES[i], feat_r2))
-                except:
+                    per_feature_stats.append({
+                        'name': LAB_BIOMARKER_FEATURES[i],
+                        'r2': feat_r2,
+                        'mae': feat_mae,
+                        'target_var': target_var,
+                        'target_mean_abs': target_mean,
+                        'target_std': target_std
+                    })
+                except Exception as e:
                     per_feature_r2.append((LAB_BIOMARKER_FEATURES[i], -999))
+                    per_feature_stats.append({
+                        'name': LAB_BIOMARKER_FEATURES[i],
+                        'error': str(e)
+                    })
             
-            # Show top 3 and bottom 3 features
+            # Show top 3 and bottom 3 features with diagnostics
             per_feature_r2.sort(key=lambda x: x[1], reverse=True)
             print(f"    Top 3 features: {per_feature_r2[:3]}")
             print(f"    Bottom 3 features: {per_feature_r2[-3:]}")
+            
+            # Show diagnostics for problematic features
+            if epoch == 20:  # Only print detailed diagnostics on first check
+                print(f"\n    Data Generation Diagnostics (first check):")
+                
+                # Check for zero-variance features
+                zero_var = [s for s in per_feature_stats if s.get('note') == 'ZERO_VARIANCE']
+                if zero_var:
+                    print(f"    ⚠️  {len(zero_var)} features have ZERO VARIANCE (all values are the same):")
+                    for stat in zero_var[:10]:
+                        print(f"      - {stat['name']}: All values = {stat.get('target_mean_abs', 0):.4f}")
+                    print(f"      These features cannot be learned! Check CSV for missing *_delta columns.")
+                    expected_cols = [f"{s['name']}_delta" for s in zero_var[:5]]
+                    print(f"      Expected columns: {expected_cols}")
+                
+                # Check for problematic features with negative R²
+                problematic = [s for s in per_feature_stats if s.get('r2', 0) < -1.0 and s.get('note') != 'ZERO_VARIANCE']
+                if problematic:
+                    print(f"\n    ⚠️  {len(problematic)} features with R² < -1.0 (model worse than mean):")
+                    for stat in problematic[:5]:  # Show first 5
+                        print(f"      {stat['name']}: R²={stat.get('r2', 'N/A'):.2f}, "
+                              f"MAE={stat.get('mae', 'N/A'):.4f}, "
+                              f"Target Std={stat.get('target_std', 'N/A'):.4f}")
+                    print(f"      This suggests the model is struggling to learn these features.")
+                
+                # Check for features with very low variance (might indicate data gen issue)
+                low_var = [s for s in per_feature_stats if 1e-8 <= s.get('target_var', 1e10) < 1e-4 and s.get('note') != 'ZERO_VARIANCE']
+                if low_var:
+                    print(f"\n    ⚠️  {len(low_var)} features have very low variance (<1e-4):")
+                    for stat in low_var[:5]:
+                        print(f"      {stat['name']}: var={stat.get('target_var', 0):.2e}, std={stat.get('target_std', 0):.4f}")
         
-        # Early stopping and model saving based on validation MAPE (best metric for regression)
-        if val_mape < best_val_mape:
+        # Early stopping and model saving based on validation loss (lower is better)
+        if val_loss < best_val_loss:
             best_val_loss = val_loss
             best_val_r2 = val_r2
             best_test_r2 = test_r2
-            best_val_mape = val_mape
-            best_test_mape = test_mape
+            best_val_smape = val_smape
+            best_test_smape = test_smape
             best_test_loss = test_loss
             best_epoch = epoch
             patience_counter = 0
             predictor.save('models/pharmacodynamic_predictor/predictor_novel_drug_best.pt')
-            print(f"  ✓ New best model! Val MAPE: {val_mape:.1f}% (saved)")
+            print(f"  ✓ New best model! Val Loss: {val_loss:.4f} (saved)")
         else:
             patience_counter += 1
         
@@ -823,8 +1076,8 @@ def main():
             current_lr = scheduler.get_last_lr()[0] if hasattr(scheduler, 'get_last_lr') else LEARNING_RATE
             print(f"Epoch {epoch:3d}/{EPOCHS} | "
                   f"Train: {train_loss:.4f} | "
-                  f"Val: {val_loss:.4f} (MAPE: {val_mape:.1f}%) | "
-                  f"Test: {test_loss:.4f} (MAPE: {test_mape:.1f}%) | "
+                  f"Val: {val_loss:.4f} (sMAPE: {val_smape:.1f}%) | "
+                  f"Test: {test_loss:.4f} (sMAPE: {test_smape:.1f}%) | "
                   f"LR: {current_lr:.2e}")
             print(f"  Loss components: "
                   f"Base={train_loss_components['base']:.3f}, "
@@ -836,16 +1089,16 @@ def main():
         # Early stopping
         if patience_counter >= EARLY_STOPPING_PATIENCE:
             print(f"\n🛑 Early stopping triggered at epoch {epoch}")
-            print(f"   Best validation MAPE: {best_val_mape:.1f}% (epoch {best_epoch})")
+            print(f"   Best validation loss: {best_val_loss:.4f} (epoch {best_epoch})")
             break
     
     total_time = time.time() - start_time
     
     print(f"\n✓ Training complete in {total_time/60:.1f} minutes!")
-    print(f"✓ Best validation MAPE: {best_val_mape:.1f}% (epoch {best_epoch})")
-    print(f"✓ Best test MAPE on novel drugs: {best_test_mape:.1f}% (epoch {best_epoch})")
-    print(f"  (R²: Val={best_val_r2:.4f}, Test={best_test_r2:.4f})")
-    print(f"\nTarget: MAPE < 20% (average error < 20% of true values)")
+    print(f"✓ Best validation loss: {best_val_loss:.4f} (epoch {best_epoch})")
+    print(f"✓ Best test loss: {best_test_loss:.4f} (epoch {best_epoch})")
+    print(f"  (sMAPE: Val={best_val_smape:.1f}%, Test={best_test_smape:.1f}%, R²: Val={best_val_r2:.4f}, Test={best_test_r2:.4f})")
+    print(f"\nTarget: sMAPE < 20% (symmetric mean absolute percentage error < 20%)")
     
     if best_test_r2 > 0.64:
         print("🎉 SUCCESS! Model generalizes well to novel drugs!")

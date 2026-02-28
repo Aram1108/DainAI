@@ -133,25 +133,30 @@ class CrossAttentionPredictor(nn.Module):
             nn.LayerNorm(hidden_dim) for _ in range(num_layers)
         ])
         
-        # Simplified feedforward: smaller expansion factor for easier model
-        expansion_factor = 2 if hidden_dim <= 96 else 4  # Smaller expansion for simpler models
+        # Feedforward with moderate expansion (balanced capacity vs regularization)
+        expansion_factor = 4  # Standard transformer expansion
         self.feedforward_layers = nn.ModuleList([
             nn.Sequential(
                 nn.Linear(hidden_dim, hidden_dim * expansion_factor),
                 nn.GELU(),
                 nn.Dropout(dropout),
                 nn.Linear(hidden_dim * expansion_factor, hidden_dim),
-                nn.Dropout(dropout)
+                nn.Dropout(dropout * 0.5)  # Slightly less dropout on second layer
             ) for _ in range(num_layers)
         ])
         
-        # Simplified prediction head for 22 lab biomarkers
-        # Single hidden layer for easier model
+        # Prediction head for 22 lab biomarkers with regularization
+        # Two-layer head with dropout for better generalization
         self.predictor = nn.Sequential(
             nn.Linear(hidden_dim, hidden_dim // 2),
+            nn.LayerNorm(hidden_dim // 2),  # Add layer norm for stability
             nn.GELU(),
             nn.Dropout(dropout),
-            nn.Linear(hidden_dim // 2, lab_biomarker_dim)
+            nn.Linear(hidden_dim // 2, hidden_dim // 4),  # Additional layer
+            nn.LayerNorm(hidden_dim // 4),
+            nn.GELU(),
+            nn.Dropout(dropout * 0.5),
+            nn.Linear(hidden_dim // 4, lab_biomarker_dim)
         )
         
         # Initialize weights
@@ -276,6 +281,11 @@ class PharmacodynamicPredictor:
         # Lab biomarker feature names (22 features, indices 12-33)
         self.lab_features = LAB_BIOMARKER_FEATURES
         self.all_patient_features = PATIENT_FEATURES
+        
+        # Normalization scalers (will be fitted on training data)
+        self.feature_scaler = None  # StandardScaler for patient features (41 features)
+        self.lab_scaler = None      # StandardScaler for lab biomarkers (22 features)
+        self.drug_scaler = None     # StandardScaler for drug embeddings (768 features)
         
         # Load feature bounds from GAN metadata
         self.feature_bounds = self._load_feature_bounds()
@@ -415,8 +425,13 @@ class PharmacodynamicPredictor:
         
         # Convert to tensors
         patient_state = self._prepare_patient_state(S0_df)
+        
+        # Normalize drug embedding if scaler is available
+        drug_emb_np = drug_embedding.reshape(1, -1)
+        if self.drug_scaler is not None:
+            drug_emb_np = self.drug_scaler.transform(drug_emb_np)
         drug_emb = torch.tensor(
-            drug_embedding, 
+            drug_emb_np.flatten(),
             dtype=torch.float32, 
             device=self.device
         )
@@ -425,14 +440,23 @@ class PharmacodynamicPredictor:
         batch_size = patient_state.size(0)
         drug_emb = drug_emb.unsqueeze(0).expand(batch_size, -1)
         
-        # Predict
+        # Predict (model outputs normalized deltas)
         self.model.eval()
         with torch.no_grad():
-            delta, _ = self.model(patient_state, drug_emb, return_attention=False)
+            delta_normalized, _ = self.model(patient_state, drug_emb, return_attention=False)
         
-        # Apply constraints if enabled
+        # Denormalize predictions
+        if self.lab_scaler is not None:
+            delta_np = delta_normalized.cpu().numpy()
+            delta_np = self.lab_scaler.inverse_transform(delta_np)
+            delta = torch.tensor(delta_np, dtype=torch.float32, device=self.device)
+        else:
+            delta = delta_normalized
+        
+        # Apply constraints if enabled (on denormalized values)
         if self.use_constraints:
-            delta = self._apply_constraints(patient_state, delta)
+            patient_state_original = self._get_original_patient_state(S0_df)
+            delta = self._apply_constraints(patient_state_original, delta)
         
         # Convert to DataFrame
         delta_df = pd.DataFrame(
@@ -467,8 +491,13 @@ class PharmacodynamicPredictor:
         
         # Convert to tensors
         patient_state = self._prepare_patient_state(S0_df)
+        
+        # Normalize drug embedding if scaler is available
+        drug_emb_np = drug_embedding.reshape(1, -1)
+        if self.drug_scaler is not None:
+            drug_emb_np = self.drug_scaler.transform(drug_emb_np)
         drug_emb = torch.tensor(
-            drug_embedding,
+            drug_emb_np.flatten(),
             dtype=torch.float32,
             device=self.device
         )
@@ -482,9 +511,17 @@ class PharmacodynamicPredictor:
         samples = []
         for _ in range(n_samples):
             with torch.no_grad():
-                delta, _ = self.model(patient_state, drug_emb, return_attention=False)
+                delta_normalized, _ = self.model(patient_state, drug_emb, return_attention=False)
+                # Denormalize
+                if self.lab_scaler is not None:
+                    delta_np = delta_normalized.cpu().numpy()
+                    delta_np = self.lab_scaler.inverse_transform(delta_np)
+                    delta = torch.tensor(delta_np, dtype=torch.float32, device=self.device)
+                else:
+                    delta = delta_normalized
                 if self.use_constraints:
-                    delta = self._apply_constraints(patient_state, delta)
+                    patient_state_original = self._get_original_patient_state(S0_df)
+                    delta = self._apply_constraints(patient_state_original, delta)
                 samples.append(delta)
         
         # Return to eval mode
@@ -520,8 +557,13 @@ class PharmacodynamicPredictor:
         self._validate_inputs(S0_df, drug_embedding)
         
         patient_state = self._prepare_patient_state(S0_df)
+        
+        # Normalize drug embedding if scaler is available
+        drug_emb_np = drug_embedding.reshape(1, -1)
+        if self.drug_scaler is not None:
+            drug_emb_np = self.drug_scaler.transform(drug_emb_np)
         drug_emb = torch.tensor(
-            drug_embedding,
+            drug_emb_np.flatten(),
             dtype=torch.float32,
             device=self.device
         )
@@ -531,14 +573,24 @@ class PharmacodynamicPredictor:
         
         self.model.eval()
         with torch.no_grad():
-            delta, attn_weights = self.model(
+            delta_normalized, attn_weights = self.model(
                 patient_state, 
                 drug_emb, 
                 return_attention=True
             )
         
+        # Denormalize predictions
+        if self.lab_scaler is not None:
+            delta_np = delta_normalized.cpu().numpy()
+            delta_np = self.lab_scaler.inverse_transform(delta_np)
+            delta = torch.tensor(delta_np, dtype=torch.float32, device=self.device)
+        else:
+            delta = delta_normalized
+        
+        # Apply constraints if enabled (need original-scale patient_state)
         if self.use_constraints:
-            delta = self._apply_constraints(patient_state, delta)
+            patient_state_original = self._get_original_patient_state(S0_df)
+            delta = self._apply_constraints(patient_state_original, delta)
         
         delta_df = pd.DataFrame(
             delta.cpu().numpy(),
@@ -552,7 +604,7 @@ class PharmacodynamicPredictor:
         return delta_df, attn_weights_np
     
     def _prepare_patient_state(self, S0_df: pd.DataFrame) -> torch.Tensor:
-        """Convert patient DataFrame to tensor, handling missing columns."""
+        """Convert patient DataFrame to tensor, handling missing columns and normalizing."""
         # Ensure all 41 features are present
         rows = []
         for _, row in S0_df.iterrows():
@@ -578,6 +630,31 @@ class PharmacodynamicPredictor:
                 f"got {state_mat.shape[1]}"
             )
         
+        # Normalize patient features if scaler is available
+        if self.feature_scaler is not None:
+            state_mat = self.feature_scaler.transform(state_mat)
+        
+        return torch.tensor(state_mat, dtype=torch.float32, device=self.device)
+    
+    def _get_original_patient_state(self, S0_df: pd.DataFrame) -> torch.Tensor:
+        """Extract original (unnormalized) patient state from DataFrame."""
+        rows = []
+        for _, row in S0_df.iterrows():
+            vals = []
+            for col in self.all_patient_features:
+                try:
+                    if col in S0_df.columns:
+                        val = float(row[col])
+                        if pd.isna(val):
+                            val = 0.0
+                    else:
+                        val = 0.0
+                    vals.append(val)
+                except (ValueError, TypeError):
+                    vals.append(0.0)
+            rows.append(vals)
+        
+        state_mat = np.vstack(rows).astype(np.float32)
         return torch.tensor(state_mat, dtype=torch.float32, device=self.device)
     
     def _apply_constraints(
@@ -625,13 +702,41 @@ class PharmacodynamicPredictor:
         
         return delta_constrained
     
+    def fit_scalers(self, train_patient_data: np.ndarray, train_lab_data: np.ndarray, 
+                    train_drug_embeddings: np.ndarray):
+        """Fit normalization scalers on training data. MUST call before training.
+        
+        Args:
+            train_patient_data: (N, 41) array of patient features
+            train_lab_data: (N, 22) array of lab biomarker values (baselines or deltas)
+            train_drug_embeddings: (N, 768) array of drug embeddings
+        """
+        from sklearn.preprocessing import StandardScaler
+        
+        # Fit patient feature scaler
+        self.feature_scaler = StandardScaler()
+        self.feature_scaler.fit(train_patient_data)
+        
+        # Fit lab biomarker scaler
+        self.lab_scaler = StandardScaler()
+        self.lab_scaler.fit(train_lab_data)
+        
+        # Fit drug embedding scaler
+        self.drug_scaler = StandardScaler()
+        self.drug_scaler.fit(train_drug_embeddings)
+        
+        print(f"✓ Fitted normalization scalers:")
+        print(f"  Patient features: mean={self.feature_scaler.mean_[:3]}, std={self.feature_scaler.scale_[:3]}")
+        print(f"  Lab biomarkers: mean={self.lab_scaler.mean_[:3]}, std={self.lab_scaler.scale_[:3]}")
+        print(f"  Drug embeddings: mean={self.drug_scaler.mean_[:3]}, std={self.drug_scaler.scale_[:3]}")
+    
     def save(self, path: str):
         """Save model and metadata."""
         save_path = Path(path)
         save_path.parent.mkdir(parents=True, exist_ok=True)
         
-        # Save model weights
-        torch.save({
+        # Save model weights and scalers
+        checkpoint = {
             'model_state_dict': self.model.state_dict(),
             'predictor_type': self.predictor_type,
             'config': {
@@ -642,7 +747,18 @@ class PharmacodynamicPredictor:
                 'num_heads': self.model.num_heads,
                 'num_layers': self.model.num_layers,
             }
-        }, save_path)
+        }
+        
+        # Save scalers if they exist
+        import pickle
+        if self.feature_scaler is not None:
+            checkpoint['feature_scaler'] = pickle.dumps(self.feature_scaler)
+        if self.lab_scaler is not None:
+            checkpoint['lab_scaler'] = pickle.dumps(self.lab_scaler)
+        if self.drug_scaler is not None:
+            checkpoint['drug_scaler'] = pickle.dumps(self.drug_scaler)
+        
+        torch.save(checkpoint, save_path)
         
         # Save metadata
         metadata = {
@@ -723,6 +839,17 @@ class PharmacodynamicPredictor:
             raise RuntimeError(
                 f"Failed to load model state dict. Model architecture may have changed. {e}"
             ) from e
+        
+        # Load scalers if they exist (for backward compatibility with old checkpoints)
+        if 'feature_scaler' in checkpoint or 'lab_scaler' in checkpoint or 'drug_scaler' in checkpoint:
+            import pickle
+            if 'feature_scaler' in checkpoint:
+                self.feature_scaler = pickle.loads(checkpoint['feature_scaler'])
+            if 'lab_scaler' in checkpoint:
+                self.lab_scaler = pickle.loads(checkpoint['lab_scaler'])
+            if 'drug_scaler' in checkpoint:
+                self.drug_scaler = pickle.loads(checkpoint['drug_scaler'])
+            print("  ✓ Loaded normalization scalers from checkpoint")
         
         print(f"✓ Model loaded from: {path}")
     

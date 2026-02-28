@@ -58,6 +58,13 @@ QUESTIONNAIRE_COLS = [
 GENERATED_FEATURE_COLS = BODY_MEASUREMENT_COLS + LAB_RESULT_COLS + QUESTIONNAIRE_COLS
 
 # ============================================================
+# LAB REFERENCE RANGES
+# ============================================================
+# Clinical lab test reference ranges are defined in:
+# src/utils/lab_reference_ranges.py
+# Use: from utils.lab_reference_ranges import LAB_RANGES, get_lab_range, validate_lab_value
+
+# ============================================================
 # CREATE DIRECTORIES
 # ============================================================
 MODEL_DIR.mkdir(exist_ok=True, parents=True)

@@ -6,8 +6,9 @@ realistic synthetic patients based on user inputs (age, sex, height, weight).
 
 The GAN learns to create complete medical profiles including:
 - 8 body measurements (BMI, arm circumference, etc.)
-- 29 lab results (blood work)
+- 22 lab results (blood work)
 - 7 questionnaire responses
+- Total: 37 generated features
 
 Think of it like: User provides basic info → Model creates complete patient data
 """
@@ -18,6 +19,11 @@ import pandas as pd
 import numpy as np
 from pathlib import Path
 from typing import Dict, Optional
+import sys
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from utils.lab_reference_ranges import (
+    LAB_RANGES, CRITICAL_RULES, clamp_to_physiological_limits
+)
 
 
 # ============================================================
@@ -46,7 +52,7 @@ QUESTIONNAIRE_COLS = [
     'MCQ160K', 'MCQ160L', 'MCQ220'
 ]
 
-# All generated features (total: 44)
+# All generated features (total: 37 = 8 body + 22 lab + 7 questionnaire)
 GENERATED_FEATURE_COLS = BODY_MEASUREMENT_COLS + LAB_RESULT_COLS + QUESTIONNAIRE_COLS
 
 
@@ -63,10 +69,10 @@ class Generator(nn.Module):
         - 100 noise dimensions - for variety between patients
     
     Output:
-        - 44 features (8 body + 22 lab + 7 questionnaire)
+        - 37 features (8 body + 22 lab + 7 questionnaire)
     
     Architecture:
-        104 → 256 → 512 → 512 → 44
+        104 → 512 → 512 → 256 → 37
         
     Think of it like: Given basic demographics + randomness → complete medical profile
     """
@@ -80,26 +86,26 @@ class Generator(nn.Module):
         # Output: 37 generated features (8 body + 22 lab + 7 questionnaire)
         
         self.network = nn.Sequential(
-            # Layer 1: Expand from 104 to 256
-            nn.Linear(104, 256),
-            nn.BatchNorm1d(256),
-            nn.LeakyReLU(0.2),
-            nn.Dropout(0.3),
-            
-            # Layer 2: Expand to 512
-            nn.Linear(256, 512),
+            # Layer 1: Expand from 104 to 512 (MATCH discriminator power)
+            nn.Linear(104, 512),
             nn.BatchNorm1d(512),
             nn.LeakyReLU(0.2),
             nn.Dropout(0.3),
             
-            # Layer 3: Another 512 layer for complexity
+            # Layer 2: Stay at 512
             nn.Linear(512, 512),
             nn.BatchNorm1d(512),
             nn.LeakyReLU(0.2),
             nn.Dropout(0.3),
             
-            # Output layer: 512 → 37 features
-            nn.Linear(512, 37),
+            # Layer 3: Taper down to 256
+            nn.Linear(512, 256),
+            nn.BatchNorm1d(256),
+            nn.LeakyReLU(0.2),
+            nn.Dropout(0.3),
+            
+            # Output layer: 256 → 37 features
+            nn.Linear(256, 37),
             nn.Tanh()  # Output range: -1 to 1 (denormalized later)
         )
     
@@ -133,14 +139,14 @@ class Discriminator(nn.Module):
     
     Input:
         - 4 conditions (age, sex, height, weight)
-        - 44 features (body + lab + questionnaire)
-        Total: 48 dimensions
+        - 37 features (body + lab + questionnaire)
+        Total: 41 dimensions
     
     Output:
         - 1 score (probability that patient is real)
     
     Architecture:
-        48 → 512 → 256 → 128 → 1
+        41 → 256 → 128 → 1
         
     Think of it like: A medical expert checking if patient data makes sense
     """
@@ -152,20 +158,15 @@ class Discriminator(nn.Module):
         # Output: 1 (real/fake probability)
         
         self.network = nn.Sequential(
-            # Layer 1: 41 → 512
-            nn.Linear(41, 512),
+            # Layer 1: 41 → 256 (REDUCED from 512 to weaken discriminator)
+            nn.Linear(41, 256),
             nn.LeakyReLU(0.2),
-            nn.Dropout(0.3),
+            nn.Dropout(0.5),  # INCREASED from 0.3 to slow down discriminator
             
-            # Layer 2: 512 → 256
-            nn.Linear(512, 256),
-            nn.LeakyReLU(0.2),
-            nn.Dropout(0.3),
-            
-            # Layer 3: 256 → 128
+            # Layer 2: 256 → 128
             nn.Linear(256, 128),
             nn.LeakyReLU(0.2),
-            nn.Dropout(0.3),
+            nn.Dropout(0.5),  # INCREASED from 0.3
             
             # Output layer: 128 → 1
             nn.Linear(128, 1),
@@ -178,7 +179,7 @@ class Discriminator(nn.Module):
         
         Args:
             conditions: [batch, 4] - age/sex/height/weight
-            features: [batch, 44] - patient features (real or generated)
+            features: [batch, 37] - patient features (real or generated)
         
         Returns:
             probability: [batch, 1] - how likely patient is real (0-1)
@@ -409,14 +410,15 @@ class PatientGenerator:
         print("="*70 + "\n")
         
         # Setup optimizers (separate for generator and discriminator)
+        # Generator gets HIGHER learning rate to compensate for architecture disadvantage
         optimizer_g = torch.optim.Adam(
             self.generator.parameters(), 
-            lr=lr, 
+            lr=lr * 1.5,  # 1.5x higher for generator (0.0003 vs 0.0002)
             betas=(0.5, 0.999)
         )
         optimizer_d = torch.optim.Adam(
             self.discriminator.parameters(), 
-            lr=lr, 
+            lr=lr,  # Standard rate for discriminator
             betas=(0.5, 0.999)
         )
         
@@ -485,18 +487,22 @@ class PatientGenerator:
                 # Goal: Learn to distinguish real patients from fake ones
                 # ============================================================
                 
-                # Score real patients (should be close to 0.9 - label smoothing)
-                # Use noisy conditions to prevent overfitting
-                real_score = self.discriminator(real_conditions_noisy, real_features)
-                real_labels = torch.ones_like(real_score) * 0.9  # Label smoothing
-                loss_d_real = criterion(real_score, real_labels)
-                
-                # Generate fake patients with noisy conditions
+                # Generate fake patients with noisy conditions (needed for both D and G training)
                 noise = torch.randn(batch_size, 100, device=self.device)
                 fake_features = self.generator(real_conditions_noisy, noise)
                 
+                # ADD NOISE TO FEATURES (prevents discriminator overfitting)
+                real_features_noisy = real_features + torch.randn_like(real_features) * 0.1
+                fake_features_noisy = fake_features.detach() + torch.randn_like(fake_features) * 0.1
+                
+                # Score real patients (should be close to 0.9 - label smoothing)
+                # Use noisy features to prevent overfitting
+                real_score = self.discriminator(real_conditions_noisy, real_features_noisy)
+                real_labels = torch.ones_like(real_score) * 0.9  # Label smoothing
+                loss_d_real = criterion(real_score, real_labels)
+                
                 # Score fake patients (should be close to 0.1 - label smoothing)
-                fake_score = self.discriminator(real_conditions_noisy, fake_features.detach())
+                fake_score = self.discriminator(real_conditions_noisy, fake_features_noisy)
                 fake_labels = torch.ones_like(fake_score) * 0.1  # Label smoothing
                 loss_d_fake = criterion(fake_score, fake_labels)
                 
@@ -510,27 +516,32 @@ class PatientGenerator:
                 optimizer_d.step()
                 
                 # ============================================================
-                # STEP 2: TRAIN GENERATOR
+                # STEP 2: TRAIN GENERATOR (MULTIPLE TIMES)
                 # Goal: Create fake patients that fool the discriminator
+                # Train G 2x per D update to help it catch up
                 # ============================================================
                 
-                # Generate new fake patients with noisy conditions
-                noise = torch.randn(batch_size, 100, device=self.device)
-                fake_features = self.generator(real_conditions_noisy, noise)
+                for g_step in range(2):  # Train generator TWICE per discriminator update
+                    # Generate new fake patients with noisy conditions
+                    noise = torch.randn(batch_size, 100, device=self.device)
+                    fake_features = self.generator(real_conditions_noisy, noise)
+                    
+                    # Try to fool discriminator (want it to output close to 1)
+                    fake_score = self.discriminator(real_conditions_noisy, fake_features)
+                    real_labels = torch.ones_like(fake_score)  # Want discriminator to think it's real
+                    loss_g = criterion(fake_score, real_labels)
+                    
+                    # Update generator
+                    optimizer_g.zero_grad()
+                    loss_g.backward()
+                    torch.nn.utils.clip_grad_norm_(self.generator.parameters(), 1.0)
+                    optimizer_g.step()
+                    
+                    # Only accumulate loss from first G update for logging
+                    if g_step == 0:
+                        epoch_g_loss += loss_g.item()
                 
-                # Try to fool discriminator (want it to output close to 1)
-                fake_score = self.discriminator(real_conditions_noisy, fake_features)
-                real_labels = torch.ones_like(fake_score)  # Want discriminator to think it's real
-                loss_g = criterion(fake_score, real_labels)
-                
-                # Update generator
-                optimizer_g.zero_grad()
-                loss_g.backward()
-                torch.nn.utils.clip_grad_norm_(self.generator.parameters(), 1.0)
-                optimizer_g.step()
-                
-                # Accumulate losses for this epoch
-                epoch_g_loss += loss_g.item()
+                # Accumulate discriminator loss
                 epoch_d_loss += loss_d.item()
             
             # Average losses over all batches in this epoch
@@ -582,9 +593,11 @@ class PatientGenerator:
                 self.generator.train()
                 
                 # Print metrics
+                gd_ratio = epoch_g_loss / (epoch_d_loss + 1e-8)  # Avoid division by zero
                 print(f"Epoch {epoch:3d}/{epochs} | "
                       f"D_loss: {epoch_d_loss:.4f} (EMA: {ema_d_loss:.4f}) | "
                       f"G_loss: {epoch_g_loss:.4f} (EMA: {ema_g_loss:.4f}) | "
+                      f"G/D ratio: {gd_ratio:.2f} | "  # Shows balance (ideal: 0.5-2.0)
                       f"FID: {fid_score:.2f} | Var: {variance_ratio:.2f} | "
                       f"Batches: {batches_per_epoch:,}")
                 
@@ -628,7 +641,7 @@ class PatientGenerator:
                         'model_info': {
                             'name': 'Conditional GAN Patient Generator',
                             'version': '1.0',
-                            'architecture': 'Generator: 104→256→512→512→37, Discriminator: 41→512→256→128→1',
+                            'architecture': 'Generator: 104→512→512→256→37, Discriminator: 41→256→128→1',
                             'saved_at': time.strftime('%Y-%m-%d %H:%M:%S'),
                         },
                         'training_info': {
@@ -690,9 +703,11 @@ class PatientGenerator:
             
             # Print progress (without metrics - those are computed less frequently)
             elif epoch % show_progress_every == 0:
+                gd_ratio = epoch_g_loss / (epoch_d_loss + 1e-8)  # Avoid division by zero
                 print(f"Epoch {epoch:3d}/{epochs} | "
                       f"D_loss: {epoch_d_loss:.4f} (EMA: {ema_d_loss:.4f}) | "
                       f"G_loss: {epoch_g_loss:.4f} (EMA: {ema_g_loss:.4f}) | "
+                      f"G/D ratio: {gd_ratio:.2f} | "  # Shows balance (ideal: 0.5-2.0)
                       f"Batches: {batches_per_epoch:,}")
                 if early_stopping_patience is not None and epochs_since_best > 0:
                     print(f"  (No improvement for {epochs_since_best} epochs, patience: {early_stopping_patience})")
@@ -767,6 +782,18 @@ class PatientGenerator:
         generated_features = generated_features.cpu().numpy()
         generated_features = (generated_features * self.feature_std.values 
                             + self.feature_mean.values)
+        
+        # Apply physiological constraints: Ensure positive values for metrics that must be positive
+        # This prevents impossible negative values for enzymes, proteins, etc.
+        for i, col_name in enumerate(self.feature_cols):
+            if col_name in CRITICAL_RULES["MUST_BE_POSITIVE"]:
+                # Use ReLU-like behavior: clamp negative values to small positive value
+                generated_features[:, i] = np.maximum(generated_features[:, i], 0.01)
+            
+            # Clamp all lab values to physiological limits
+            if col_name in LAB_RANGES and LAB_RANGES[col_name]['physiological_limit']:
+                min_phys, max_phys = LAB_RANGES[col_name]['physiological_limit']
+                generated_features[:, i] = np.clip(generated_features[:, i], min_phys, max_phys)
         
         # Round questionnaire responses to nearest valid value (1, 2, or 9)
         questionnaire_start_idx = len(BODY_MEASUREMENT_COLS) + len(LAB_RESULT_COLS)

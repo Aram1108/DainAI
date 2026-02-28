@@ -36,10 +36,8 @@ Thumbs.db
 data/cdisc/real_augmentations_temp.csv
 *.log
 
-# Results (generated files)
-results/figures/*
-results/metrics/*
-results/predictions/*
+# Results (generated files - ignore entire results folder)
+results/
 !results/.gitkeep
 
 # Models (keep all - they're small < 10MB total)
