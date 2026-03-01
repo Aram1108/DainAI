@@ -32,6 +32,8 @@ from models.patient_generator_gan import PatientGenerator
 from encoders.drugEncoder import DrugEncoder
 from models.pharmacodynamicPredictor import PharmacodynamicPredictor, LAB_BIOMARKER_FEATURES
 from models.time_series_predictor import TimeSeriesPredictor, TimeSeriesConfig
+from utils.constants import get_metric_display_name
+from utils.plausibility_report import write_plausibility_html
 from pathlib import Path
 
 # Configuration
@@ -771,6 +773,9 @@ def run(smiles: str, drug_name: str = 'Unknown', age: int = 55, sex: str = 'M',
     print(f"    Note: Time Series Predictor converts static predictions to temporal trajectories")
     print(f"    Note: final_delta = {total_seconds}sec - baseline")
     
+    # Add human-readable metric names for saved results and graphs
+    time_series_df['metric_display_name'] = time_series_df['metric_name'].map(get_metric_display_name)
+    
     # Step 5: Save results
     print("\n[5/5] Saving results...")
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -781,9 +786,12 @@ def run(smiles: str, drug_name: str = 'Unknown', age: int = 55, sex: str = 'M',
     run_folder.mkdir(parents=True, exist_ok=True)
     print(f"  ✓ Created run folder: {run_folder.name}")
     
-    # Save time series data
+    # Save time series data (metric_display_name first for readability)
     out_file = run_folder / 'time_series_simulation.csv'
-    time_series_df.to_csv(out_file, index=False, encoding='utf-8')
+    cols = [c for c in time_series_df.columns if c != 'metric_display_name']
+    lead = ['patient_id', 'metric_display_name', 'metric_name'] if 'metric_display_name' in time_series_df.columns else ['patient_id', 'metric_name']
+    rest = [c for c in cols if c not in lead]
+    time_series_df[lead + rest].to_csv(out_file, index=False, encoding='utf-8')
     print(f"  ✓ Time series saved to: {out_file}")
     
     # Also save a summary with key metrics
@@ -793,113 +801,30 @@ def run(smiles: str, drug_name: str = 'Unknown', age: int = 55, sex: str = 'M',
         key_metrics_summary.to_csv(summary_file, index=False, encoding='utf-8')
         print(f"  ✓ Summary (key metrics) saved to: {summary_file}")
     
-    # Generate feature/time graphs
-    print("\n[6/6] Generating feature/time graphs...")
+    # Generate plausibility report (HTML with red/black design, ✓/⚠/✗ per feature)
+    print("\n[6/6] Generating plausibility report (HTML)...")
     try:
-        import matplotlib.pyplot as plt
-        import matplotlib
-        matplotlib.use('Agg')  # Non-interactive backend
-        
-        # Get all timepoint columns (those ending with 'sec')
         timepoint_cols = [col for col in time_series_df.columns if col.endswith('sec')]
-        timepoint_cols.sort(key=lambda x: int(x.replace('sec', '')))
-        
-        # Extract time values in seconds and convert to hours for x-axis
-        time_values = [int(col.replace('sec', '')) for col in timepoint_cols]
-        time_hours = [t / SECONDS_PER_HOUR for t in time_values]  # Convert to hours
-        
-        # Get all unique metrics
-        all_metrics = time_series_df['metric_name'].unique()
-        
-        # Create individual graphs for each feature
-        graphs_dir = run_folder / 'graphs'
-        graphs_dir.mkdir(exist_ok=True)
-        
-        graphs_created = 0
-        for metric in all_metrics:
-            metric_data = time_series_df[time_series_df['metric_name'] == metric].iloc[0]
-            baseline = metric_data['baseline']
-            
-            # Extract values over time
-            values = []
-            for col in timepoint_cols:
-                if col in metric_data:
-                    values.append(metric_data[col])
-                else:
-                    values.append(np.nan)
-            
-            # Create figure
-            fig, ax = plt.subplots(figsize=(10, 6))
-            
-            # Plot trajectory
-            ax.plot(time_hours, values, 'b-', linewidth=2, label=f'{metric}')
-            ax.axhline(y=baseline, color='r', linestyle='--', linewidth=1.5, label='Baseline')
-            
-            # Formatting
-            ax.set_xlabel('Time (hours)', fontsize=12)
-            ax.set_ylabel(f'{metric} Value', fontsize=12)
-            ax.set_title(f'{metric} Over Time (Single Injection: {dosage} mg)', fontsize=14, fontweight='bold')
-            ax.grid(True, alpha=0.3)
-            ax.legend()
-            
-            # Save individual graph
-            graph_file = graphs_dir / f'{metric}_over_time.png'
-            plt.savefig(graph_file, dpi=150, bbox_inches='tight')
-            plt.close()
-            graphs_created += 1
-        
-        # Create summary multi-panel figure (all features in one)
-        n_metrics = len(all_metrics)
-        n_cols = 4
-        n_rows = (n_metrics + n_cols - 1) // n_cols
-        
-        fig, axes = plt.subplots(n_rows, n_cols, figsize=(20, 5 * n_rows))
-        axes = axes.flatten() if n_metrics > 1 else [axes]
-        
-        for idx, metric in enumerate(all_metrics):
-            ax = axes[idx]
-            metric_data = time_series_df[time_series_df['metric_name'] == metric].iloc[0]
-            baseline = metric_data['baseline']
-            
-            # Extract values over time
-            values = []
-            for col in timepoint_cols:
-                if col in metric_data:
-                    values.append(metric_data[col])
-                else:
-                    values.append(np.nan)
-            
-            # Plot
-            ax.plot(time_hours, values, 'b-', linewidth=1.5)
-            ax.axhline(y=baseline, color='r', linestyle='--', linewidth=1, alpha=0.7)
-            ax.set_title(metric, fontsize=10)
-            ax.set_xlabel('Time (hours)', fontsize=9)
-            ax.set_ylabel('Value', fontsize=9)
-            ax.grid(True, alpha=0.3)
-        
-        # Hide unused subplots
-        for idx in range(n_metrics, len(axes)):
-            axes[idx].axis('off')
-        
-        plt.suptitle(f'All Features Over Time (Single Injection: {dosage} mg)', 
-                     fontsize=16, fontweight='bold', y=0.995)
-        plt.tight_layout()
-        
-        # Save summary graph in graphs folder
-        summary_graph_file = graphs_dir / 'all_features_over_time.png'
-        plt.savefig(summary_graph_file, dpi=150, bbox_inches='tight')
-        plt.close()
-        
-        print(f"  ✓ Generated {graphs_created} individual feature graphs")
-        print(f"  ✓ Generated summary multi-panel graph")
-        print(f"    All graphs saved in: {graphs_dir}")
-        print(f"    Individual graphs: {graphs_created} files")
-        print(f"    Summary graph: all_features_over_time.png")
-        
-    except ImportError:
-        print(f"  ⚠ Warning: matplotlib not available, skipping graph generation")
+        html_path = run_folder / 'plausibility_report.html'
+        write_plausibility_html(
+            html_path,
+            time_series_df,
+            timepoint_cols,
+            drug_name=drug_name,
+            drug_smiles=smiles,
+            age=int(age),
+            sex=str(sex),
+            height_cm=float(height),
+            weight_kg=float(weight),
+            total_seconds=total_seconds,
+            interval_seconds=interval_seconds,
+            dosage_mg=float(dosage),
+            patient_id=1,
+        )
+        print(f"  ✓ Plausibility report saved to: {html_path}")
+        print(f"    Open in browser for summary cards (✓ Plausible / ⚠ Marginal / ✗ Implausible) and time-series charts.")
     except Exception as e:
-        print(f"  ⚠ Warning: Failed to generate graphs: {e}")
+        print(f"  ⚠ Warning: Failed to generate plausibility report: {e}")
     
     # Save metadata
     import json
@@ -953,8 +878,8 @@ def run(smiles: str, drug_name: str = 'Unknown', age: int = 55, sex: str = 'M',
     print(f"Time points: {len(timepoints_seconds)} timepoints (every {interval_seconds} sec up to {total_seconds} sec)")
     print(f"\n📁 Results folder: {run_folder}")
     print("\nSample trajectories (first 5 metrics):")
-    # Show sample columns (baseline, final_delta, and a few timepoints)
-    sample_cols = ['metric_name', 'baseline', 'final_delta']
+    # Show sample columns (human-readable metric, baseline, final_delta, and a few timepoints)
+    sample_cols = ['metric_display_name', 'baseline', 'final_delta'] if 'metric_display_name' in time_series_df.columns else ['metric_name', 'baseline', 'final_delta']
     # Add a few timepoint columns if they exist
     for seconds in timepoints_seconds[:5]:  # Show first 5 timepoints
         col = f'{seconds}sec'

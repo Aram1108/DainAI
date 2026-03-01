@@ -49,6 +49,39 @@ LAB_RESULT_COLS = [
     'LBXSTP', 'LBXSUA', 'LBXTC'
 ]
 
+# Human-readable display names for lab metrics (for saved results and graphs)
+LAB_CODE_TO_DISPLAY_NAME = {
+    'LBDSCASI': 'Sedation Level Score',
+    'LBDSCH': 'Cholinesterase (enzyme that breaks down nerve signals)',
+    'LBDSCR': 'Creatinine (waste product filtered by kidneys)',
+    'LBDTC': 'Total Cholesterol (derived)',
+    'LBXBCD': 'Blood Cadmium (heavy metal toxin level in blood)',
+    'LBXBPB': 'Blood Lead (lead poisoning marker)',
+    'LBXCRP': 'C-Reactive Protein (inflammation marker)',
+    'LBXSAL': 'Albumin (main protein in blood)',
+    'LBXSAS': 'AST (liver enzyme)',
+    'LBXSBU': 'Blood Urea Nitrogen (kidney waste marker)',
+    'LBXSCA': 'Calcium (mineral level in blood)',
+    'LBXSCH': 'Total Cholesterol',
+    'LBXSCL': 'Chloride (salt balance in blood)',
+    'LBXSGB': 'Globulin (immune system proteins in blood)',
+    'LBXSGL': 'Blood Sugar (glucose)',
+    'LBXSGT': 'GGT (liver/bile enzyme)',
+    'LBXSK': 'Potassium (electrolyte)',
+    'LBXSNA': 'Sodium (electrolyte)',
+    'LBXSOS': 'Blood Osmolality (how concentrated the blood is)',
+    'LBXSTP': 'Total Protein in blood',
+    'LBXSUA': 'Uric Acid (waste product from cell breakdown)',
+    'LBXTC': 'Total Cholesterol (alternate measurement)',
+}
+
+
+def get_metric_display_name(code: str) -> str:
+    """Return human-readable name for a lab code, or the code itself if unknown."""
+    base = code.replace('_delta', '').strip()
+    return LAB_CODE_TO_DISPLAY_NAME.get(base, code)
+
+
 QUESTIONNAIRE_COLS = [
     'MCQ160B', 'MCQ160C', 'MCQ160E', 'MCQ160F',
     'MCQ160K', 'MCQ160L', 'MCQ220'
