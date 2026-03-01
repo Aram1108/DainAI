@@ -3,10 +3,10 @@
     "name": "Conditional GAN Patient Generator",
     "version": "1.0",
     "architecture": "Generator: 104\u2192512\u2192512\u2192256\u219237, Discriminator: 41\u2192256\u2192128\u21921",
-    "saved_at": "2025-12-15 19:15:45"
+    "saved_at": "2026-03-01 21:15:28"
   },
   "training_info": {
-    "best_epoch": 40,
+    "best_epoch": 30,
     "total_epochs_trained": 400,
     "batch_size": 128,
     "learning_rate": 0.0002,
@@ -16,10 +16,10 @@
     "early_stopping_patience": 30
   },
   "quality_metrics": {
-    "fid_score": 10.093140117786309,
-    "variance_ratio": 0.4592915424924559,
-    "g_loss_ema": 1.011735275605099,
-    "d_loss_ema": 1.194051899889072
+    "fid_score": 10.372054259803214,
+    "variance_ratio": 0.47550586422779034,
+    "g_loss_ema": 0.8943672988040322,
+    "d_loss_ema": 1.254838679204767
   },
   "data_info": {
     "dataset": "NHANES",

@@ -730,8 +730,14 @@ class PharmacodynamicPredictor:
         print(f"  Lab biomarkers: mean={self.lab_scaler.mean_[:3]}, std={self.lab_scaler.scale_[:3]}")
         print(f"  Drug embeddings: mean={self.drug_scaler.mean_[:3]}, std={self.drug_scaler.scale_[:3]}")
     
-    def save(self, path: str):
-        """Save model and metadata."""
+    def save(self, path: str, trained: bool = False, training_metrics: Optional[dict] = None):
+        """Save model and metadata.
+        
+        Args:
+            path: Path for the .pt checkpoint (metadata.json is saved in the same directory).
+            trained: If True, metadata will record that this is a trained model.
+            training_metrics: Optional dict of metrics to store in metadata (e.g. val_loss, val_r2, best_epoch).
+        """
         save_path = Path(path)
         save_path.parent.mkdir(parents=True, exist_ok=True)
         
@@ -761,13 +767,14 @@ class PharmacodynamicPredictor:
         torch.save(checkpoint, save_path)
         
         # Save metadata
+        now = pd.Timestamp.now().strftime('%Y-%m-%d %H:%M:%S')
         metadata = {
             'model_info': {
                 'name': 'Cross-Attention Pharmacodynamic Predictor',
                 'version': '2.0',
                 'architecture': 'CrossAttentionPredictor',
-                'created_at': pd.Timestamp.now().strftime('%Y-%m-%d %H:%M:%S'),
-                'trained': False,
+                'created_at': now,
+                'trained': trained,
                 'initialization': 'xavier_uniform'
             },
             'architecture_config': {
@@ -789,6 +796,10 @@ class PharmacodynamicPredictor:
             'output_features': self.lab_features,
             'feature_bounds': {k: list(v) for k, v in self.feature_bounds.items()}
         }
+        if trained:
+            metadata['model_info']['saved_at'] = now
+        if training_metrics:
+            metadata['training_metrics'] = {k: (float(v) if isinstance(v, (int, float, np.floating)) else v) for k, v in training_metrics.items()}
         
         metadata_path = save_path.parent / 'metadata.json'
         with open(metadata_path, 'w') as f:

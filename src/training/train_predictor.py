@@ -1066,7 +1066,19 @@ def main():
             best_test_loss = test_loss
             best_epoch = epoch
             patience_counter = 0
-            predictor.save('models/pharmacodynamic_predictor/predictor_novel_drug_best.pt')
+            predictor.save(
+                'models/pharmacodynamic_predictor/predictor_novel_drug_best.pt',
+                trained=True,
+                training_metrics={
+                    'best_epoch': best_epoch,
+                    'val_loss': float(val_loss),
+                    'val_r2': float(val_r2),
+                    'val_smape_pct': float(val_smape),
+                    'test_loss': float(test_loss),
+                    'test_r2': float(test_r2),
+                    'test_smape_pct': float(test_smape),
+                }
+            )
             print(f"  ✓ New best model! Val Loss: {val_loss:.4f} (saved)")
         else:
             patience_counter += 1

@@ -3,9 +3,10 @@
     "name": "Cross-Attention Pharmacodynamic Predictor",
     "version": "2.0",
     "architecture": "CrossAttentionPredictor",
-    "created_at": "2025-12-17 13:17:34",
-    "trained": false,
-    "initialization": "xavier_uniform"
+    "created_at": "2026-03-01 16:40:55",
+    "trained": true,
+    "initialization": "xavier_uniform",
+    "saved_at": "2026-03-01 16:40:55"
   },
   "architecture_config": {
     "patient_dim": 41,
@@ -178,5 +179,14 @@
       100,
       400
     ]
+  },
+  "training_metrics": {
+    "best_epoch": 68.0,
+    "val_loss": 1.2743425011634826,
+    "val_r2": 0.24617435038089752,
+    "val_smape_pct": 54.04466247558594,
+    "test_loss": 1.0120355043469407,
+    "test_r2": 0.007551426067948341,
+    "test_smape_pct": 55.957515716552734
   }
 }
