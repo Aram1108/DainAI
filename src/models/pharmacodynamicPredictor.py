@@ -824,24 +824,45 @@ class PharmacodynamicPredictor:
         if 'model_state_dict' not in checkpoint:
             raise ValueError("Checkpoint missing 'model_state_dict' key")
         
-        if 'config' in checkpoint:
-            config = checkpoint['config']
-            # Validate dimensions match
-            if config.get('patient_dim') != self.patient_dim:
-                raise ValueError(
-                    f"Patient dimension mismatch: checkpoint has {config.get('patient_dim')}, "
-                    f"model expects {self.patient_dim}"
-                )
-            if config.get('drug_dim') != self.drug_dim:
-                raise ValueError(
-                    f"Drug dimension mismatch: checkpoint has {config.get('drug_dim')}, "
-                    f"model expects {self.drug_dim}"
-                )
-            if config.get('lab_dim') != self.lab_dim:
-                raise ValueError(
-                    f"Lab dimension mismatch: checkpoint has {config.get('lab_dim')}, "
-                    f"model expects {self.lab_dim}"
-                )
+        config = checkpoint.get('config') or {}
+        # Validate dimensions match
+        if config.get('patient_dim') is not None and config.get('patient_dim') != self.patient_dim:
+            raise ValueError(
+                f"Patient dimension mismatch: checkpoint has {config.get('patient_dim')}, "
+                f"model expects {self.patient_dim}"
+            )
+        if config.get('drug_dim') is not None and config.get('drug_dim') != self.drug_dim:
+            raise ValueError(
+                f"Drug dimension mismatch: checkpoint has {config.get('drug_dim')}, "
+                f"model expects {self.drug_dim}"
+            )
+        if config.get('lab_dim') is not None and config.get('lab_dim') != self.lab_dim:
+            raise ValueError(
+                f"Lab dimension mismatch: checkpoint has {config.get('lab_dim')}, "
+                f"model expects {self.lab_dim}"
+            )
+        
+        # Rebuild model from checkpoint architecture if it differs (e.g. num_layers 3 vs 4)
+        if config and self.predictor_type == 'cross_attention':
+            ckpt_hidden = config.get('hidden_dim')
+            ckpt_heads = config.get('num_heads')
+            ckpt_layers = config.get('num_layers')
+            if (ckpt_layers is not None and self.model.num_layers != ckpt_layers) or \
+               (ckpt_heads is not None and self.model.num_heads != ckpt_heads) or \
+               (ckpt_hidden is not None and self.model.hidden_dim != ckpt_hidden):
+                h = ckpt_hidden if ckpt_hidden is not None else self.model.hidden_dim
+                nh = ckpt_heads if ckpt_heads is not None else self.model.num_heads
+                nl = ckpt_layers if ckpt_layers is not None else self.model.num_layers
+                self.model = CrossAttentionPredictor(
+                    patient_dim=self.patient_dim,
+                    drug_dim=self.drug_dim,
+                    hidden_dim=h,
+                    num_heads=nh,
+                    num_layers=nl,
+                    dropout=0.1,
+                    lab_biomarker_dim=self.lab_dim
+                ).to(self.device)
+                self.model.eval()
         
         # Load state dict
         try:

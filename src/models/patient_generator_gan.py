@@ -26,6 +26,7 @@ from utils.lab_reference_ranges import (
 )
 
 
+
 # ============================================================
 # FEATURE DEFINITIONS
 # ============================================================
@@ -253,14 +254,36 @@ class PatientGenerator:
         print(f"  - Questionnaire: {len(QUESTIONNAIRE_COLS)}")
         print(f"  - Total to generate: {len(self.feature_cols)}")
         
+        # Helper: force a column to float64 (handles StringDtype, object, int, etc.)
+        def _to_float64(col_name, string_map=None):
+            col = self.df[col_name]
+            if pd.api.types.is_numeric_dtype(col):
+                self.df[col_name] = col.astype(np.float64)
+            else:
+                if string_map:
+                    self.df[col_name] = col.astype(str).str.strip().map(string_map)
+                else:
+                    self.df[col_name] = pd.to_numeric(col.astype(str).str.strip(), errors='coerce')
+                med = self.df[col_name].median() if self.df[col_name].notna().any() else 0
+                self.df[col_name] = self.df[col_name].fillna(med).astype(np.float64)
+        
         # Encode SEX to numeric (M=0, F=1)
-        sex_map = {'M': 0.0, 'F': 1.0}
-        if self.df['SEX'].dtype == 'object':
-            self.df['SEX'] = self.df['SEX'].map(sex_map)
+        if 'SEX' in self.df.columns:
+            _to_float64('SEX', string_map={'M': 0.0, 'F': 1.0, 'Male': 0.0, 'Female': 1.0})
+        
+        # Force all condition columns to numeric
+        for c in self.condition_cols:
+            if c in self.df.columns:
+                _to_float64(c)
         
         # Calculate normalization statistics
         self.condition_mean = self.df[self.condition_cols].mean()
         self.condition_std = self.df[self.condition_cols].std().replace(0, 1.0)
+        
+        # Force all feature columns to numeric
+        for c in self.feature_cols:
+            if c in self.df.columns:
+                _to_float64(c)
         
         self.feature_mean = self.df[self.feature_cols].mean()
         self.feature_std = self.df[self.feature_cols].std().replace(0, 1.0)
@@ -791,7 +814,7 @@ class PatientGenerator:
                 generated_features[:, i] = np.maximum(generated_features[:, i], 0.01)
             
             # Clamp all lab values to physiological limits
-            if col_name in LAB_RANGES and LAB_RANGES[col_name]['physiological_limit']:
+            if col_name in LAB_RANGES and LAB_RANGES[col_name].get('physiological_limit'):
                 min_phys, max_phys = LAB_RANGES[col_name]['physiological_limit']
                 generated_features[:, i] = np.clip(generated_features[:, i], min_phys, max_phys)
         

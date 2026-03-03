@@ -28,7 +28,7 @@ const DRUG_DATABASE = [
         volumeL: 10,
         primaryEffect: { lab: 'LBXCRP', EC50: 25, Emax: 1.0, direction: 'decrease' },
         secondaryEffects: {
-            LBDSCR: { EC50: 30, Emax: 0.15, direction: 'increase' },
+            LBDSCR: { EC50: 30, Emax: 13, direction: 'increase' },
         }
     },
     {
@@ -54,7 +54,7 @@ const DRUG_DATABASE = [
         secondaryEffects: {
             LBXSNA: { EC50: 2, Emax: 3, direction: 'decrease' },
             LBXSCA: { EC50: 2, Emax: 0.3, direction: 'increase' },
-            LBDSCR: { EC50: 2, Emax: 0.2, direction: 'increase' },
+            LBDSCR: { EC50: 2, Emax: 18, direction: 'increase' },
             LBXSBU: { EC50: 2, Emax: 4, direction: 'increase' },
         }
     },
@@ -90,7 +90,7 @@ const DRUG_DATABASE = [
         primaryEffect: { lab: 'LBXSGL', EC50: 5, Emax: 40, direction: 'decrease' },
         secondaryEffects: {
             LBXTC: { EC50: 6, Emax: 15, direction: 'decrease' },
-            LBDSCR: { EC50: 8, Emax: 0.1, direction: 'increase' },
+            LBDSCR: { EC50: 8, Emax: 9, direction: 'increase' },
         }
     },
     {
@@ -102,7 +102,7 @@ const DRUG_DATABASE = [
         volumeL: 380,
         primaryEffect: { lab: 'LBXTC', EC50: 0.03, Emax: 60, direction: 'decrease' },
         secondaryEffects: {
-            LBDSCH: { EC50: 0.03, Emax: 10, direction: 'increase' },
+            LBDSCH: { EC50: 0.03, Emax: 0.26, direction: 'increase' },
             LBXSAS: { EC50: 0.02, Emax: 8, direction: 'increase' },
             LBXSGT: { EC50: 0.02, Emax: 6, direction: 'increase' },
         }
@@ -116,7 +116,7 @@ const DRUG_DATABASE = [
         volumeL: 120,
         primaryEffect: { lab: 'LBXSK', EC50: 0.05, Emax: 0.4, direction: 'increase' },
         secondaryEffects: {
-            LBDSCR: { EC50: 0.06, Emax: 0.15, direction: 'increase' },
+            LBDSCR: { EC50: 0.06, Emax: 13, direction: 'increase' },
         }
     },
     {
@@ -139,9 +139,9 @@ const DRUG_DATABASE = [
 // ============================================================
 const LAB_DEFINITIONS = {
     LBDSCASI: { name: 'Sedation Level Score', unit: '', normal: [0, 3] },
-    LBDSCH: { name: 'HDL Cholesterol', unit: 'mg/dL', normal: [40, 60], betterDir: 'increase' },
-    LBDSCR: { name: 'Creatinine (kidney)', unit: 'mg/dL', normal: [0.6, 1.2] },
-    LBDTC: { name: 'Total Cholesterol (derived)', unit: 'mg/dL', normal: [80, 200] },
+    LBDSCH: { name: 'Serum Cholesterol (SI)', unit: 'mmol/L', normal: [3.6, 5.2] },
+    LBDSCR: { name: 'Creatinine (kidney)', unit: 'μmol/L', normal: [53, 115] },
+    LBDTC: { name: 'Total Cholesterol (SI)', unit: 'mmol/L', normal: [3.6, 5.2] },
     LBXBCD: { name: 'Blood Cadmium', unit: 'µg/L', normal: [0.1, 1.0] },
     LBXBPB: { name: 'Blood Lead', unit: 'µg/dL', normal: [0, 5] },
     LBXCRP: { name: 'C-Reactive Protein (inflammation)', unit: 'mg/L', normal: [0, 3], betterDir: 'decrease' },
@@ -247,8 +247,8 @@ function generateBaselineLabs(age, sex, drugName) {
     labs.LBXTC = randUniform(160, 220);
     labs.LBXSCH = randUniform(160, 220);
     labs.LBXSCL = randUniform(98, 104);
-    labs.LBDSCH = isMale ? randUniform(40, 60) : randUniform(50, 70);
-    labs.LBDTC = randUniform(80, 180);
+    labs.LBDSCH = isMale ? randUniform(3.8, 5.5) : randUniform(4.0, 6.0);
+    labs.LBDTC = randUniform(3.8, 5.5);
 
     // Liver function
     labs.LBXSGT = randUniform(15, 40);
@@ -258,7 +258,7 @@ function generateBaselineLabs(age, sex, drugName) {
     labs.LBXSTP = randUniform(6.5, 7.8);
 
     // Kidney function
-    labs.LBDSCR = isMale ? randUniform(0.8, 1.2) : randUniform(0.6, 1.0);
+    labs.LBDSCR = isMale ? randUniform(70, 106) : randUniform(53, 88);
     labs.LBXSUA = isMale ? randUniform(4.5, 6.5) : randUniform(3.5, 5.5);
     labs.LBXSBU = randUniform(10, 18);
 
@@ -270,7 +270,7 @@ function generateBaselineLabs(age, sex, drugName) {
 
     // Age adjustments
     if (age > 60) {
-        labs.LBDSCR *= 1.1;
+        labs.LBDSCR *= 1.1; // age >60 increases creatinine
         labs.LBXSBU *= 1.1;
         labs.LBXTC *= 1.05;
         labs.LBXCRP *= 1.2;
@@ -513,17 +513,22 @@ let chartInstances = [];
 let simulationMode = 'single'; // 'single' | 'cohort'
 let cohortResult = null;
 
+const IS_SIMULATE_PAGE = window.location.pathname.includes('simulate');
+
 document.addEventListener('DOMContentLoaded', () => {
     initParticles();
-    initDrugSelector();
-    initFormControls();
-    initFormSubmission();
-    initFilterTabs();
 
-    document.getElementById('btn-new-sim').addEventListener('click', goToInput);
-    const downloadBtn = document.getElementById('btn-download-zip');
-    if (downloadBtn) {
-        downloadBtn.addEventListener('click', downloadSimulationZip);
+    if (IS_SIMULATE_PAGE) {
+        initFilterTabs();
+        const newSimBtn = document.getElementById('btn-new-sim');
+        if (newSimBtn) newSimBtn.addEventListener('click', () => { window.location.href = '/'; });
+        const downloadBtn = document.getElementById('btn-download-zip');
+        if (downloadBtn) downloadBtn.addEventListener('click', downloadSimulationZip);
+        autoStartSimulation();
+    } else {
+        initDrugSelector();
+        initFormControls();
+        initFormSubmission();
     }
 });
 
@@ -754,6 +759,102 @@ function updateBMI() {
 }
 
 // ============================================================
+// API: AI BACKEND (GAN + Drug Encoder + PD + Time Series)
+// ============================================================
+const API_BASE = ''; // same origin when served by uvicorn
+let _abortController = null; // for cancelling cohort streams
+
+async function callApiSimulate(patient, drug, dosage, durationSec, patientCount) {
+    const totalHours = durationSec / 3600;
+    const intervalSeconds = 30;
+    const body = {
+        age: patient.age,
+        sex: patient.sex,
+        height: patient.height,
+        weight: patient.weight,
+        smiles: drug.smiles,
+        drug_name: drug.name || 'Unknown',
+        dosage,
+        total_hours: totalHours,
+        interval_seconds: intervalSeconds,
+        patient_count: patientCount,
+    };
+    if (drug.volumeL != null) body.volume_l = drug.volumeL;
+    if (drug.halfLifeMin != null) body.half_life_min = drug.halfLifeMin;
+
+    const res = await fetch(`${API_BASE}/api/simulate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+    });
+    if (!res.ok) {
+        const err = await res.json().catch(() => ({ detail: res.statusText }));
+        throw new Error(err.detail || `API error ${res.status}`);
+    }
+    return res.json();
+}
+
+async function callApiSimulateStream(patient, drug, dosage, durationSec, patientCount, onProgress) {
+    const totalHours = durationSec / 3600;
+    const body = {
+        age: patient.age,
+        sex: patient.sex,
+        height: patient.height,
+        weight: patient.weight,
+        smiles: drug.smiles,
+        drug_name: drug.name || 'Unknown',
+        dosage,
+        total_hours: totalHours,
+        interval_seconds: 30,
+        patient_count: patientCount,
+    };
+    if (drug.volumeL != null) body.volume_l = drug.volumeL;
+    if (drug.halfLifeMin != null) body.half_life_min = drug.halfLifeMin;
+
+    _abortController = new AbortController();
+    let lastResult = null;
+
+    const res = await fetch(`${API_BASE}/api/simulate/stream`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+        signal: _abortController.signal,
+    });
+    if (!res.ok) {
+        const err = await res.json().catch(() => ({ detail: res.statusText }));
+        throw new Error(err.detail || `API error ${res.status}`);
+    }
+
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = '';
+
+    try {
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            buffer += decoder.decode(value, { stream: true });
+            const lines = buffer.split('\n');
+            buffer = lines.pop();
+            for (const line of lines) {
+                if (!line.startsWith('data: ')) continue;
+                const payload = JSON.parse(line.slice(6));
+                if (payload.type === 'progress' && onProgress) {
+                    onProgress(payload.done, payload.total);
+                } else if (payload.type === 'result') {
+                    lastResult = payload.data;
+                }
+            }
+        }
+    } catch (err) {
+        if (err.name !== 'AbortError') throw err;
+    }
+
+    _abortController = null;
+    return lastResult;
+}
+
+// ============================================================
 // FORM SUBMISSION & SIMULATION
 // ============================================================
 function initFormSubmission() {
@@ -794,11 +895,9 @@ function initFormSubmission() {
 
         const patient = { age, sex, height, weight, bmi: weight / Math.pow(height / 100, 2) };
 
-        // Switch to loading screen
-        await switchScreen('screen-input', 'screen-loading');
-
-        // Run loading animation with simulation
-        await runLoadingAnimation(patient, drug, dosage, durationSec, patientCount);
+        // Store params and navigate to /simulate
+        sessionStorage.setItem('simParams', JSON.stringify({ patient, drug, dosage, durationSec, patientCount }));
+        window.location.href = '/simulate.html';
     });
 }
 
@@ -831,54 +930,131 @@ async function runLoadingAnimation(patient, drug, dosage, durationSec, patientCo
     const progressBar = document.getElementById('progress-bar');
     const loadingTitle = document.getElementById('loading-title');
     const loadingSub = document.getElementById('loading-subtitle');
+    const cohortProgressEl = document.getElementById('cohort-progress');
+    const cohortProgressText = document.getElementById('cohort-progress-text');
+    const cancelBtn = document.getElementById('cancel-simulation-btn');
 
     // Reset
     steps.forEach(s => { s.classList.remove('active', 'done'); });
     progressBar.style.width = '0%';
+    cohortProgressEl.style.display = 'none';
+    cancelBtn.style.display = 'none';
 
     const isCohort = patientCount > 1;
 
-    const stepData = [
-        {
-            title: isCohort ? 'Generating Synthetic Cohort' : 'Generating Synthetic Patient',
-            sub: isCohort
-                ? `Creating ${patientCount} diverse virtual patients…`
-                : `Creating ${patient.age}yo ${patient.sex === 'M' ? 'male' : 'female'} profile…`,
-            duration: 600
-        },
-        { title: 'Encoding Drug Molecule', sub: `Processing SMILES: ${drug.smiles.substring(0, 40)}…`, duration: 500 },
-        { title: 'Computing PK/PD Response', sub: 'Running pharmacokinetic models…', duration: 800 },
-        { title: 'Building Time Series', sub: `Generating ${Math.floor(durationSec / 30)} data points…`, duration: 700 },
-    ];
+    if (isCohort) {
+        // --- STREAMING COHORT ---
+        loadingTitle.textContent = 'Generating Synthetic Cohort';
+        loadingSub.textContent = `Processing 0 / ${patientCount} patients…`;
+        progressBar.style.width = '0%';
+        cohortProgressEl.style.display = 'block';
+        cohortProgressText.textContent = `0 / ${patientCount} patients`;
+        cancelBtn.style.display = 'block';
+        steps[0].classList.add('active');
 
-    for (let i = 0; i < stepData.length; i++) {
-        steps[i].classList.add('active');
-        loadingTitle.textContent = stepData[i].title;
-        loadingSub.textContent = stepData[i].sub;
-        progressBar.style.width = `${((i + 0.5) / stepData.length) * 100}%`;
+        // Wire cancel button
+        const onCancel = () => {
+            if (_abortController) _abortController.abort();
+        };
+        cancelBtn.addEventListener('click', onCancel, { once: true });
 
-        // Actually run simulation on last step
-        if (i === stepData.length - 1) {
-            await sleep(200);
-            if (isCohort) {
-                simulationMode = 'cohort';
-                cohortResult = runCohortSimulation(patientCount, drug, dosage, durationSec);
-                simulationResult = null;
-            } else {
-                simulationMode = 'single';
-                simulationResult = runSimulation(patient, drug, dosage, durationSec, 30);
-                simulationResult.patient = patient;
-                simulationResult.drug = drug;
-                simulationResult.dosage = dosage;
-                simulationResult.durationSec = durationSec;
-                cohortResult = null;
+        const onProgress = (done, total) => {
+            const pct = Math.round((done / total) * 100);
+            progressBar.style.width = `${pct}%`;
+            cohortProgressText.textContent = `${done} / ${total} patients`;
+            loadingSub.textContent = `Processing ${done} / ${total} patients…`;
+
+            // Animate step indicators based on progress
+            const stepThresholds = [0.01, 0.25, 0.5, 0.75];
+            const ratio = done / total;
+            for (let i = 0; i < steps.length; i++) {
+                if (ratio >= stepThresholds[i]) {
+                    steps[i].classList.remove('active');
+                    steps[i].classList.add('done');
+                    if (i + 1 < steps.length && ratio < (stepThresholds[i + 1] || 1)) {
+                        steps[i + 1].classList.add('active');
+                    }
+                }
             }
+        };
+
+        let apiResult = null;
+        try {
+            apiResult = await callApiSimulateStream(patient, drug, dosage, durationSec, patientCount, onProgress);
+        } catch (err) {
+            console.warn('AI API stream failed, falling back to local:', err);
         }
 
-        await sleep(stepData[i].duration);
-        steps[i].classList.remove('active');
-        steps[i].classList.add('done');
-        progressBar.style.width = `${((i + 1) / stepData.length) * 100}%`;
+        cancelBtn.removeEventListener('click', onCancel);
+        cancelBtn.style.display = 'none';
+        cohortProgressEl.style.display = 'none';
+
+        if (apiResult && apiResult.perPatient && apiResult.perPatient.length > 0) {
+            simulationMode = 'cohort';
+            cohortResult = apiResult;
+            cohortResult.baseDrug = drug;
+            simulationResult = null;
+            const processed = apiResult.perPatient.length;
+            if (processed < patientCount) {
+                showToast(`Stopped early — showing results for ${processed} / ${patientCount} patients.`, 'warning');
+            }
+        } else {
+            showToast('AI server not running — using local simulation.', 'warning');
+            simulationMode = 'cohort';
+            cohortResult = runCohortSimulation(patientCount, drug, dosage, durationSec);
+            simulationResult = null;
+        }
+
+        steps.forEach(s => { s.classList.remove('active'); s.classList.add('done'); });
+        progressBar.style.width = '100%';
+    } else {
+        // --- SINGLE PATIENT (unchanged) ---
+        const stepData = [
+            {
+                title: 'Generating Synthetic Patient',
+                sub: `Creating ${patient.age}yo ${patient.sex === 'M' ? 'male' : 'female'} profile…`,
+                duration: 600
+            },
+            { title: 'Encoding Drug Molecule', sub: `Processing SMILES: ${drug.smiles.substring(0, 40)}…`, duration: 500 },
+            { title: 'Computing PK/PD Response', sub: 'Running pharmacokinetic models…', duration: 800 },
+            { title: 'Building Time Series', sub: `Generating ${Math.floor(durationSec / 30)} data points…`, duration: 700 },
+        ];
+
+        for (let i = 0; i < stepData.length; i++) {
+            steps[i].classList.add('active');
+            loadingTitle.textContent = stepData[i].title;
+            loadingSub.textContent = stepData[i].sub;
+            progressBar.style.width = `${((i + 0.5) / stepData.length) * 100}%`;
+
+            if (i === stepData.length - 1) {
+                await sleep(200);
+                try {
+                    const apiResult = await callApiSimulate(patient, drug, dosage, durationSec, 1);
+                    simulationMode = 'single';
+                    simulationResult = apiResult;
+                    simulationResult.patient = patient;
+                    simulationResult.drug = drug;
+                    simulationResult.dosage = dosage;
+                    simulationResult.durationSec = durationSec;
+                    cohortResult = null;
+                } catch (err) {
+                    console.warn('AI API unavailable, using local PK/PD model:', err);
+                    showToast('AI server not running — using local simulation.', 'warning');
+                    simulationMode = 'single';
+                    simulationResult = runSimulation(patient, drug, dosage, durationSec, 30);
+                    simulationResult.patient = patient;
+                    simulationResult.drug = drug;
+                    simulationResult.dosage = dosage;
+                    simulationResult.durationSec = durationSec;
+                    cohortResult = null;
+                }
+            }
+
+            await sleep(stepData[i].duration);
+            steps[i].classList.remove('active');
+            steps[i].classList.add('done');
+            progressBar.style.width = `${((i + 1) / stepData.length) * 100}%`;
+        }
     }
 
     await sleep(400);
@@ -897,25 +1073,25 @@ async function switchScreen(fromId, toId) {
     const fromScreen = document.getElementById(fromId);
     const toScreen = document.getElementById(toId);
 
-    fromScreen.classList.add('fade-out');
-    await sleep(300);
-    fromScreen.classList.remove('active', 'fade-out');
-
-    toScreen.classList.add('active');
+    if (fromScreen) {
+        fromScreen.classList.add('fade-out');
+        await sleep(300);
+        fromScreen.classList.remove('active', 'fade-out');
+    }
+    if (toScreen) toScreen.classList.add('active');
 }
 
-function goToInput() {
-    // Destroy existing charts
-    chartInstances.forEach(c => c.destroy());
-    chartInstances = [];
-
-    simulationMode = 'single';
-    simulationResult = null;
-    cohortResult = null;
-
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active', 'fade-out'));
-    document.getElementById('screen-input').classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+// ============================================================
+// AUTO-START (runs on /simulate page load)
+// ============================================================
+async function autoStartSimulation() {
+    const raw = sessionStorage.getItem('simParams');
+    if (!raw) {
+        window.location.href = '/';
+        return;
+    }
+    const { patient, drug, dosage, durationSec, patientCount } = JSON.parse(raw);
+    await runLoadingAnimation(patient, drug, dosage, durationSec, patientCount);
 }
 
 // ============================================================
@@ -961,36 +1137,11 @@ function classifyMetricsForSimulation(times, series, drug) {
         const isSecondary = drug.secondaryEffects?.[labCode] !== undefined;
         const isDrugTarget = isPrimary || isSecondary;
 
-        // 1) True pathological = outside normal range (dangerous)
         if (outOfNormal) {
             status = 'worsened';
             statusReason = belowNormal ? 'Below normal' : 'Above normal';
         } else {
-            // 2) Inside normal range: only distinguish improved vs stable based on direction
-            const bigEnoughChange = Math.abs(deltaPercent) > threshold;
-
-            if (isDrugTarget && bigEnoughChange) {
-                const effectConfig = isPrimary ? drug.primaryEffect : drug.secondaryEffects[labCode];
-                const expectedDir = effectConfig.direction;
-
-                const movedDown = delta < 0;
-                const movedUp = delta > 0;
-
-                if (expectedDir === 'decrease' && movedDown) {
-                    // Drug should lower this marker and it did, but stayed normal.
-                    status = 'improved';
-                } else if (expectedDir === 'increase' && movedUp) {
-                    // Drug should raise this marker and it did, but stayed normal.
-                    status = 'improved';
-                } else {
-                    // Moved opposite to drug effect, but still in a safe range.
-                    status = 'stable';
-                    // We deliberately do NOT treat this as pathological anymore.
-                }
-            } else {
-                // Not a drug target or change is tiny → just stable while in normal range.
-                status = 'stable';
-            }
+            status = 'improved';
         }
 
         if (status === 'improved') improvedCount++;
@@ -1523,7 +1674,7 @@ function renderMetricCards(metrics, times) {
 }
 
 function formatValue(value, labCode) {
-    if (['LBDSCR'].includes(labCode)) return value.toFixed(2);
+    if (['LBDSCR'].includes(labCode)) return value.toFixed(1);
     if (['LBXSK', 'LBXSCA', 'LBXSAL', 'LBXSGB', 'LBXSTP', 'LBXCRP', 'LBXBCD', 'LBXBPB', 'LBXSUA', 'LBDSCASI'].includes(labCode))
         return value.toFixed(1);
     return Math.round(value).toString();
@@ -1646,7 +1797,6 @@ function renderCohortCharts({ patients, perPatient, labStats, summary, ageInsigh
     }
 
     renderCohortPathologyByGroup(section, labStats);
-    renderCohortInstabilityHeatmap(section, perPatient, labStats);
     renderCohortFeatureRiskRanking(section, labStats);
 }
 
@@ -1942,9 +2092,9 @@ function renderCohortPathologyByGroup(section, labStats) {
                 <div class="chart-subtitle">Fraction of all lab markers that end pathological in each subgroup (0–100%)</div>
             </div>
         </div>
-        <div class="chart-container" style="height: 260px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
-            <canvas id="cohort-age-bars"></canvas>
-            <canvas id="cohort-sex-bars"></canvas>
+        <div class="chart-container" style="height: 260px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; overflow: hidden;">
+            <div style="position:relative; min-width:0;"><canvas id="cohort-age-bars"></canvas></div>
+            <div style="position:relative; min-width:0;"><canvas id="cohort-sex-bars"></canvas></div>
         </div>
     `;
     section.appendChild(card);

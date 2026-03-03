@@ -52,9 +52,9 @@ LAB_RESULT_COLS = [
 # Human-readable display names for lab metrics (for saved results and graphs)
 LAB_CODE_TO_DISPLAY_NAME = {
     'LBDSCASI': 'Sedation Level Score',
-    'LBDSCH': 'Cholinesterase (enzyme that breaks down nerve signals)',
-    'LBDSCR': 'Creatinine (waste product filtered by kidneys)',
-    'LBDTC': 'Total Cholesterol (derived)',
+    'LBDSCH': 'Serum Cholesterol – SI (mmol/L)',
+    'LBDSCR': 'Creatinine – SI (μmol/L)',
+    'LBDTC': 'Total Cholesterol – SI (mmol/L)',
     'LBXBCD': 'Blood Cadmium (heavy metal toxin level in blood)',
     'LBXBPB': 'Blood Lead (lead poisoning marker)',
     'LBXCRP': 'C-Reactive Protein (inflammation marker)',

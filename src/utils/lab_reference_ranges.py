@@ -63,13 +63,13 @@ LAB_RANGES = {
     
     # ===== KIDNEY FUNCTION TESTS =====
     "LBDSCR": {
-        "name": "Creatinine",
-        "unit": "mg/dL",
-        "normal_range": (0.6, 1.4),
-        "clinical_range": (0.3, 15.0),
-        "physiological_limit": (0.2, 30),
-        "sex_difference": "Males: 0.7-1.3, Females: 0.6-1.1",
-        "notes": "Higher in muscular people. Dialysis patients: 5-15. Acute kidney failure: 10-30."
+        "name": "Creatinine (SI)",
+        "unit": "μmol/L",
+        "normal_range": (53, 115),
+        "clinical_range": (27, 1330),
+        "physiological_limit": (18, 2650),
+        "sex_difference": "Males: 62-115, Females: 53-97",
+        "notes": "SI version of creatinine. Divide by 88.4 for mg/dL. Dialysis patients: 440-1330. Acute kidney failure: 880-2650."
     },
     
     "LBXSBU": {
@@ -155,13 +155,13 @@ LAB_RANGES = {
     },
     
     "LBDSCH": {
-        "name": "HDL Cholesterol (Good)",
-        "unit": "mg/dL",
-        "normal_range": (40, 80),
-        "clinical_range": (20, 120),
-        "physiological_limit": (15, 150),
-        "sex_difference": "Females: 50-80, Males: 40-60",
-        "notes": "Higher is better. <40 (M) or <50 (F) = risk. >100 rare but protective."
+        "name": "Serum Cholesterol (SI)",
+        "unit": "mmol/L",
+        "normal_range": (3.6, 5.2),
+        "clinical_range": (2.1, 10.3),
+        "physiological_limit": (1.5, 15.5),
+        "sex_difference": "Women slightly higher after menopause",
+        "notes": "SI version of LBXSCH. Desirable <5.2. High 5.2-6.2. Very high >6.2. Multiply by 38.67 for mg/dL."
     },
     
     "LBDSCL": {
@@ -185,13 +185,13 @@ LAB_RANGES = {
     },
     
     "LBDTC": {
-        "name": "Triglycerides",
-        "unit": "mg/dL",
-        "normal_range": (40, 150),
-        "clinical_range": (20, 1000),
-        "physiological_limit": (10, 5000),
-        "sex_difference": "Males higher",
-        "notes": "High 200-499. Very high >500. Pancreatitis risk >1000. Extreme: 2000-5000."
+        "name": "Total Cholesterol (SI)",
+        "unit": "mmol/L",
+        "normal_range": (3.6, 5.2),
+        "clinical_range": (2.1, 10.3),
+        "physiological_limit": (1.5, 15.5),
+        "sex_difference": "Women slightly higher after menopause",
+        "notes": "SI version of LBXTC. Desirable <5.2. High 5.2-6.2. Multiply by 38.67 for mg/dL."
     },
     
     # ===== GLUCOSE & METABOLIC =====

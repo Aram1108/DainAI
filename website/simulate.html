@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAIN AI — Simulation Results</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- SCREEN: LOADING / PROCESSING -->
+    <section id="screen-loading" class="screen active">
+        <div class="loading-container">
+            <div class="dna-helix" id="dna-helix">
+                <div class="helix-strand strand-left"></div>
+                <div class="helix-strand strand-right"></div>
+                <div class="helix-rungs">
+                    <div class="rung" style="--i:0"></div>
+                    <div class="rung" style="--i:1"></div>
+                    <div class="rung" style="--i:2"></div>
+                    <div class="rung" style="--i:3"></div>
+                    <div class="rung" style="--i:4"></div>
+                    <div class="rung" style="--i:5"></div>
+                    <div class="rung" style="--i:6"></div>
+                    <div class="rung" style="--i:7"></div>
+                </div>
+            </div>
+
+            <div class="loading-text">
+                <h2 id="loading-title">Generating Synthetic Patient</h2>
+                <p id="loading-subtitle">Initializing pharmacokinetic models…</p>
+            </div>
+
+            <div class="progress-steps" id="progress-steps">
+                <div class="progress-step active" data-step="1">
+                    <div class="step-indicator"><div class="step-dot"></div></div>
+                    <span>Generating Patient Profile</span>
+                </div>
+                <div class="progress-step" data-step="2">
+                    <div class="step-indicator"><div class="step-dot"></div></div>
+                    <span>Encoding Drug Molecule</span>
+                </div>
+                <div class="progress-step" data-step="3">
+                    <div class="step-indicator"><div class="step-dot"></div></div>
+                    <span>Computing PK/PD Response</span>
+                </div>
+                <div class="progress-step" data-step="4">
+                    <div class="step-indicator"><div class="step-dot"></div></div>
+                    <span>Building Time Series</span>
+                </div>
+            </div>
+
+            <div id="cohort-progress" style="display:none; text-align:center; margin-top:1rem;">
+                <span id="cohort-progress-text" style="color:var(--text-secondary); font-size:0.95rem;"></span>
+            </div>
+
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+
+            <button id="cancel-simulation-btn" style="display:none; margin:1.2rem auto 0; padding:0.6rem 2rem;
+                background:var(--status-worsened); color:#fff; border:none; border-radius:var(--radius-md);
+                cursor:pointer; font-size:0.9rem; font-weight:600; transition:opacity 0.2s;"
+                onmouseenter="this.style.opacity='0.85'" onmouseleave="this.style.opacity='1'">
+                Stop &amp; Show Results
+            </button>
+        </div>
+    </section>
+
+    <!-- SCREEN: RESULTS DASHBOARD -->
+    <section id="screen-results" class="screen">
+        <div class="container results-container">
+            <header class="results-header">
+                <div class="results-title-area">
+                    <h2>Simulation Results</h2>
+                    <div class="results-actions">
+                        <button class="btn-secondary" id="btn-download-zip">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                            Download Data (.zip)
+                        </button>
+                        <button class="btn-secondary" id="btn-new-sim">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+                            New Simulation
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <div class="summary-row" id="summary-row">
+                <div class="summary-card glass-card">
+                    <div class="summary-icon patient-summary-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="summary-content">
+                        <h3>Patient</h3>
+                        <p id="summary-patient">45yo Male, BMI 26.1</p>
+                    </div>
+                </div>
+                <div class="summary-card glass-card">
+                    <div class="summary-icon drug-summary-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"/></svg>
+                    </div>
+                    <div class="summary-content">
+                        <h3>Drug</h3>
+                        <p id="summary-drug">Aspirin, 10 mg</p>
+                    </div>
+                </div>
+                <div class="summary-card glass-card improved-card">
+                    <div class="summary-icon improved-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                    </div>
+                    <div class="summary-content">
+                        <h3>Physiological</h3>
+                        <p id="summary-improved">0 markers</p>
+                    </div>
+                </div>
+                <div class="summary-card glass-card worsened-card">
+                    <div class="summary-icon worsened-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>
+                    </div>
+                    <div class="summary-content">
+                        <h3>Pathological</h3>
+                        <p id="summary-worsened">0 markers</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-tabs" id="filter-tabs">
+                <button class="filter-tab active" data-filter="all">All Markers</button>
+                <button class="filter-tab" data-filter="improved">
+                    <span class="status-dot status-improved"></span> Physiological
+                </button>
+                <button class="filter-tab" data-filter="worsened">
+                    <span class="status-dot status-worsened"></span> Pathological
+                </button>
+            </div>
+
+            <div class="cohort-insights" id="cohort-insights" style="display:none">
+                <div class="glass-card cohort-card">
+                    <h3 class="cohort-title">Cohort Insights by Age</h3>
+                    <div class="cohort-insights-grid" id="cohort-age-insights"></div>
+                </div>
+                <div class="glass-card cohort-card">
+                    <h3 class="cohort-title">Cohort Insights by Sex</h3>
+                    <div class="cohort-insights-grid" id="cohort-sex-insights"></div>
+                </div>
+                <div class="glass-card cohort-card">
+                    <h3 class="cohort-title">Most Unstable Features</h3>
+                    <div class="cohort-insights-grid" id="cohort-feature-instability"></div>
+                </div>
+            </div>
+
+            <div class="metrics-grid" id="metrics-grid"></div>
+            <div class="charts-section" id="charts-section"></div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="timeseries-modal-backdrop" class="modal-backdrop" style="display:none">
+        <div class="modal-card">
+            <h3 class="modal-title">Include Time Series in ZIP?</h3>
+            <p class="modal-body">
+                Exporting per‑patient time series for a large cohort can create a big ZIP and may take longer.
+                Do you want to include all time series files in this download?
+            </p>
+            <div class="modal-actions">
+                <button type="button" class="btn-secondary" id="timeseries-modal-skip">Skip Time Series</button>
+                <button type="button" class="btn-primary" id="timeseries-modal-include">Include Time Series</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-root" class="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -29,10 +29,10 @@
     --border-glow: rgba(0, 229, 255, 0.25);
     
     --status-improved: #10b981;
-    --status-stable: #f59e0b;
+    --status-stable: #10b981;
     --status-worsened: #ef4444;
     --status-improved-bg: rgba(16, 185, 129, 0.12);
-    --status-stable-bg: rgba(245, 158, 11, 0.12);
+    --status-stable-bg: rgba(16, 185, 129, 0.12);
     --status-worsened-bg: rgba(239, 68, 68, 0.12);
     
     /* Spacing */

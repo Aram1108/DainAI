@@ -288,7 +288,7 @@ class PharmacologyConstraintLoss(nn.Module):
         # Define critical bounds (indices in LAB_BIOMARKER_FEATURES)
         bounds = {
             14: (50, 300),    # Glucose (LBXSGL)
-            2: (20, 300),     # Creatinine (LBDSCR)
+            2: (18, 2650),    # Creatinine (LBDSCR) in μmol/L
             16: (2.5, 6.5),   # Potassium (LBXSK)
             17: (130, 150),   # Sodium (LBXSNA)
             10: (7.0, 12.0),  # Calcium (LBXSCA)
