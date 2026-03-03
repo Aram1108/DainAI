@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAIN AI — Artificial Patient Data & Drug Simulation</title>
+    <meta name="description" content="DAIN AI creates synthetic patient data and predicts how medications affect patient health markers over time using advanced pharmacokinetic modeling.">
+    <meta property="og:title" content="DAIN AI — Drug Simulation Dashboard">
+    <meta property="og:description" content="Create artificial patient data and predict medication effects with interactive time series visualization.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Animated Background Particles -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- ============================================================ -->
+    <!-- SCREEN 1: INPUT FORM                                         -->
+    <!-- ============================================================ -->
+    <section id="screen-input" class="screen active">
+        <div class="container">
+            <!-- Header -->
+            <header class="app-header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <circle cx="20" cy="20" r="18" stroke="url(#logo-grad)" stroke-width="2.5" fill="none"/>
+                            <path d="M12 20 Q16 10 20 20 Q24 30 28 20" stroke="url(#logo-grad)" stroke-width="2" fill="none" stroke-linecap="round"/>
+                            <path d="M12 20 Q16 28 20 20 Q24 12 28 20" stroke="url(#logo-grad2)" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/>
+                            <circle cx="20" cy="20" r="3" fill="url(#logo-grad)"/>
+                            <defs>
+                                <linearGradient id="logo-grad" x1="0" y1="0" x2="40" y2="40">
+                                    <stop offset="0%" stop-color="#00E5FF"/>
+                                    <stop offset="100%" stop-color="#7C4DFF"/>
+                                </linearGradient>
+                                <linearGradient id="logo-grad2" x1="0" y1="0" x2="40" y2="40">
+                                    <stop offset="0%" stop-color="#FF4081"/>
+                                    <stop offset="100%" stop-color="#7C4DFF"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="logo-text">
+                        <h1>DAIN <span class="accent">AI</span></h1>
+                        <p class="tagline">Artificial Patient Data & Drug Simulation</p>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Input Form -->
+            <form id="simulation-form" class="input-grid" autocomplete="off">
+                <!-- Left Panel: Patient Parameters -->
+                <div class="glass-card patient-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </div>
+                        <h2>Patient Parameters</h2>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="patient-sex">Biological Sex</label>
+                        <div class="sex-toggle" id="patient-sex-toggle">
+                            <button type="button" class="sex-btn active" data-value="M" id="sex-male">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10" cy="14" r="5"/><path d="M19 5l-5.4 5.4M19 5h-5M19 5v5"/></svg>
+                                Male
+                            </button>
+                            <button type="button" class="sex-btn" data-value="F" id="sex-female">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="5"/><path d="M12 15v7M9 19h6"/></svg>
+                                Female
+                            </button>
+                        </div>
+                        <input type="hidden" id="patient-sex" name="sex" value="M">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="patient-age">
+                            Age
+                            <span class="slider-value" id="age-display">45 years</span>
+                        </label>
+                        <div class="slider-with-input">
+                            <input type="range" id="patient-age" name="age" min="18" max="85" value="45" class="styled-range">
+                            <input type="number" id="patient-age-input" min="18" max="85" value="45" class="numeric-input">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="patient-height">
+                            Height
+                            <span class="slider-value" id="height-display">175 cm</span>
+                        </label>
+                        <div class="slider-with-input">
+                            <input type="range" id="patient-height" name="height" min="130" max="200" value="175" class="styled-range">
+                            <input type="number" id="patient-height-input" min="130" max="200" value="175" class="numeric-input">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="patient-weight">
+                            Weight
+                            <span class="slider-value" id="weight-display">80 kg</span>
+                        </label>
+                        <div class="slider-with-input">
+                            <input type="range" id="patient-weight" name="weight" min="30" max="250" value="80" class="styled-range">
+                            <input type="number" id="patient-weight-input" min="30" max="250" value="80" class="numeric-input">
+                        </div>
+                    </div>
+
+                    <!-- BMI Preview -->
+                    <div class="bmi-preview" id="bmi-preview">
+                        <div class="bmi-value">
+                            <span class="bmi-number" id="bmi-number">26.1</span>
+                            <span class="bmi-label">BMI</span>
+                        </div>
+                        <div class="bmi-category" id="bmi-category">Overweight</div>
+                    </div>
+
+                    <!-- Patient Count -->
+                    <div class="form-group">
+                        <label for="patient-count">
+                            Patient Count
+                            <span class="slider-value" id="patient-count-display">1 patient</span>
+                        </label>
+                        <div class="slider-with-input">
+                            <input type="range" id="patient-count" name="patientCount" min="1" max="10000" value="1" class="styled-range">
+                            <input type="number" id="patient-count-input" min="1" max="10000" value="1" class="numeric-input">
+                        </div>
+                        <p class="input-hint">1 = single patient, &gt;1 = synthetic cohort</p>
+                    </div>
+                </div>
+
+                <!-- Right Panel: Drug Selection -->
+                <div class="glass-card drug-card">
+                    <div class="card-header">
+                        <div class="card-icon drug-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"/></svg>
+                        </div>
+                        <h2>Medication</h2>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="drug-source">Drug Source</label>
+                        <div class="source-toggle" id="drug-source-toggle">
+                            <button type="button" class="source-btn active" data-value="database" id="source-database">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                                From Database
+                            </button>
+                            <button type="button" class="source-btn" data-value="custom" id="source-custom">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                Custom SMILES
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Database Drug Selector -->
+                    <div class="form-group" id="database-drug-group">
+                        <label for="drug-select">Select Medication</label>
+                        <select id="drug-select" class="styled-select">
+                            <option value="">— Choose a drug —</option>
+                        </select>
+                    </div>
+
+                    <!-- Drug Info Card (shown when a drug is selected from DB) -->
+                    <div class="drug-info-card" id="drug-info-card" style="display:none">
+                        <div class="drug-info-row">
+                            <span class="drug-info-label">Class</span>
+                            <span class="drug-info-value" id="drug-info-class">—</span>
+                        </div>
+                        <div class="drug-info-row">
+                            <span class="drug-info-label">Half-life</span>
+                            <span class="drug-info-value" id="drug-info-halflife">—</span>
+                        </div>
+                        <div class="drug-info-row">
+                            <span class="drug-info-label">Primary Effect</span>
+                            <span class="drug-info-value" id="drug-info-effect">—</span>
+                        </div>
+                    </div>
+
+                    <!-- Custom SMILES Input -->
+                    <div class="form-group" id="custom-smiles-group" style="display:none">
+                        <label for="smiles-input">SMILES String</label>
+                        <textarea id="smiles-input" class="styled-textarea" rows="3" placeholder="e.g. CC(=O)OC1=CC=CC=C1C(=O)O"></textarea>
+                        <p class="input-hint">Enter a valid SMILES molecular notation</p>
+                    </div>
+
+                    <!-- SMILES Preview (always visible) -->
+                    <div class="form-group">
+                        <label for="smiles-preview">Active SMILES</label>
+                        <div class="smiles-preview" id="smiles-preview">
+                            <code>Select a drug or enter SMILES</code>
+                        </div>
+                    </div>
+
+                    <!-- Dosage & Duration -->
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label for="drug-dosage">
+                                Dosage
+                                <span class="slider-value" id="dosage-display">10 mg</span>
+                            </label>
+                            <div class="slider-with-input">
+                                <input type="range" id="drug-dosage" name="dosage" min="1" max="200" value="10" class="styled-range accent-range">
+                                <input type="number" id="drug-dosage-input" min="1" max="200" value="10" class="numeric-input">
+                            </div>
+                        </div>
+                        <div class="form-group half">
+                            <label for="sim-duration">
+                                Duration
+                                <span class="slider-value" id="duration-display">3 hours</span>
+                            </label>
+                            <div class="slider-with-input">
+                                <input type="range" id="sim-duration" name="duration" min="1" max="24" value="3" class="styled-range accent-range">
+                                <input type="number" id="sim-duration-input" min="1" max="24" value="3" class="numeric-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Run Simulation Button -->
+                <div class="submit-area">
+                    <button type="submit" class="btn-primary" id="btn-run">
+                        <span class="btn-text">Run Simulation</span>
+                        <span class="btn-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                        </span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SCREEN 2: LOADING / PROCESSING                               -->
+    <!-- ============================================================ -->
+    <section id="screen-loading" class="screen">
+        <div class="loading-container">
+            <!-- DNA Helix Animation -->
+            <div class="dna-helix" id="dna-helix">
+                <div class="helix-strand strand-left"></div>
+                <div class="helix-strand strand-right"></div>
+                <div class="helix-rungs">
+                    <div class="rung" style="--i:0"></div>
+                    <div class="rung" style="--i:1"></div>
+                    <div class="rung" style="--i:2"></div>
+                    <div class="rung" style="--i:3"></div>
+                    <div class="rung" style="--i:4"></div>
+                    <div class="rung" style="--i:5"></div>
+                    <div class="rung" style="--i:6"></div>
+                    <div class="rung" style="--i:7"></div>
+                </div>
+            </div>
+
+            <div class="loading-text">
+                <h2 id="loading-title">Generating Synthetic Patient</h2>
+                <p id="loading-subtitle">Initializing pharmacokinetic models…</p>
+            </div>
+
+            <!-- Progress Steps -->
+            <div class="progress-steps" id="progress-steps">
+                <div class="progress-step active" data-step="1">
+                    <div class="step-indicator">
+                        <div class="step-dot"></div>
+                    </div>
+                    <span>Generating Patient Profile</span>
+                </div>
+                <div class="progress-step" data-step="2">
+                    <div class="step-indicator">
+                        <div class="step-dot"></div>
+                    </div>
+                    <span>Encoding Drug Molecule</span>
+                </div>
+                <div class="progress-step" data-step="3">
+                    <div class="step-indicator">
+                        <div class="step-dot"></div>
+                    </div>
+                    <span>Computing PK/PD Response</span>
+                </div>
+                <div class="progress-step" data-step="4">
+                    <div class="step-indicator">
+                        <div class="step-dot"></div>
+                    </div>
+                    <span>Building Time Series</span>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SCREEN 3: RESULTS DASHBOARD                                  -->
+    <!-- ============================================================ -->
+    <section id="screen-results" class="screen">
+        <div class="container results-container">
+            <!-- Results Header -->
+            <header class="results-header">
+                <div class="results-title-area">
+                    <h2>Simulation Results</h2>
+                    <div class="results-actions">
+                        <button class="btn-secondary" id="btn-download-zip">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                            Download Data (.zip)
+                        </button>
+                        <button class="btn-secondary" id="btn-new-sim">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+                            New Simulation
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Summary Cards Row -->
+            <div class="summary-row" id="summary-row">
+                <!-- Patient Info Card -->
+                <div class="summary-card glass-card">
+                    <div class="summary-icon patient-summary-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="summary-content">
+                        <h3>Patient</h3>
+                        <p id="summary-patient">45yo Male, BMI 26.1</p>
+                    </div>
+                </div>
+                <!-- Drug Info Card -->
+                <div class="summary-card glass-card">
+                    <div class="summary-icon drug-summary-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"/></svg>
+                    </div>
+                    <div class="summary-content">
+                        <h3>Drug</h3>
+                        <p id="summary-drug">Aspirin, 10 mg</p>
+                    </div>
+                </div>
+                <!-- Physiological Card (was: Improved) -->
+                <div class="summary-card glass-card improved-card">
+                    <div class="summary-icon improved-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                    </div>
+                    <div class="summary-content">
+                        <h3>Physiological</h3>
+                        <p id="summary-improved">0 markers</p>
+                    </div>
+                </div>
+                <!-- Pathological Card (was: Worsened) -->
+                <div class="summary-card glass-card worsened-card">
+                    <div class="summary-icon worsened-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>
+                    </div>
+                    <div class="summary-content">
+                        <h3>Pathological</h3>
+                        <p id="summary-worsened">0 markers</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="filter-tabs" id="filter-tabs">
+                <button class="filter-tab active" data-filter="all">All Markers</button>
+                <button class="filter-tab" data-filter="improved">
+                    <span class="status-dot status-improved"></span> Physiological
+                </button>
+                <button class="filter-tab" data-filter="stable">
+                    <span class="status-dot status-stable"></span> Physiological
+                </button>
+                <button class="filter-tab" data-filter="worsened">
+                    <span class="status-dot status-worsened"></span> Pathological
+                </button>
+            </div>
+
+            <!-- Cohort Insights (only visible for multi-patient simulations) -->
+            <div class="cohort-insights" id="cohort-insights" style="display:none">
+                <div class="glass-card cohort-card">
+                    <h3 class="cohort-title">Cohort Insights by Age</h3>
+                    <div class="cohort-insights-grid" id="cohort-age-insights"></div>
+                </div>
+                <div class="glass-card cohort-card">
+                    <h3 class="cohort-title">Cohort Insights by Sex</h3>
+                    <div class="cohort-insights-grid" id="cohort-sex-insights"></div>
+                </div>
+                <div class="glass-card cohort-card">
+                    <h3 class="cohort-title">Most Unstable Features</h3>
+                    <div class="cohort-insights-grid" id="cohort-feature-instability"></div>
+                </div>
+            </div>
+
+            <!-- Metrics Grid -->
+            <div class="metrics-grid" id="metrics-grid">
+                <!-- Dynamically populated by JS -->
+            </div>
+
+            <!-- Charts Section -->
+            <div class="charts-section" id="charts-section">
+                <!-- Dynamically populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- MODAL: COHORT TIME SERIES EXPORT                             -->
+    <!-- ============================================================ -->
+    <div id="timeseries-modal-backdrop" class="modal-backdrop" style="display:none">
+        <div class="modal-card">
+            <h3 class="modal-title">Include Time Series in ZIP?</h3>
+            <p class="modal-body">
+                Exporting per‑patient time series for a large cohort can create a big ZIP and may take longer.
+                Do you want to include all time series files in this download?
+            </p>
+            <div class="modal-actions">
+                <button type="button" class="btn-secondary" id="timeseries-modal-skip">Skip Time Series</button>
+                <button type="button" class="btn-primary" id="timeseries-modal-include">Include Time Series</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toasts -->
+    <div id="toast-root" class="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
