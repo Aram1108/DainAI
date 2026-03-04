@@ -7,10 +7,20 @@ from pathlib import Path
 from typing import Optional
 import sys
 import math
+from rdkit import Chem
+from rdkit.Chem import Descriptors
+import logging
+
 
 import numpy as np
 import pandas as pd
 from scipy.interpolate import interp1d
+
+
+
+#logging
+logger = logging.getLogger("uvicorn.error")
+logger.setLevel(logging.INFO)
 
 # Project root
 ROOT = Path(__file__).resolve().parent
@@ -292,6 +302,45 @@ def _sanitize(obj):
     return obj
 
 
+def _validate_smiles(smiles: str):
+    try:
+        mol = Chem.MolFromSmiles(smiles)
+    except Exception as e:
+        return False, f"RDKit parse error: {str(e)}"
+
+    if mol is None:
+        return False, "Invalid SMILES syntax"
+
+    try:
+        mol = Chem.MolFromSmiles(smiles)
+        if mol is None:
+            # Синтаксически неверный SMILES
+            return False
+
+        # Химическая проверка: валентности, циклы и др.
+        Chem.SanitizeMol(mol)
+        return True
+
+    except Exception as e:
+        # Логирование rejected SMILES для отладки
+        print(f"Rejected SMILES: {smiles} → {e}")
+        return False
+    # Ограничение по размеру
+    if mol.GetNumAtoms() > 150:
+        return False, "Molecule too large"
+
+    mw = Descriptors.MolWt(mol)
+    if mw < 50 or mw > 1000:
+        return False, "Molecular weight out of range"
+
+    # Разрешённые атомы (органика)
+    allowed = {"C", "H", "N", "O", "S", "P", "F", "Cl", "Br", "I"}
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() not in allowed:
+            return False, f"Unsupported atom: {atom.GetSymbol()}"
+
+    return True, Chem.MolToSmiles(mol)
+
 # --- FastAPI app ---
 try:
     from fastapi import FastAPI, HTTPException, Request
@@ -379,7 +428,16 @@ def api_simulate(body: SimulateRequest):
             {"id": "61-85", "min": 61, "max": 85},
         ]
         N = body.patient_count
-        smiles = body.smiles.strip()
+
+        smiles_raw = body.smiles.strip()
+        valid, result = _validate_smiles(smiles_raw)
+
+        if not valid:
+            logger.warning(f"Rejected SMILES: {smiles_raw} | Reason: {result}")
+            raise HTTPException(status_code=400, detail=result)
+
+        smiles = result
+
         drug_name = body.drug_name or "Unknown"
         total_seconds = int(body.total_hours * SECONDS_PER_HOUR)
         # Fewer timepoints for cohort to cut interpolation work
@@ -633,7 +691,16 @@ async def api_simulate_stream(body: SimulateRequest, request: Request):
         {"id": "61-85", "min": 61, "max": 85},
     ]
     N = body.patient_count
-    smiles = body.smiles.strip()
+
+    smiles_raw = body.smiles.strip()
+    valid, result = _validate_smiles(smiles_raw)
+
+    if not valid:
+        logger.warning(f"Rejected SMILES: {smiles_raw} | Reason: {result}")
+        raise HTTPException(status_code=400, detail=result)
+
+    smiles = result
+
     drug_name = body.drug_name or "Unknown"
     vol = body.volume_l if body.volume_l is not None else 50.0
     half = body.half_life_min if body.half_life_min is not None else 60.0

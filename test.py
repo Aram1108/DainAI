@@ -485,7 +485,7 @@ def generate_patient_data(
         baseline_labs=baseline_labs,
         drug_config=drug_config,
         duration_sec=86400,  # 24 hours
-        interval_sec=5  # Every 5 seconds
+        interval_sec=30  # Every 30 seconds
     )
     
     # Validate
