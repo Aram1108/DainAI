@@ -1,57 +1,57 @@
-# BloodTwin / DAIN AI Simulation API
+# BloodTwin & DAIN AI: Component-Based Pharmacodynamic Prediction System
 
-> **CONFIDENTIALITY NOTICE:** This is a private proprietary repository. The code, models, and data contained within are strictly confidential. Do not distribute, copy, or share without explicit authorization.
+Welcome to the **BloodTwin** project! 
 
-## Executive Summary
+Imagine being able to test a new chemical compound on thousands of virtual patients before ever running a real-world clinical trial. BloodTwin is an *in silico* (computer-simulated) clinical trial platform. Instead of relying on traditional, drug-specific empirical models, BloodTwin leverages deep learning to predict how any given chemical compound might change a patient's lab biomarkers (like cholesterol, glucose, or calcium levels) over time.
 
-**BloodTwin** is a state-of-the-art Component-Based Pharmacodynamic Prediction System. Instead of relying on traditional drug-specific empirical models, BloodTwin leverages deep learning pipelines to predict the physiological and pathological effects of any compound (represented by its SMILES string) on synthesized human cohorts over time.
+Whether you are a researcher, a developer, or an AI enthusiast, this guide will walk you through what the project does, how it works under the hood, and how to run it yourself.
 
-By coupling generative patient synthesis with cross-attention pharmacodynamics and transformer-based time series modeling, BloodTwin gives researchers the unprecedented ability to simulate clinical trials *in silico*.
+---
 
-## System Architecture
+## 🧠 How It Works (The AI Pipeline)
 
-The core AI pipeline consists of four distinct, highly specialized neural network architectures:
+BloodTwin works by combining four distinct neural network models into a single, cohesive timeline. Here is a high-level overview of the pipeline:
 
-### 1. Patient Generator GAN (Conditional GAN)
-Synthesizes highly realistic patient profiles based conditioned on user inputs (Age, Sex, Height, Weight).
-- **Outputs**: 41 distinct features including body measurements, lab results, and questionnaire responses.
-- **Data Source**: Trained on NHANES demographic data (approx. 23k patients).
+### 1. Generating Virtual Patients (Conditional GAN)
+Before we can test a drug, we need patients. We use a **Generative Adversarial Network (GAN)** trained on real-world demographic data from the NHANES dataset (approx. 23,000 patients). 
+* **What it does:** You provide basic demographics (Age, Sex, Height, Weight), and the GAN generates a highly realistic "virtual patient" complete with 41 distinct features, including baseline lab results and body measurements.
 
-### 2. Drug Encoder (Hybrid Model)
-Translates chemical representations into a rich, dense embedding space.
-- **Neural Component**: Transformer-based SMILES string encoder.
-- **RDKit Backbone**: Computes 256 physical/molecular descriptors.
-- **Output Dimension**: 768-D dense vector representing the compound's structure, drug-likeness, and functional groups.
+### 2. Understanding the Drug (Hybrid Drug Encoder)
+To predict what a drug will do, the AI needs to "read" its chemical structure. 
+* **What it does:** We take the drug's SMILES string (a text representation of its chemical structure) and pass it through a **Transformer** model combined with traditional chemoinformatics capabilities (RDKit). This creates a dense, 768-dimensional mathematical representation of the drug's exact properties and functional groups.
 
-### 3. Pharmacodynamic Predictor (Cross-Attention Transformer)
-Predicts the static shift (deltas) in 22 key lab biomarkers caused by the administered drug.
-- **Mechanism**: The drug embedding (queries) attends to the 41 generated patient features (keys/values) via Multi-Head Cross Attention.
-- **Features**: Enforces physiological constraints and uses Monte Carlo Dropout for uncertainty quantification.
+### 3. Predicting the Effect (Cross-Attention Transformer)
+Now we have our virtual patient and our mathematical drug representation. 
+* **What it does:** We use a **Cross-Attention mechanism** (similar to how modern language models work) where the "Drug" attends to the 41 "Patient Features". This model calculates the static shift (the delta) in 22 key lab biomarkers caused by the administered drug.
 
-### 4. Time Series Predictor (Transformer)
-Converts static drug response trajectories into temporal biomarker patterns.
-- **Mechanism**: Learns drug-specific trajectories and adherence interactions over customized bounds (e.g., 10, 20, 60, 180 days).
-- **Output**: Generates time series simulations for the web dashboard.
+### 4. Simulating Over Time (Time Series Transformer)
+A drug's effect changes over time depending on dosage, half-life, and patient adherence.
+* **What it does:** Our final **Transformer** model converts the static biomarker predictions into a temporal trajectory (e.g., predicting biomarker levels at day 10, 30, or 180). This data is then formatted to be visualized on our web dashboard.
 
-## Tech Stack
-- **Backend Framework**: FastAPI (`app.py`), Uvicorn
+---
+
+## 🛠️ Tech Stack
+
+- **Backend / API**: FastAPI (`app.py`), Uvicorn
 - **Machine Learning**: PyTorch, Transformers (Hugging Face)
 - **Chemoinformatics**: RDKit 
 - **Data Processing**: Polars, Pandas, NumPy, SciPy, Scikit-learn
-- **Frontend**: Vanilla JS, HTML, CSS (`website/` directory)
+- **Frontend**: Vanilla JS, HTML, CSS (served from the `website/` directory)
 
-## Directory Structure
+---
+
+## 📂 Project Structure
 
 ```plaintext
 BloodTwin/
 ├── data/                      # Raw and auxiliary data files
-├── preprocessed_nhanes/       # Directory for preprocessed patient generation data
+├── preprocessed_nhanes/       # Directory containing preprocessed patient Generation data
 ├── models/                    # Saved PyTorch checkpoint weights (.pt files)
 ├── src/
-│   ├── models/                # GAN, PD Predictor, Time Series Predictor implementations
-│   ├── encoders/              # Drug representation implementations
-│   ├── training/              # Training routines
-│   └── utils/                 # Utilities
+│   ├── models/                # GAN, PD Predictor, and Time Series Predictor implementations
+│   ├── encoders/              # Drug Encoder implementations
+│   ├── training/              # Training routines and scripts
+│   └── utils/                 # Utility scripts
 ├── website/                   # Frontend dashboard (HTML/JS/CSS)
 ├── app.py                     # Main FastAPI application and API routing
 ├── main.py                    # Legacy/Alternative entry point
@@ -60,61 +60,64 @@ BloodTwin/
 └── MODEL_ARCHITECTURES.md     # Deep dive into network layers, dims, and parameters
 ```
 
-## Setup & Installation
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
-- Python 3.10+
-- RDKit compatibility (recommend conda/mamba environment or using `pip install rdkit`)
-- Ensure you have the PyTorch version that matches your CUDA toolkit if utilizing GPU acceleration. The pipeline will default to CPU if `cuda` is not available.
+- **Python 3.10+**
+- **RDKit compatibility**: We recommend using a Conda/Mamba environment or simply `pip install rdkit`.
+- If you have an NVIDIA GPU, ensure your PyTorch installation matches your CUDA toolkit version for hardware acceleration. If no GPU is found, the system will seamlessly fall back to CPU.
 
-### Installation Steps
+### 1. Clone the Repository
+```bash
+git clone <repository-url>
+cd BloodTwin
+```
 
-1. **Clone the (Private) Repository**
-   ```bash
-   git clone <private-repo-url>
-   cd BloodTwin
-   ```
+### 2. Create a Virtual Environment
+It is highly recommended to isolate your dependencies:
+```bash
+python -m venv .venv
 
-2. **Create a Virtual Environment**
-   ```bash
-   python -m venv .venv
-   # Windows:
-   .venv\Scripts\activate
-   # macOS/Linux:
-   source .venv/bin/activate
-   ```
+# On Windows:
+.venv\Scripts\activate
 
-3. **Install Dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
+# On macOS/Linux:
+source .venv/bin/activate
+```
 
-4. **Verify Model Weights & Data**
-   Ensure that the model weights are present in the `models/` directory and that `preprocessed_nhanes/nhanes_final_complete.csv` is available before spinning up the server.
+### 3. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
 
-## Running the Application
+### 4. Verify Model Weights
+Before running the server, ensure that your pre-trained PyTorch weights (`.pt` files) are located inside the `models/` directory, and that the `preprocessed_nhanes/nhanes_final_complete.csv` data source is present.
 
-### Method 1: Python/Uvicorn (Recommended)
-You can start the FastAPI application by running:
+---
+
+## 🏃 Running the Application
+
+### The Server and Web Dashboard
+Start the FastAPI application by running:
 ```bash
 uvicorn app:app --host 0.0.0.0 --port 8000 --reload
 ```
-Next, navigate to `http://localhost:8000` in your browser to access the interactive web dashboard.
+Once the server is running, open your web browser and navigate to [http://localhost:8000](http://localhost:8000) to access the interactive simulation dashboard.
 
-### Method 2: Script
-Windows users can utilize the included script:
-```powershell
-.\run_web.ps1
-```
+*(Windows users can also simply double-click or run the `.\run_web.ps1` script)*
 
-## API Reference
+---
 
-The server exposes a RESTful API to run simulations programmatically without the frontend.
+## 🔌 API Reference
+
+BloodTwin exposes a RESTful API if you wish to run pipeline simulations programmatically without using the web UI.
 
 ### `POST /api/simulate`
-Executes the full pipeline for single patients or batch cohorts.
+Executes the full pipeline for a single patient or a batch cohort.
 
-**Request Body (JSON):**
+**Example Request:**
 ```json
 {
   "age": 45,
@@ -133,10 +136,9 @@ Executes the full pipeline for single patients or batch cohorts.
 ```
 
 ### `POST /api/simulate/stream`
-Streaming interface for cohort prediction. Yields Server-Sent Events (SSE) representing intermediate generation progress, closing with the finalized cohort statistics. This endpoint avoids browser timeout issues on large `patient_count` values.
+A Streaming Interface (Server-Sent Events) designed for large cohort predictions. It streams the generation progress back to the client continuously to prevent browser timeouts when generating thousands of patients.
 
-## Extending the Project
-For researchers or machine learning engineers expanding the capabilities:
-1. Refer deeply to `MODEL_ARCHITECTURES.md` when replacing or retraining the network backbones.
-2. New pipeline stages should be registered inside the `run_single_simulation` logic in `app.py`.
-3. New lab codes and constraints must be appended to the `LAB_BIOMARKER_FEATURES` mapping block.
+---
+
+## 📖 Further Reading
+If you are modifying the deep learning architecture or want to dive entirely into the mathematics, please read the provided `MODEL_ARCHITECTURES.md` document. It contains detailed layer-by-layer specifications for all the PyTorch models used in this project.
