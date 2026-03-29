@@ -1,8 +1,8 @@
-# BloodTwin & DAIN AI: Component-Based Pharmacodynamic Prediction System
+# DAIN AI: Component-Based Pharmacodynamic Prediction System
 
-Welcome to the **BloodTwin** project! 
+Welcome to the **DAIN AI** project! 
 
-Imagine being able to test a new chemical compound on thousands of virtual patients before ever running a real-world clinical trial. BloodTwin is an *in silico* (computer-simulated) clinical trial platform. Instead of relying on traditional, drug-specific empirical models, BloodTwin leverages deep learning to predict how any given chemical compound might change a patient's lab biomarkers (like cholesterol, glucose, or calcium levels) over time.
+Imagine being able to test a new chemical compound on thousands of virtual patients before ever running a real-world clinical trial. DAIN AI is an *in silico* (computer-simulated) clinical trial platform. Instead of relying on traditional, drug-specific empirical models, DAIN AI leverages deep learning to predict how any given chemical compound might change a patient's lab biomarkers (like cholesterol, glucose, or calcium levels) over time.
 
 Whether you are a researcher, a developer, or an AI enthusiast, this guide will walk you through what the project does, how it works under the hood, and how to run it yourself.
 
@@ -10,7 +10,7 @@ Whether you are a researcher, a developer, or an AI enthusiast, this guide will 
 
 ## 🧠 How It Works (The AI Pipeline)
 
-BloodTwin works by combining four distinct neural network models into a single, cohesive timeline. Here is a high-level overview of the pipeline:
+DAIN AI works by combining four distinct neural network models into a single, cohesive timeline. Here is a high-level overview of the pipeline:
 
 ### 1. Generating Virtual Patients (Conditional GAN)
 Before we can test a drug, we need patients. We use a **Generative Adversarial Network (GAN)** trained on real-world demographic data from the NHANES dataset (approx. 23,000 patients). 
@@ -43,7 +43,7 @@ A drug's effect changes over time depending on dosage, half-life, and patient ad
 ## 📂 Project Structure
 
 ```plaintext
-BloodTwin/
+DAIN-AI/
 ├── data/                      # Raw and auxiliary data files
 ├── preprocessed_nhanes/       # Directory containing preprocessed patient Generation data
 ├── models/                    # Saved PyTorch checkpoint weights (.pt files)
@@ -72,7 +72,7 @@ BloodTwin/
 ### 1. Clone the Repository
 ```bash
 git clone <repository-url>
-cd BloodTwin
+cd DAIN-AI
 ```
 
 ### 2. Create a Virtual Environment
@@ -112,7 +112,7 @@ Once the server is running, open your web browser and navigate to [http://localh
 
 ## 🔌 API Reference
 
-BloodTwin exposes a RESTful API if you wish to run pipeline simulations programmatically without using the web UI.
+DAIN AI exposes a RESTful API if you wish to run pipeline simulations programmatically without using the web UI.
 
 ### `POST /api/simulate`
 Executes the full pipeline for a single patient or a batch cohort.
